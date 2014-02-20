@@ -1,0 +1,237 @@
+﻿Call list -> Вызовы
+Webkey for Android -> Webkey для Android
+unknown -> неизвестно
+min -> мин
+sec -> сек
+Detailed call list -> Детальный список вызовов
+rejected -> отклонено
+in -> входящиее
+out -> исходящие
+Calls which are longer than half minute in the selected month -> Звонки, которые больше, чем полминуты за выбранный месяц
+Summarize -> Суммарно
+Name -> Имя
+incoming -> входящие
+outgoing -> исходящие
+Loading Call list... -> Загрузка списка ...
+Above lines are read by -> Читать ниже
+Chat -> Чат
+clear -> очистка
+chat message -> сообщение чата
+chat messages -> сообщения чата
+Save -> Сохранить
+Allowable characters in GSM and their keycode in non-unicode SMS -> Допустимые символы в GSM и код клавиши не-Unicode
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). -> Линии с поддержкой "работать в СМС режиме" имеют приоритет, если вы хотите, чтобы избежать юникод СМС режиме (как в меню телефона и SMS).
+Export -> Экспорт
+Contacts -> Контакты
+Messages -> Сообщения
+to -> туда
+plain text (pure) -> обычный текст (чистый)
+semicolon-separated values (csv) -> значения, разделённые точкой (CSV)
+xml -> XML
+where date is -> где дата
+dd mm yyyy -> дд мм гггг
+mm dd yyyy -> мм дд гггг
+yyyy mm dd -> гггг мм дд
+with date separator -> с разделителем даты
+in timezone -> В часовой пояс
+Timezone -> Врем. зона
+Epoch time -> Эпоха время
+with newline type -> с новой строки типа
+The texts are exported in utf-8 encoding. -> Текст экспортируется в кодировке UTF-8.
+Files -> Файлы
+GPS -> GPS
+GPS location -> положение GPS
+Show on map -> На карте
+Update continuously -> Обновлять регулярно
+Network location -> пол-е по сиг-лу сети
+Error -> Ошибка
+BEFORETIME -> Вчера и третьего дня
+seconds ago -> секунд назад
+minutes ago -> минут назад
+hours ago -> часов назад
+days ago -> дней назад
+Help -> Помощь
+Please visit our website for more information -> Посетите сайт для подробной информации
+If you like our app, please support the development of Webkey. Every help is appreciated. -> Если Вам понравилось наше приложение, пожалуйста поддержите разработку Webkey. Любая помощь приветствуется.
+Screenshots' properties -> Свойства скриншота
+Clicking, dragging -> Перетаскивание
+You should be able to click and drag on the phone by doing the same on the screenshot. -> Вы можете делать на телефоне тоже, что и не скриншоте.
+Low resolution -> Низкое разрешение
+It makes resolution half both in horizontal and vertical direction. -> Это уменьшит разрешение в два раза
+PNG (slower than JPEG) -> PNG (медленнее, чем JPEG)
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> JPEG это сжатие с потерями. Это быстро и имеет очень хорошую степень сжатия, но изображение становится "шумным". PNG намного медленнее, размер больше, но он использует сжатие без потерь.
+Use only first framebuffer -> Используйте только первый кадровый буфер
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> Обычно Andriod использует двойной буфер: в то время как телефон использует один из двух буфера кадров для отображения, он готовит новый образ на другой. После кеширует их. Этот трюк, чтобы избежать мерцания. На некоторых старых телефонов (например, на HTC Dream G1) может отображать некоторые части от первой, и в некоторых частях со второй фреймбуфер, но в этом случае обычно второй фреймбуфер не содержит целого изображения. Эта опция заставляет Webkey использовать только первый кадровый буфер.
+Record images -> Запись изображения
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> Телефон начнет сохранять картинки в папку / SDCard / webkey_TEMP / так часто, как сможет. Он использует настройки (с низким разрешением, горизонтальные, Flip, PNG / JPEG, используется только первый фрейм-буфер). После нажатия кнопки Остановить запись, телефон делает почтовый архив с изображениями и отправляет его в браузер.
+Typing -> Ввод
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> Большая площадь для ввода текста на телефоне. Вы можете сделать это немедленно, если "Отправить во время набора" установлен, или Вы можете отправить весь текст, нажав на кнопку "Отправить текст". Не-английские символы могут подвесить экран телефона в первый раз. Кнопке DEL вводит назад.
+Config keys -> Настройка кнопок
+You can configure the character substitution rules for SMS mode. -> Вы можете настроить правила замены символов в режиме SMS.
+SMS mode -> SMS режим
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> Если вы попытаетесь послать специальные символы, например, O, U в SMS, то эти символы заставить Android перейти на формат Unicode, где количество символов в сообщении падает с 160 до 70 в сетях GSM. Если SMS-режим включен, то линии "работать в режиме SMS» имеют приоритет.
+Translations -> Переводы
+If you already have an account to this phone -> Если уже есть аккаунт у телефона
+Login -> Логин
+Username -> Имя пользователя
+Password -> Пароль
+Create new user -> Создайте нового пользователя
+Registration -> Регистрация
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> Регистрация новых пользователей отключена, нажмите на кнопку "позволять пользователю регистрацию в браузере", чтобы включить его.
+You can always manage users on the phone. -> Вы всегда можете управлять пользователями по телефону.
+Click here to switch to SSL. -> Нажмите здесь, чтобы перейти к SSL.
+SSL provides secure (and a slightly slower) way to access Webkey. -> SSL обеспечивает безопасный (и немного медленнее) способ доступа к Webkey.
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> В Firefox вам придется нажать на кнопку "Я понимаю риск", "Добавить исключение ...», «Соответствующее Исключение в отношении безопасности".
+On Chrome you might have to click on "Proceed anyway". -> В Chrome у вас может быть надо нажать на кнопку "Все равно продолжить".
+Click here to disable SSL. -> Нажмите здесь, чтобы отключить SSL.
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> Отключение SSL позволит ускорить соединение, но данные будут передавать незащищенных.
+Language -> Язык
+Net -> Net
+Sum -> Сумма
+Notify -> Оповещения
+saved -> сохранено
+failed to save -> не удалось сохранить
+Under development, it may not notify you because the CPU can fall deep asleep -> В стадии разработки, он не может уведомить вас, потому что процессор может упасть глубоко спит
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> Webkey поиска непрочитанных сообщений и пропущенных звонков каждые полминуты (вряд ли использует процессор, мы проверяем время модификации файлов базы данных, и только если они изменяются, то сделать быстрый запрос SQLite).
+Trigger events -> Запуск событий
+Watch for unread messages -> Следите за непрочитанными сообщения
+Watch for missed calls -> Следите за пропущенными вызовами
+Notification method -> Метод оповещения
+Alert every -> Сигнал каждые
+minute -> минута
+Vibrate phone -> Вибрация телефона
+Vibrate phone with the following sequence -> Вибрация телефона в следующей последовательности
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A, B, C, D, ... значит, вибрировать на мс, ждать B мс, вибрировать на C мс, ждать D мс, ...)
+Blink led -> Мерцание диода
+only for the duration of vibrate -> только на время вибрации
+all the time -> Все время
+When the led is blinking, it is on for -> Когда индикатор мигает, это в течение
+ms, and off for -> мс, а для выключения
+ms -> мс
+Save and test alert -> Сохранить и проверить оповещения
+Click here to type on phone! -> Кликните здесь, чтобы набрать на телефоне!
+Stop recording -> Остановка записи
+results -> Результаты
+Screen properties -> Свойства экрана
+Half size -> Половина размера
+Horizontal -> Горизонтально
+Flip -> Отражение
+PNG (slower than JPEG) -> PNG (медленнее, чем JPEG)
+Auto refresh -> Автоматическое обновление
+Keep alive -> Оставить включенным
+Refresh image -> Обновить изображение
+Save image -> Сохранить изображение
+Typing properties -> Свойства ввода
+Send while typing -> Отправить во время набора текста
+Send on Enter -> Отправить по Enter
+Send text -> Отправить текст
+Config buttons -> Конфигурация кнопок
+Open, call, run -> Открытые, позвонить, запустить
+Open in browser -> Открsnm в браузере
+Call -> Позвонить
+Dial -> Набор
+Run -> Выполнить
+Phone info -> О телефоне
+Clipboard -> Буфер обмена
+Screen timeout -> Время отключения экрана
+IMEI/MEID -> IMEI / MEID
+Phone number -> Номер телефона
+Network operator name -> Оператор
+Network type -> Тип сети
+SIM operator name -> Оператор SIM
+SIM serial number -> Серийный номер SIM-карты
+Subscriber ID -> Идентификатор подписчика
+Phone utils -> Телефонные утилиты
+Send toast -> Отправить приглашение
+Vibrate -> Вибрация
+Run application -> Запуск приложения
+Close application -> Закрыть приложение
+Kill application -> Убить приложение
+Volume -> Объем
+Ringer -> Звонок
+Media -> Медиа
+Wifi -> Wi-Fi
+Buttons -> Кнопки
+Development -> Разработка
+Run SL4A request -> Запуск SL4A запроса
+Sdcard -> SDcard
+SMS -> SMS
+Sent. Reload the page to see the sent message. -> Отправленные. Обновить страницу, чтобы увидеть отправленные сообщения.
+FAILED TO SEND -> Не удалось отправить
+add to recipients -> добавить получателей
+To -> Кому
+click to remove -> нажмите, чтобы удалить
+no recipients -> нет получателей
+Click&nbsp;to&nbsp;add&nbsp; -> Нажмите, чтобы добавить
+Me -> Я
+(pending...) -> (Ожидайте. ..)
+Write here your message! -> Напишите здесь Ваше сообщение!
+MMS -> MMS
+skipped chars -> пропускаются символы
+In the phone numbers the following characters are allowed: 0-9, +, - -> В номере разрешены следующие символы: 0-9, +,
+No recipients, please add at least one. -> Нет получателей, добавьте по крайней мере одного.
+Unable to send empty message. -> Не удается отправить пустое сообщение.
+sending... -> отправка ...
+Under development, tested only on GSM networks -> В стадии разработки, испытано только на GSM-сетях
+Loading SMS and contacts... -> Загрузка SMS и контактов ...
+SEND -> SEND
+Show contacts -> Показать контакты
+Show phone numbers -> Показать номера
+SMS mode (avoid unicode) -> SMS-режим (во избежание Unicode)
+Add phone number -> Добавить номер телефона
+Message -> Сообщение
+Terminal -> Терминал
+Config -> Настройка
+Log out -> Выход
+Adjust light -> Регулировка света
+loading -> загрузка
+Close -> Закрыть
+Kill -> Убить
+ch -> канал
+level -> уровень
+Phone -> Телефон
+Show -> Показать
+Key -> Основные
+Keycode -> Ключевой код
+Char -> Char
+converts to -> конвертировать в
+works in SMS mode -> работа в режиме SMS
+Reloading... -> Обновление ...
+Registration request sent, please wait until it's authorized on the phone. -> Регистрационный запрос отправлен, пожалуйста, ждите авторизации.
+Saved, reloading ... -> Сохранить, перегрузка ...
+username -> имя пользователя
+password -> пароль
+Change password -> Изменить пароль
+Remove user -> Удалить пользователя
+ALL -> ВСЕ
+Screenshot -> Скриншот
+Location -> Местонахождение
+Read /sdcard/public/ -> Чтение пути / SDCard / public /
+Contacts, Sms, Calls -> Контакты, SMS, звонки
+Read files -> Чтение файлов
+Save permissions -> Сохранить права
+New user -> Новый пользователь
+Create -> Создать
+Details about permissions -> Подробная информация о разрешениях
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> Все остальные права. Кроме того, пользователь может вводить ключи, реакцию на прикосновения, выполняемые команды, выполнять команды в терминале, просматривать журнал. Эти функции не доступны при любых других правах.
+View screenshot of the phone. -> Смотреть скриншот телефона.
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> Просмотр GPS и "сеть (по сотовым вышкам)" местоположение телефона. GPS доступен, только если он включена в настройках телефона. Определения положения по вышкам зависит от вашего оператора.
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> Читать и писать сообщения. Каждое сообщение в тот же список, и каждый может очистить этот список.
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> Если это разрешение установлено а разрешение "Чтение файлов" нет, то в меню "Файлы" только содержание / SDCard / public будут доступны для чтения. Пожалуйста, создайте этот каталог, если вы собираетесь использовать эту функцию.
+Read personal data such as contacts, messages and call list. -> Чтение личных данных, такие как контакты, сообщения и список вызовов.
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> Читать все файлы на телефоне. Будьте осторожны, контакты, сообщения, список вызовов и пароли Webkey хранятся в файлах!
+Read and modify the content of the sdcard. -> Читать и изменять содержимое SDCard.
+Log (activities is logged once in every 30 minutes) -> Вход (деятельность регистрируется один раз в каждые 30 минут)
+Clear log -> Очистить журнал
+uptime -> время работы
+uptime secs -> время работы (сек)
+mins -> мин
+hours -> часов
+days -> дней
+hour -> час
+CPUup -> работы CPU
+CPU uptime secs -> CPU (сек)
+Brightness -> Яркость
+Recorded -> Записано
+images -> изображение
+This terminal will be closed after 60 minutes of inactivity. -> Этот терминал будет закрыт после 60 минут бездействия.

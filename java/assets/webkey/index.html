@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Webkey for Android</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function tossl()
+		{
+			var url   = 'https://' + document.location.hostname;
+		       	if (<<SSLPORT>> == "443")
+				url += document.location.pathname;
+			else
+				url += ":" + "<<SSLPORT>>"+document.location.pathname;
+			document.location.replace(url);
+		}
+		function tonormal()
+		{
+			var url   = 'http://' + document.location.hostname;
+		       	if (<<PORT>> == "80")
+				url += document.location.pathname;
+			else
+				url += ":" + "<<PORT>>"+document.location.pathname;
+			document.location.replace(url);
+		}
+		function setCookie(c_name,value,expiredays)
+		{
+			var exdate=new Date();
+			exdate.setDate(exdate.getDate()+expiredays);
+			document.cookie=c_name+ "=" +escape(value)+
+				((expiredays==null) ? "" : ";expires="+exdate.toUTCString());
+		}
+	</script>
+<div style="width: 700px; margin-left:auto; margin-right:auto; text-align: center">
+	<div style="font-size: 200%; align; margin-bottom:30px">Webkey for Android</div>
+	<!--[if lt IE 7]>
+		<p style="color: red; font-weight: bold;">`Please update your Internet Explorer. Your version doesn't support more than 2 concurrent connections.`</p>
+	<![endif]-->
+	`If you already have an account to this phone`:
+	<div style="font-size: 150%; margin: 30px"><a href="phone.html">`Login`</a></div>
+	<hr/>
+	<<REGISTRATION
+	<div id="reg" style="margin: 30px"> <a href="#" style="font-size: 150%" onclick='document.getElementById("reg").innerHTML="<form name=\"registration\" method=\"post\" action=\"register\"><table style=\"margin-left:auto; margin-right:auto; text-align: center\"><tr><td>`Username`:</td><td><input type=\"text\" name=\"username\"/></td></tr><tr><td>`Password`:</td><td><input type=\"password\" name=\"password\"/></td></tr></table><div><input type=\"submit\" value=\"`Create new user`\"/></div></form>"'>`Registration`</a> </div>
+>>
+<<NOREGISTRATION `New user's registration is disabled, click on "allow user registration in browser" to enable it.`>>
+`You can always manage users on the phone.`
+	<div style="margin-top:30px">
+	<<CHANGE2SSL 
+	<a href="#" onclick="tossl()">`Click here to switch to SSL.`</a><br/>
+	<span style="font-size:70%">`SSL provides secure (and a slightly slower) way to access Webkey.`<br/>
+	`On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception".`<br/>
+	`On Chrome you might have to click on "Proceed anyway".`</span>
+	>>
+	<<CHANGE2NORMAL 
+	<a href="#" onclick="tonormal()">`Click here to disable SSL.`</a><br/>
+	<span style="font-size:70%">`Disabling SSL will speed up the connection, but the data will transfer unsecure.`</span>
+	>>
+
+	<div style="margin-top:20px">`Language`: 
+		<img onclick="setCookie('lang','en',30);window.location.reload()" src="flags_en.png" alt="en"/>
+		<img onclick="setCookie('lang','hu',365);window.location.reload()" src="flags_hu.png" alt="hu"/>
+		<img onclick="setCookie('lang','zh',365);window.location.reload()" src="flags_zh.png" alt="zh"/>
+		<img onclick="setCookie('lang','de',365);window.location.reload()" src="flags_de.png" alt="de"/>
+		<img onclick="setCookie('lang','es',365);window.location.reload()" src="flags_es.png" alt="es"/>
+		<img onclick="setCookie('lang','el',365);window.location.reload()" src="flags_el.png" alt="gr"/>
+		<img onclick="setCookie('lang','pt',365);window.location.reload()" src="flags_pt.png" alt="gr"/>
+		<img onclick="setCookie('lang','fr',365);window.location.reload()" src="flags_fr.png" alt="fr"/>
+		<img onclick="setCookie('lang','it',365);window.location.reload()" src="flags_it.png" alt="it"/>
+		<img onclick="setCookie('lang','nl',365);window.location.reload()" src="flags_nl.png" alt="nl"/>
+		<img onclick="setCookie('lang','ru',365);window.location.reload()" src="flags_ru.png" alt="ru"/>
+		<img onclick="setCookie('lang','tr',365);window.location.reload()" src="flags_tr.png" alt="tr"/>
+	</div>
+</div>
+
+</div>
+</body>
+</html>

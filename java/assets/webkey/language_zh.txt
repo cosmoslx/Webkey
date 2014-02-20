@@ -1,0 +1,256 @@
+Call list -> 通话列表
+Webkey for Android -> Webkey(Android版)
+Detailed call list -> 详细通话记录
+unknown -> 未知
+rejected -> 未接通
+in -> 接通
+out -> 拨出
+min -> 分
+sec -> 秒
+Calls which are longer than half minute in the selected month -> 指定月份中通话时间大于半分钟的有：
+Summarize -> 通话汇总
+Name -> 联系人
+incoming -> 接听总时间
+outgoing -> 拨出总时间
+Loading Call list... -> 正在载入通话记录……
+Above lines are read by -> read by：
+Chat -> 聊天
+chat message -> 聊天信息
+chat messages -> 聊天信息
+Export -> 导出
+Contacts -> 联系人
+Messages -> 短信息
+to -> 导出为
+plain text (pure) -> 简单文本
+semicolon-separated values (csv) -> 逗号分隔文件(csv)
+xml -> xml文件
+where date is -> 时间格式为
+dd mm yyyy -> 日 月 年
+mm dd yyyy -> 月 日 年
+yyyy mm dd -> 年 月 日
+with date separator -> 年月日分隔符为
+in timezone -> 设置时区为
+Timezone -> 时区
+Epoch time -> 新纪元时间(epoch time)
+with newline type -> 换行符类型为：
+The texts are exported in utf-8 encoding. -> 文本将以utf-8编码格式导出
+GPS -> GPS
+GPS location -> GPS 位置
+Show on map -> 在地图上显示
+Update continuously -> 持续更新
+Network location -> 网络位置
+Error -> 误差为
+seconds ago -> 秒之前
+minutes ago -> 分钟之前
+hours ago -> 小时之前
+days ago -> 天之前
+Notify -> 通知
+saved -> 已保存
+failed to save -> 保存失败
+Under development, it may not notify you because the CPU can fall deep asleep -> 正在开发中，可能由于CPU进入深度睡眠而未提醒你
+Trigger events -> 触发提醒事件
+Watch for unread messages -> 未读信息
+Watch for missed calls -> 未接电话
+Notification method -> 通知方式
+Alert every -> 每
+minute -> 分钟警报提醒
+Vibrate phone -> 手机震动
+Vibrate phone with the following sequence -> 以以下方式震动
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A,B,C,D,... 表示: 震动 A ms, 停止 B ms, 震动 C ms, 停止 D ms, ...)
+Blink led -> 点亮LED
+only for the duration of vibrate -> 仅当手机震动时
+all the time -> 一直
+When the led is blinking, it is on for -> 当LED闪烁时，点亮
+ms, and off for -> 毫秒, 熄灭
+ms -> 毫秒
+Save and test alert -> 保存并测试警报
+Low resolution -> 低分辨率
+Half size -> 一半尺寸
+Horizontal -> 水平放置
+Flip -> 倒置
+PNG (slower than JPEG) -> PNG格式 (性能低于JPEG格式)
+Auto refresh -> 自动刷新
+Keep alive -> 禁止手机休眠
+Use only first framebuffer -> 只使用第一个帧缓存
+Refresh image -> 刷新图像
+Record images -> 录像
+Save image -> 保存当前图像
+Open in browser -> 在浏览器中打开
+Call -> 直接拨打号码
+Dial -> 拨出前面号码
+Run -> 运行
+Click here to type on phone! -> 点击这里在手机上输入！
+Send while typing -> 实时传送到手机
+SMS mode -> 短信息模式
+Send text -> 发送
+Config buttons -> 配置按钮
+Config keys -> 配置键盘
+Adjust light -> 调整亮度
+SMS -> 短信息
+Sent. Reload the page to see the sent message. -> 已发送。刷新页面已查看发送的信息
+FAILED TO SEND -> 发送失败
+add to recipients -> 添加到收件人
+To -> 发送给
+click to remove -> 点击取消
+no recipients -> 没有收件人
+Me -> 自己
+(pending...) -> (正在处理...)
+Write here your message! -> 在这里输入你要发送的短信息
+MMS -> 彩信MMS
+skipped chars -> 忽略字符
+In the phone numbers the following characters are allowed: 0-9, +, - -> 电话号码中仅允许下列字符：0-9, +, -
+No recipients, please add at least one. -> 没有收件人，请至少填写一个
+Unable to send empty message. -> 不能发送空消息！
+sending... -> 正在发送中……
+Under development, tested only on GSM networks -> 该功能正在开发中，仅在GSM网络中测试过
+Loading SMS and contacts... -> 正在载入短信息和联系人信息……
+SEND -> 发送
+Show contacts -> 显示联系人
+Show phone numbers -> 显示电话号码
+SMS mode (avoid unicode) -> 短信息（SMS）模式（avoid unicode）
+Add phone number -> 添加电话号码
+Message -> 信息
+Phone -> 电话
+Terminal -> 终端
+Config -> 用户设置
+Files -> 目录浏览
+Sdcard -> SD 存储卡
+Help -> 帮助
+Log out -> 注销登录
+results -> 运行结果
+Saved, reloading ... -> 已保存，正在重新载入 ...
+username -> 用户名
+password -> 密码
+Change password -> 更改密码
+Remove user -> 删除用户
+ALL -> 所有
+Screenshot -> 截图
+Location -> 位置
+Read /sdcard/public/ -> 读取 /sdcard/pubic
+Contacts, Sms, Calls -> 联系人、短信、通话记录
+Read files -> 读取文件
+Save permissions -> 保存权限
+New user -> 新建用户
+Create -> 新建
+Details about permissions -> 权限分配详情
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> 许可所有权限。此外还允许用户操作按键、触摸屏、执行指令、在终端执行指令以及查看记录的额外功能，下列权限不能打开以上额外功能
+View screenshot of the phone. -> 查看手机界面
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> 查看GPS和手机网络位置。GPS查看功能仅在手机设置启动GPS下有效。网络位置取决于具体服务商。
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> 读取编写聊天信息。所有信息都在同一列表，且可以被清空。
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> 当选中该项且未选中“读取所有文件”，则浏览器中的“文件”一栏中只有路径SD存储卡中的名为public文件夹可读。因此选中该项时请确保该文件夹存在。
+Read personal data such as contacts, messages and call list. -> 读取个人数据，例如联系人、短信息、通话记录。
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> 读取手机中的所有文件，请谨慎选择！联系人、短信息、通话记录还有本应用的密码信息都保存在文件中！
+Read and modify the content of the sdcard. -> 读取并可以更改SD存储卡的内容
+Log (activities is logged once in every 30 minutes) -> 日志（所有的活动每十分钟会登记一次）
+Clear log -> 清除日志
+uptime -> 已运行时间
+uptime secs -> 已运行 秒
+mins -> 分
+hours -> 小时
+days -> 天
+hour -> 小时
+CPUup -> CPUup
+CPU uptime secs -> CPU uptime 秒
+Brightness -> 亮度
+Recorded -> 已记录
+images -> 图像
+This terminal will be closed after 60 minutes of inactivity. -> 此终端会在60分钟无活动后终止
+If you already have an account to this phone -> 如果你已经有此手机的登录账号
+Login -> 登录
+Registration -> 注册
+Username -> 用户名
+Password -> 密码
+Create new user -> 新建用户
+Click here to switch to SSL. -> 要切换到SSL模式请单击此处
+SSL provides secure (and a slightly slower) way to access Webkey. -> SSL模式可以为你提供安全加密（也会有点慢）的方式来连接Webkey。
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> 如果你使用的是Firefox,你可能需要选择“I Understand the Risks”,"Add exception...", "Conform Security Exception".
+On Chrome you might have to click on "Proceed anyway". -> 如果你使用的是谷歌Chrome浏览器，你可能需要点击"Proceed anyway"（“仍然继续”）
+Click here to disable SSL. -> 点击此处取消SSL模式
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> 取消SSL模式会提高连接速度，但是数据传输不会加密
+Language -> 语言
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> 已禁止新用户注册，要开启此功能，请点击“允许用户在浏览器中注册”
+Reloading... -> 重载中……
+Registration request sent, please wait until it's authorized on the phone. -> 注册请求已发送，请等待手机端确认。
+Save -> 保存
+Allowable characters in GSM and their keycode in non-unicode SMS -> 允许GSM字符和非unicode编码的短信息(Allowable characters in GSM and their keycode in non-unicode SMS)
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). -> 选项旁有“工作在SMS模式”会生效，当你不想使用unicode短信息模式(在“手机”一栏和“短信”一栏中)
+Clicking, dragging -> 点击、拖拽
+You should be able to click and drag on the phone by doing the same on the screenshot. -> 你应该像在手机上操作界面一样，进行点击或者拖拽操作
+It makes resolution half both in horizontal and vertical direction. -> 该项会使解析度在横向、纵向上减半
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> JPEG是有损压缩图像格式，快速且压缩比高，但是画面质量不够清晰。PNG速度更慢，图片更大，但压缩比不高。
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> 当浏览器中手机界面图像显示有问题时（多在G1等旧型号手机中出现），请选中此项。
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> 手机开始在临时文件夹/sdcard/webkey_TEMP/中尽可能快的保存图像。保存的图像使用已选择的各项参数（低分辨率，水平方向，旋转，PNG/JPEG，仅使用第一缓存区）。按下停止录像后，手机会生成一个保存图像ZIP打包文件然后将其传送到浏览器
+Typing -> 输入中
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> 大块得文本域是为了将keys输入到手机里。当你选择了“即时发送输入信息”选项后，便可以边写边传入手机。所有非英语字符的输入都会立刻在你的手机里重载。DEL按键代表退格键(Backspace)
+You can configure the character substitution rules for SMS mode. -> 你可以为SMS模式配置字符的代表含义规则
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> 如果你想在SMS信息中输入像ő, ű 这样的字符，那么这些字符会是Android切换到unicode模式，在该模式下GSM网短信息字数限制为70字。如果选择SMS模式，则带有"工作在SMS模式"提示的部分会优先选择。
+Show -> 显示
+Key -> 按键
+Keycode -> 按键码(Keycode)
+Char -> Char
+converts to -> 转换到
+works in SMS mode -> 工作在SMS模式
+Please visit our website for more information -> 详情请访问我们的网站
+If you like our app, please support the development of Webkey. Every help is appreciated. -> 若你喜欢我们的应用，请支持Webkey的开发。我们欢迎你的加入。
+Screenshots' properties -> 图像属性
+Translations -> 翻译
+Stop recording -> 停止录像
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> Webkey会每隔半分钟检索未读信息及未接电话（检索基本不消耗CPU，我们只检查数据库文件的修改时间，仅当修改时间改变才会进行快速的sqlite请求）
+
+Just delete a line which you don't want to translate, and remove the space at the beginning  which you want:
+
+ SOFT_LEFT -> 
+ SOFT_RIGHT -> 
+ HOME -> 
+ BACK -> 
+ CALL -> 
+ ENDCALL -> 
+ STAR -> 
+ POUND -> 
+ DPAD_UP -> 
+ DPAD_DOWN -> 
+ DPAD_LEFT -> 
+ DPAD_RIGHT -> 
+ DPAD_CENTER -> 
+ VOLUME_UP -> 
+ VOLUME_DOWN -> 
+ POWER -> 
+ CAMERA -> 
+ CLEAR -> 
+ COMMA -> 
+ PERIOD -> 
+ ALT_LEFT -> 
+ ALT_RIGHT -> 
+ SHIFT_LEFT -> 
+ SHIFT_RIGHT -> 
+ TAB -> 
+ SPACE -> 
+ SYM -> 
+ EXPLORER -> 
+ ENVELOPE -> 
+ ENTER -> 
+ DEL -> 
+ GRAVE -> 
+ MINUS -> 
+ EQUALS -> 
+ LEFT_BRACKET -> 
+ RIGHT_BRACKET -> 
+ BACKSLASH -> 
+ SEMICOLON -> 
+ APOSTROPHE -> 
+ SLASH -> 
+ AT -> 
+ NUM -> 
+ HEADSETHOOK -> 
+ FOCUS -> 
+ PLUS -> 
+ MENU -> 手机MENU键
+ NOTIFICATION -> 
+ SEARCH -> 
+ MEDIA_PLAY_PAUSE -> 媒体播放暂停键
+ MEDIA_STOP -> 
+ MEDIA_NEXT -> 
+ MEDIA_PREVIOUS -> 
+ MEDIA_REWIND -> 
+ MEDIA_FAST_FORWARD -> 
+ MUTE -> 静音键

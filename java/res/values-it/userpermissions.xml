@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="checkbox_permissions">
+        <item>checkbox_screenshot</item>
+        <item>checkbox_gps</item>
+        <item>checkbox_chat</item>
+        <item>checkbox_public</item>
+        <item>checkbox_sms_contact</item>
+        <item>checkbox_files</item>
+        <item>checkbox_sdcard</item>
+    </string-array>
+
+</resources>

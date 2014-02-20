@@ -1,0 +1,6 @@
+GT-I9001
+HOME 50 s3c-keypad
+POWER 26 s3c-keypad
+VOLUME_UP 42 s3c-keypad
+VOLUME_DOWN 58 s3c-keypad
+

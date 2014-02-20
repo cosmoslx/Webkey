@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ScriptingLayerForAndroid" default="help">
+    <loadproperties srcFile="local.properties" />
+    <property file="ant.properties" />
+    <loadproperties srcFile="project.properties" />
+    <fail
+            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project'"
+            unless="sdk.dir"
+    />
+        <path id="android.antlibs">
+                <pathelement path="${sdk.dir}/tools/lib/anttasks.jar" />
+                <pathelement path="${sdk.dir}/tools/lib/sdklib.jar" />
+                <pathelement path="${sdk.dir}/tools/lib/androidprefs.jar" />
+                <pathelement path="${sdk.dir}/platforms/android-15/android.jar" />
+                <pathelement path="libs/guava-r06.jar" />
+        </path>                                                                                                                                                         
+	<target name="main">
+		<mkdir dir="classes"/>
+                <javac encoding="ascii" target="1.5" debug="true" extdirs=""
+			destdir="classes/"
+                        classpathref="android.antlibs">
+			<src path="../Common/src" />
+			<src path="../ScriptingLayer/src" />
+			<src path="../TextToSpeechFacade/src" />
+			<src path="../SignalStrengthFacade/src" />
+			<src path="../BluetoothFacade/src" />
+			<src path="../WebCamFacade/src" />
+			<src path="../Utils/src" />
+                </javac>
+		<jar jarfile="libs/script.jar">
+		      <fileset dir="classes" includes="**/*.class"/> 
+		</jar>
+		<!--
+		<copy file="../ScriptingLayerForAndroid/libs/armeabi/libcom_googlecode_android_scripting_Exec.so" tofile="libs/armeabi/libcom_googlecode_android_scripting_Exec.so" overwrite="true" />
+		<copy file="../ScriptingLayerForAndroid/assets/android.js" tofile="assets/android.js" overwrite="true" />
+		<copy file="../ScriptingLayerForAndroid/assets/json2.js" tofile="assets/json2.js" overwrite="true" />
+		<zip destfile="../script_for_android_template.zip" basedir="./" includes="**/*" excludes=".project,.classpath,build.xml,gen/**,bin/**,.externalToolBuilders/**,.tmp/**">
+			<fileset dir="./.tmp" includes="*"/>
+		</zip>
+		-->
+		<copy file="libs/script.jar" tofile="../../java/libs/script.jar" overwrite="true" />
+	</target>
+</project>

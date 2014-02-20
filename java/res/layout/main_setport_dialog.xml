@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/main_setport_dialog"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp"
+              >
+	<ImageView
+        android:src="@android:drawable/divider_horizontal_dim_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        
+    <TextView 
+    		  android:text="@string/main_port"
+			  android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="#FFF"/>
+                             
+	<EditText
+		android:id="@+id/edit_port"
+		
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"		
+		android:singleLine="True"
+		/>
+                            
+    <TextView 
+    		  android:text="@string/main_sslport"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"              
+              android:textColor="#FFF"/>
+              
+	<EditText
+		android:id="@+id/edit_sslport"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"		
+		android:singleLine="True"
+		
+		/>
+		
+	<LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+    >
+		<Button
+			android:id="@+id/dialog_ok"	
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="Ok"/>
+		<Button
+			android:id="@+id/dialog_cancel"	
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1.0"
+			android:text="@string/btn_cancel"/>
+		</LinearLayout>
+</LinearLayout>

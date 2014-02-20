@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="warning">Dikkat</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">Kullanıcı Kaydet</string>
+    <string name="btn_cancel">İptal</string>
+    
+    <string name="main_start_btn">Hizmeti başlat</string>
+    <string name="main_stop_btn">Hizmet durdur</string>
+    <string name="main_iptext">Ağ adresine erişilemiyor</string>
+    <string name="main_exitgui_btn">Grafik arayüzünden çık</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">Ayarlar</string>
+    <string name="main_ddusing_cbox">ip adresini DynDNS ile eşitle</string>
+    <string name="main_autostart">başlangıçta hizmeti otomatik çalıştır</string>
+    <string name="main_icon">durum çubuğunda simge göster</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">tarayıcıda kullanıcı kaydına izin ver</string>
+    
+    <string name="ddsettings_title">DynDNS ayarları</string>
+    <string name="ddsettings_DDusername">DynDNS kullanıcı</string>
+    <string name="ddsettings_DDpassword">DynDNS şifre</string>
+    <string name="ddsettings_DDdomain">DynDNS domain</string>
+    
+    <string name="main_ddbsettings_btn">DynDNS ayarlar</string>    
+    <string name="main_notvaliddd">Geçersiz DynDNS ayarları</string>
+    <string name="main_upgrading">Güncelleniyor...</string>
+    <string name="main_portWindowTitle">Hizmet için port seçin</string>
+    <string name="main_server">androidwebkey.com</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">bağlantıyı androidwebkey.com adresine canlı tut</string>
+    <string name="main_usernametext_btn">Serverdaki kullanıcı adı</string>
+    <string name="main_usernametitle">Serverdaki takma ad(nick)</string>
+    <string name="main_usernamemessage">Lütfen telefonunuza androidwebkey.com adresinde tanınması için takma bir ad verin</string>
+    <string name="main_emptyusername">Boş takma ad geçersizdir.</string>
+    <string name="main_alphabeticallowd">Sadece alfabe ingilizce karakterler ve rakamlar geçerlidir.(çşğıüö kullanmayınız)</string>
+    <string name="main_unableregisterserver">Kullanıcı adı kaydı yapılamadı</string>    
+    <string name="main_serverreason">Eğer 3g internet sağlayıcınız telefonunuza erişimi engellemişse, buradan erişebilirsiniz</string>
+    <string name="main_phoneavailableat">Telefonunuza buradan erişilebilir:\n</string> 
+	<string name="main_changeport_btn">Portları değiştir</string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">Yardım</string>
+	<string name="main_help_txt">Bu program iki bölüm içerir: bu C++ serverını yönetmek için bir JAVA yüzüdür. Eğer \"Hizmet başlat\" butonuna tıklarsanız şunu görmelisiniz : \"Telefonunuza şuradan ulaşabilirsiniz:\" ve ardından IP adresiniz (eğer olmazsa, başka port deneyerek root haklarına sahip olduğunuzdan emin olun).\n\nBu ip adresini kullanarak telefonunuza bağlanabiliyorsanız bu demek oluyor ki telefonunuza http://telefonum.evipadresim.net gibi bir DynDNS adresinden de olaşabilirsiniz (ayrıntılı bilgi için http://dyndns.org), veya serverlarımızı kullanarak http://androidwebkey.com/kullanıcıadınız (bu telefonunuzun IP adresini her seferinde bilmek zorunda olmadığınız için güzel bir özelliktir). \n\nBu ip adresini kullanarak telefonunuza bağlanamıyorsanız (3g internet operatörünüz telefonunuza gelen bağlantıları engellemiş olabilir veya telefonunuz bir güvenlik duvarı, NAT ya da proksi arkasındadır.), bağlantınızı yönlendirmek için androidwebkey.com sunucularımızı kullanınız. Bu sayede telefonunuz sunucularımıza, internete her bağlı olduğunda çalışması gereken bir bağlantı sağlar. \n\nTarayıcınızda Ayarlar menüsü altından veya Kullanıcılar/Ayarlar kısmından yeni bir kullanıcı oluşturabilirsiniz.\n\nDaha fazla bilgi, iletişim detayları ve kaynak kodu için sitemizi ziyaret ediniz: http://androidwebkey.com \n\nBazı internet sağlayıcıları 80 portunu engelleyebilir fakat telefonunuza 8080 portundan da erişilebilmektedir.\n\n</string>
+	<string name="main_servicenotrunning">Hizmet çalışmıyor.</string>
+	<string name="main_unameregistered">Kullanıcı adı androidwebkey.com sitesine kayıtlı</string>
+	<string name="main_upgradingwait">Yeni değerler yükleniyor... Lütfen bekleyiniz.</string>
+	<string name="main_invalidport">geçersiz port</string>
+	<string name="main_netnotexist">Ağ bulunmuyor</string>
+	<string name="main_help_btn">Yardım</string>
+	<string name="main_upgradfailed">Yeni değer yüklemesi başarısız oldu, lüfen telefonunuzu yeniden başlatın.</string>
+	<string name="main_donate_btn">Bağış yap (androidwebkey.com sitesine giriş yapar)</string>
+	<string name="main_log_btn">Log</string>
+	<string name="main_control">Kontrol</string>
+	<string name="main_usersettings_btn">Kullanıcı ayarları</string>
+	<string name="main_progress">Çalışıyor...</string>
+	<string name="main_port">HTTP portu     (varsayılan: 80)</string>
+	<string name="main_sslport">HTTPS (SSL) portu     (varsayılan: 443)</string>
+	<string name="main_rootfailed">Telefon rootlanmamış veya "su" programı bulunmuyor.</string>
+	
+	<string name="logview_nologmsg">Log bulunamıyor</string>
+	<string name="logview_toobigfile">Çok büyük log dosyası</string>
+	
+	<string name="chat_send_btn">Gönder</string>
+	<string name="chat_menu_clear">Temizle</string>
+	<string name="chatui_readby">Yukarıdaki satırlar okundu:</string>
+	<string name="chat_servicenotrunning">Hizmet çalışmıyor.</string>
+	
+	<string name="manage_newuser_ticker">Yeni bir kullanıcı telefonunuza erişmek istiyor.</string>
+	<string name="manage_newuser_ongoing">Yeni bir kullanıcı telefonunuza erişmek istiyor.</string>
+	<string name="manage_username_text">Kullanıcı Adı: </string>
+	<string name="manage_password_text">Şifre: </string>
+	<string name="manage_userwindow_title">Yeni kullanıcı oluştur</string>
+	<string name="manage_userdelete">Bu kullanıcıyı silmek istediğinizden emin misiniz?</string>
+	<string name="manage_user_edit_perm">İzinleri Düzenle</string>
+	<string name="manage_user_changepassword">Şifre Değiştir</string>
+	<string name="manage_user_deleteuser">Kullanıcı Sil</string>
+	<string name="manage_user_setpassword">Yeni şifre oluştur: </string>
+	<string name="permission_help_all">Bütün diğer izinler. Ek olarak, kullanıcı kod enjekte edebilir, olay enjekte edebilir, komut çalıştırabilir, terminalde komut çalıştırabilir, log görüntüleyebilir. Bu izinler diğer hiç bir kullanıcı tarafından erişilemez.</string>
+	<string name="permission_help_sceenshot">Telefonun ekran görüntüsünü göster.</string>
+	<string name="permission_help_gps">Telefonun GPS ve ağ mevkiisini göster. GPS sadece telefonunuzun ayarlarından aktif hale getirildiğinde çalışır. Ağ mevkiisi şebeke sağlayıcınıza bağlıdır.</string>
+	<string name="permission_help_chat">Mesaj oku ve yaz. Her mesaj aynı listededir ve her kullanıcı listeyi boşaltabilir.</string>
+	<string name="permission_help_public">Eğer bu izin seçiliyse ve "Dosyaları oku" seçili değilse, Menü\'den sadece /sdcard/public içeriği olan dosyalar okumaya uygun olacaktır.Bu ayarı kullanacaksanız lütfen bu klasörü oluşturun.</string>
+	<string name="permission_help_sms_contact">Kişiler, mesajlar ve arama kaydı gibi kişisel dosyaları oku.</string>
+	<string name="permission_help_files">Telefondaki tüm dosyaları oku. Dikkatli olun, kişiler, mesajlar, çağrı kaydı ve Webkey şifreleri dosyalarda depolanmaktadır!</string>
+	<string name="permission_help_sdcard">SDcard içeriğini oku ve düzenle.</string>
+
+
+	<string name="permission_checkbox_all">Hepsi</string>
+	<string name="permission_checkbox_screenshot">Ekran Görüntüsü</string>
+	<string name="permission_checkbox_location">Konum</string>
+	<string name="permission_checkbox_chat">Chat</string>
+	<string name="permission_checkbox_public">Oku /sdkart/public</string>
+	<string name="permission_checkbox_contact">Kişiler, SMS, Çağrılar</string>
+	<string name="permission_checkbox_files">Dosyaları oku</string>
+	<string name="permission_checkbox_sdcard">SDkart</string>
+		
+	<string name="main_upgradfailed_restart">Yeni değer yüklemesi başarısız oldu, lütfen telefonunuzu yeniden başlatıp tekrar deneyiniz.</string>
+	
+	<string name="remotescreen_text_username">kullanıcı</string>
+	<string name="remotescreen_hinttext_username">Uzak telefon için kullanıcı adı</string>        
+    <string name="remotescreen_text_password">Uzak telefon için şifre:</string>        
+    <string name="remotescreen_hinttext_password">şifre</string>
+	<string name="remotescreen_text_address">Uzak telefonun ip adresini veya Webkey hizmetindeki takma adini giriniz</string>
+	<string name="remotescreen_hinttext_phone_address">Telefon\'un adresi</string>
+	<string name="remotescreen_text_glnotsupported">Bu özellik telefonunuzla uyumlu değildir</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">androidwebkey.com gateway adresini kullanın</string>
+	<string name="remotescreen_radiobutton_proxy_no">Direk bağlan</string>
+	<string name="remotescreen_text_button_connect">Bağlan</string>
+	
+    <string name="remotescreen_menu_quality">Kalite</string>
+    <string name="remotescreen_menu_disconnect">Bağlantıyı kes</string>
+    <string name="remotescreen_menu_sendbackkey">Geri tuşu gönder</string>
+    <string name="remotescreen_menu_sendmenukey">Menü tuşu gönder</string>
+
+    <string name="remotescreen_qualitysetttins_lowres">Düşük çözünürlük</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Yatay</string>
+    <string name="remotescreen_qualitysetttins_flip">Çevir</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (Jpeg\'den daha yavaştır)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Yalnız ilk buffer\'ı kullan</string>
+
+    <string name="remotescreen_exception_401">Yanlış kullanıcı adı veya şifre</string>
+    <string name="remotescreen_exception_404">Telefona erişilemiyor</string>
+    <string name="remotescreen_exception_unknownhost">Ağ problemi</string>
+    <string name="remotescreen_exception_timedout">Telefon yanıt vermiyor</string>
+
+</resources>

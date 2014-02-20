@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="warning">Waarschuwing</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">Gebruiker opslaan</string>
+    <string name="btn_cancel">Annuleren</string>
+    
+    <string name="main_start_btn">Start service</string>
+    <string name="main_stop_btn">Stop service</string>
+    <string name="main_iptext">Netwerk addres is onbereikbaar</string>
+    <string name="main_exitgui_btn">Sluit GUI</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">Instellingen</string>
+    <string name="main_ddusing_cbox">sync IP naar DynDNS</string>
+    <string name="main_autostart">start service automatisch bij het opstarten</string>
+    <string name="main_icon">laat icoon zien in statusbalk</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">gebruikers toe laten staan te registreren in browser</string>
+    
+    <string name="ddsettings_title">DynDNS instellingen</string>
+    <string name="ddsettings_DDusername">DynDNS gebruikersnaam</string>
+    <string name="ddsettings_DDpassword">DynDNS wachtwoord</string>
+    <string name="ddsettings_DDdomain">DynDNS domein</string>
+    
+    <string name="main_ddbsettings_btn">DynDNS instellingen</string>    
+    <string name="main_notvaliddd">Invalide DynDNS instellingen</string>
+    <string name="main_upgrading">Nieuwe binaries installeren...</string>
+    <string name="main_portWindowTitle">Kies poorten voor de services</string>
+    <string name="main_server">androidwebkey.com</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">alle connecties naar androidwebkey.com tot stand houden</string>
+    <string name="main_usernametext_btn">Nickname op server</string>
+    <string name="main_usernametitle">Nickname op server</string>
+    <string name="main_usernamemessage">Geef a.u.b. een nickname om uw telefoon te identificeren op androidwebkey.com</string>
+    <string name="main_emptyusername">Een lege nickname is niet toegestaan.</string>
+    <string name="main_alphabeticallowd">Aleen alfabetiche tekens en nummers zijn toegestaan.</string>
+    <string name="main_unableregisterserver">Niet in staat om de gebruikersnaam te registreren bij de server.</string>    
+    <string name="main_serverreason">Wanneer uw 3g internet provider de toegang tot uw telefoon blokkeerd, kan u het bereiken via</string>
+    <string name="main_phoneavailableat">Uw telefoon is beschikbaar op:\n</string> 
+	<string name="main_changeport_btn">Verander poorten</string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">Help</string>
+	<string name="main_help_txt">Dit programma bestaat uit twee delen: dit is een JAVA front end om de C++ server te beheren. Wanneer je klikt op "Start service" dan zou je het volgende moeten zien: "Uw telefoon is bereikbaar op:" met een ipadres (wanneer niet, dan kan u proberen een andere port te gebruiken en wees er zeker van dat u root toegang hebt).\n\nWanneer u verbinding kan maken via het ipadres, dan kan uw telefoon een adres hebben zoals http://mijntelefoon.homeip.net/ door middel van DynDNS service (zie http://dyndns.org/), of http://androidwebkey.com/jegebruikersnaam door middel van onze servers (u hoeft dan dus niet het ip te weten van uw telefoon).\n\nWanneer u geen verbinding kan maken via het ip adres (uw 3g provider zal het dan blokkeren of je telefoon is achter een NAT, firewall of proxy) dan kan u gebruik maken van onze server androidwebkey.com om connectie te krijgen met uw telefoon. Op deze manier opent de telefoon een connectie naar onze server, dat zal altijd werken wanneer u een werkende internetverbinding hebt. U kan een nieuwe gebruiker toevoegen in je browser onder het menu "Configuratie", of u kan gebruik maken van de knop "Gebruikers configuratie". Voor meer informatie, contact en de source code bezoek onze website: http://androidwebkey.com/\n\nSommige internet providers blokkeren alleen poort 80, dan is de telefoon bereikbaar op poort 8080.\n\n</string>
+	<!--	<string name="main_translators"> Translations: \nGerman (Deutsch): Christian Wallert, Artur Pogoda de la Vega\nEspañol (Spanish): Roberto Yoldi\nGreek: Ilias Gerasimou\nHungarian: Péter Móra\nChinese: liuyix\nFrench: Pierre-Marc Lizé\nBrazilian Portuguese: Wanderlei Hüttel\nItalian: Marco Reni\n\nLicense: GNU General Public License version 3\n\nCopyright (C) 2010, 2011 Péter Móra, Zoltán Papp\n\n\n</string> -->
+	<string name="main_servicenotrunning">De service loopt niet.</string>
+	<string name="main_unameregistered">Nickname is geregistreerd op androidwebkey.com.</string>
+	<string name="main_upgradingwait">Installeren van nieuwe binaries... Even geduld a.u.b.</string>
+	<string name="main_invalidport">ongeldige poort</string>
+	<string name="main_netnotexist">Netwerk bestaat niet</string>
+	<string name="main_help_btn">Help</string>
+	<string name="main_upgradfailed">Het installeren van nieuwe binaries is mislukt, restart de telefoon a.u.b.</string>
+	<string name="main_donate_btn">Doneren (opent androidwebkey.com)</string>
+	<string name="main_log_btn">Log</string>
+	<string name="main_control">Controle</string>
+	<string name="main_usersettings_btn">Gebruikers instellingen</string>
+	<string name="main_progress">Werkend...</string>
+	<string name="main_port">HTTP poort     (standaard: 80)</string>
+	<string name="main_sslport">HTTPS (SSL) poort     (standaard: 443)</string>
+	<string name="main_rootfailed">De telefoon heeft niet root toegang of u hebt niet een "su" programma.</string>
+	
+	<string name="logview_nologmsg">De log kan niet gevonden worden</string>
+	<string name="logview_toobigfile">De log is te groot</string>
+	
+	<string name="chat_send_btn">Verzend</string>
+	<string name="chat_menu_clear">Leeg</string>
+	<string name="chatui_readby">Bovenstaande regels zijn gelezen door:</string>
+	<string name="chat_servicenotrunning">De service loopt niet.</string>
+	
+	<string name="manage_newuser_ticker">Een nieuwe gebruiker wil toegang tot uw telefoon.</string>
+	<string name="manage_newuser_ongoing">Een nieuwe gebruiker wil toegang tot uw telefoon.</string>
+	<string name="manage_username_text">Gebruikersnaam: </string>
+	<string name="manage_password_text">Wachtwoord: </string>
+	<string name="manage_userwindow_title">Maak een nieuwe gebruiker aan</string>
+	<string name="manage_userdelete">Weet je zeker dat je deze gebruiker wilt verwijderen?</string>
+	<string name="manage_user_edit_perm">Bewerk permissies</string>
+	<string name="manage_user_changepassword">Verander wachtwoord</string>
+	<string name="manage_user_deleteuser">Verwijder gebruiker</string>
+	<string name="manage_user_setpassword">Stel een nieuw wachtwoord in: </string>
+	<string name="permission_help_all">Alle andere permissies. Aanvullend, gebruikers kunnen toetsen invoeren, touch events invoeren, commando\'s uitvoeren, commando\'s uitvoeren in de terminal, de log bekijken. Deze functies zijn niet te bereiken met een andere permissie.</string>
+	<string name="permission_help_sceenshot">Bekijk screenshot van de telefoon.</string>
+	<string name="permission_help_gps">Bekijk de GPS en netwerk locatie van de telefoon. De GPS is alleen beschikbaar wanneer het is aangezet op de telefoon. De netwerklocatie hangt af van uw provider.</string>
+	<string name="permission_help_chat">Lees en schrijf berichten. Elk bericht is in de zelfde lijst, en iedereen kan die lijst legen.</string>
+	<string name="permission_help_public">Wanneer deze permissie is ingesteld en "Lees bestanden" niet, dan onder het menu "Bestanden" zal alleen de inhoud van /sdcard/public zichtbaar zijn. Maak a.u.b. die map aan als u deze functie wilt gebruiken.</string>
+	<string name="permission_help_sms_contact">Lees persoonlijke data zoals contacten, berichten en de gesprekkenlijst.</string>
+	<string name="permission_help_files">Lees alle bestanden van de telefoon. Pas op, contacten, berichten, gesprekkenlijst en de wachtwoorden van Webkey staan in bestanden!</string>
+	<string name="permission_help_sdcard">Lees en bewerk de inhoud van de SD kaart.</string>
+
+
+	<string name="permission_checkbox_all">Allemaal</string>
+	<string name="permission_checkbox_screenshot">Screenshot</string>
+	<string name="permission_checkbox_location">Locatie</string>
+	<string name="permission_checkbox_chat">Chat</string>
+	<string name="permission_checkbox_public">Lees /sdcard/public</string>
+	<string name="permission_checkbox_contact">Contacten, SMS, Gesprekken</string>
+	<string name="permission_checkbox_files">Lees Bestanden</string>
+	<string name="permission_checkbox_sdcard">SD kaart</string>
+		
+	<string name="main_upgradfailed_restart">Het installeren van nieuwe binaries is mislukt, restart de telefoon en probeer opnieuw.</string>
+	
+	<string name="remotescreen_text_username">gebruikersnaam</string>
+	<string name="remotescreen_hinttext_username">Gebruikersnaam voor telefoon:</string>        
+    <string name="remotescreen_text_password">Wachtwoord voor telefoon:</string>        
+    <string name="remotescreen_hinttext_password">wachtwoord</string>
+	<string name="remotescreen_text_address">Stel de telefoons IP adres of nickname in op Webkey service.</string>
+	<string name="remotescreen_hinttext_phone_address">Telefoons adres</string>
+	<string name="remotescreen_text_glnotsupported">Deze functie is niet beschikbaar op deze telefoon</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">Gebruik androidwebkey.com gateway</string>
+	<string name="remotescreen_radiobutton_proxy_no">Directe connectie</string>
+	<string name="remotescreen_text_button_connect">Connect</string>
+	
+    <string name="remotescreen_menu_quality">Kwaliteit</string>
+    <string name="remotescreen_menu_disconnect">Disconnect</string>
+    <string name="remotescreen_menu_sendbackkey">Verzend Terug toets</string>
+    <string name="remotescreen_menu_sendmenukey">Verzend Menu toets</string>
+
+    <string name="remotescreen_qualitysetttins_lowres">Lage resolutie</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Horizontaal</string>
+    <string name="remotescreen_qualitysetttins_flip">Flip</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (langzamer dan jpeg)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Gebruik alleen de eerste framebuffer</string>
+
+    <string name="remotescreen_exception_401">Verkeerde gebruikersnaam of wachtwoord</string>
+    <string name="remotescreen_exception_404">De telefoon is onbereikbaar</string>
+    <string name="remotescreen_exception_unknownhost">Netwerk probleem</string>
+    <string name="remotescreen_exception_timedout">De telefoon reageerd niet</string>
+
+</resources>

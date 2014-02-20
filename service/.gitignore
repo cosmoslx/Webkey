@@ -1,0 +1,9 @@
+webkey
+webkey_debug
+test
+*.o
+*.a
+*/*.o
+*/*.a
+*/*/*.o
+*/*/*.a

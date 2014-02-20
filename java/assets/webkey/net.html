@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Net` - `Webkey for Android`</title>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+	<script language="javascript" type="text/javascript" src="js/jquery.flot.min.js"></script>
+</head>
+<body>
+	<<MENU>>
+
+<style type="text/css">
+	.hover {
+		background:#cf0000;
+	}
+</style>
+<!-- for the plot -->
+	<div id="placeholder" style="width:1000px;height:450px;padding: 10px">loading ...</div> 
+<!-- for the table -->
+	<div id="tabl" style="padding: 10px"></div> 
+<script type="text/javascript">
+// jQuery staff: we put everything in one function, it loads when everything is loaded.
+// You may have other functions outside, but do every function call/calculation inside.
+	$(document).ready(function()
+	{
+// toMega(val,obj) is a pritty print, 1500 -> 1.5 MB
+		function toMega(val,obj)
+		{
+			if (val < 1024)
+				return val + " KB";
+			if (val < 1024*1024)
+				return Math.floor(val*10/1024+0.5)/10+" MB";
+			if (val < 1024*1024*1024)
+				return Math.floor(val*10/1024/1024+0.5)/10+" GB";
+		};
+// An array for the interfaces, we don't store anything there, but the names of the interfaces
+		var interfaces = new Array();
+// Try it out what gives: curl http://username:password@YOUR_PHONE'S_ADDRESS/getnet
+		$.getJSON('getnet', function(data) {
+// offset = 2*60, because now we are in GMT+2
+			var now = new Date();
+			var offset = now.getTimezoneOffset();
+// days: contains all the data for each day
+			var days = new Array();
+// each is a for cicle
+			$.each(data, function(key, val) {
+// my json code is not the best, I do one more object, which is empty, I check it here
+				if (val.interface != undefined)
+				{
+// We want to remember this interface if this is the first time we see it
+					if (interfaces[val.interface] == undefined)
+					{
+						interfaces[val.interface] = [];
+					}
+// if epoch == 2011 Aug 2, 14:47:11, then we round it to 2011 Aug 2, 14:40:00,
+// the previous 10th minute
+					var t = Math.floor(parseInt(val.epoch-offset*60)/600)*600000;
+// if epoch == 2011 Aug 2, 14:47:11, then we round it to 2011 Aug 2, 0:00:00,
+// the previous midnight
+					var tbegin = Math.floor(t/1000/60/60/24)*1000*60*60*24;
+					var myDate = new Date(tbegin);
+					var day = myDate.toLocaleDateString();
+// day is a string, the user can see it
+// we store it if this is the first time
+					if (days[day] == undefined)
+					{
+						days[day] = new Object;
+// begin of the day
+						days[day].tbegin = tbegin;
+// end of the day, 2011 Aug 2, 23:59:59
+						days[day].tend = tbegin+1000*60*60*24-1000;
+						days[day].data = new Array();
+						days[day].sum = new Array();
+					}
+// for each day we check wether we have this device
+					if (days[day].data[val.interface] == undefined)
+					{
+						days[day].data[val.interface] = [];
+						days[day].sum[val.interface] = 0;
+					}
+// There are s data for this interface
+					var s = days[day].data[val.interface].length;
+// Two cases: this is in a new 10 minute block, or we add it to the previous one
+					if (s > 0 && days[day].data[val.interface][s-1][0] == t)
+						days[day].data[val.interface][s-1][1] += parseInt(val.amount);
+					else
+						days[day].data[val.interface].push([t,parseInt(val.amount)]);
+// We add this amount to the sum of the day
+					days[day].sum[val.interface] = days[day].sum[val.interface] + parseInt(val.amount);
+				}
+			});
+// Generate the table
+			var s = "<table><tr><th></th>";
+			for (var key in interfaces)
+			{
+				s += "<th>"+key+"</th>";
+			};
+			s += "<th>`Sum`</th></tr>";
+			var lastday = '';
+			for (var day in days)
+			{
+				days[day].items = [];
+				var j = 0;
+				for (var key in days[day].data)
+				{
+					days[day].items[j++] = {data: days[day].data[key], label: key};
+				};
+				s += '<tr id="'+day+'">';
+				s += '<td>'+day+'</td>';
+				var sum = 0;
+				for (var key in interfaces)
+				{
+					if (days[day].sum[key] == undefined)
+						days[day].sum[key] = 0;
+					s += '<td>'+toMega(days[day].sum[key],null)+'</td>';
+					sum += days[day].sum[key];
+				}
+				s += '<td>' + toMega(sum,null) + "</td></tr>";
+				lastday = day;
+			}
+			s += "</table>";
+			$("#tabl").html(s);
+// for each click we draw the graph
+			$("tr").click(function(){
+				//	alert(this.id);
+					if (days[this.id] != undefined)
+					$.plot($("#placeholder"), days[this.id].items,{xaxis: {min: days[this.id].tbegin, max: days[this.id].tend,mode: 'time', timeformat: '%b/%d %H:%M'}, yaxis:{ tickFormatter: toMega},bars:{barWidth: 600000,show: true},grid: { hoverable: true }});
+					});
+// at the first time we draw the most up to date
+			$.plot($("#placeholder"), days[lastday].items,{xaxis: {min: days[lastday].tbegin, max: days[lastday].tend,mode: 'time', timeformat: '%b/%d %H:%M'}, yaxis:{ tickFormatter: toMega},bars:{barWidth: 600000,show: true},grid: { hoverable: true }});
+			$("tr").hover(function () { if(this.id != "") $(this).addClass("hover");},
+				      function () { $(this).removeClass("hover");}
+				     );
+		});
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="warning">Attenzione</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">Salva utente</string>
+    <string name="btn_cancel">Cancella</string>
+    
+    <string name="main_start_btn">Avvia servizio</string>
+    <string name="main_stop_btn">Arresta servizio</string>
+    <string name="main_iptext">L\'indirizzo di rete non è raggiungibile</string>
+    <string name="main_exitgui_btn">Chiudi GUI</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">Impostazioni</string>
+    <string name="main_ddusing_cbox">Sincronizza IP con DynDNS</string>
+    <string name="main_autostart">Auto-avvia servizio durante il boot</string>
+    <string name="main_icon">Mostra icona nell\'area di notifica</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">Consenti la registrazione utente nel browser</string>
+    
+    <string name="ddsettings_title">Impostazioni DynDNS</string>
+    <string name="ddsettings_DDusername">Username DynDNS</string>
+    <string name="ddsettings_DDpassword">Password DynDNS</string>
+    <string name="ddsettings_DDdomain">Dominio DynDNS</string>
+    
+    <string name="main_ddbsettings_btn">Impostazioni DynDNS</string>    
+    <string name="main_notvaliddd">Impostazioni DynDNS non valide</string>
+    <string name="main_upgrading">Installo i nuovi binari...</string>
+    <string name="main_portWindowTitle">Scegli le porte per il servizio</string>
+    <string name="main_server">webkey.cc</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">Mantieni attiva la connessione a webkey.cc</string>
+    <string name="main_usernametext_btn">Nickname sul server</string>
+    <string name="main_usernametitle">Nickname sul server</string>
+    <string name="main_usernamemessage">Fornisci un nickname per identificare il tuo telefono su webkey.cc</string>
+    <string name="main_emptyusername">Un nickname vuoto non è consentito.</string>
+    <string name="main_alphabeticallowd">Sono consentiti solo caratteri alfanumerici.</string>
+    <string name="main_unableregisterserver">Impossibile registrare il nomeutente sul server.</string>    
+    <string name="main_serverreason">Se il tuo operatore 3g blocca l\'accesso al telefono, lo puoi raggiungere comunque attraverso</string>
+    <string name="main_phoneavailableat">Il tuo telefono è disponibile su:\n</string> 
+	<string name="main_changeport_btn">Cambia porte</string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">Aiuto</string>
+	<string name="main_help_txt">Questo programma contiene due parti: questa è un\'interfaccia JAVA per gestire il server C++. Se clicchi su  \"Avvia servizi\" dovresti vedere: \"Il tuo telefono è disponibile su:\" con un indirizzo IP (altrimenti, prova ad usare un\'altra porta e assicurati di avere i permessi di root).\n\nSe puoi connetterti usando questo indirizzo IP, allora il tuo telefono può avere un indirizzo tipo http://myphone.homeip.net usando il servizio DynDNS (http://dyndns.org), o tipo http://webkey.cc/yourname usando il nostro server (quella è la parte divertente, non devi sapere l\'IP del telefono).\n\nSe non riesci a connetterti usando l\'IP (e quindi il provider 3G blocca le connessioni in entrata al telefono o il telefono è dietro ad un NAT, firewall o proxy) allora usa il nostro server webkey.cc per redirezionare la connessione. In questo modo il telefono apre una connessione con il nostro server, che dovrebbe funzionare non appena una connessione ad internet è disponibile.\n\nE\' possibile aggiungere un nuovo utente nel browser sotto il menu \"Configurazione\", o usando il bottone \"Configurazione utenti\".\n\nPer maggiori informazioni, dettagli di contatto e codice sorgente visita la nostra pagina: http://webkey.cc\n\nAlcuni provider internet bloccano solamente la porta 80, quindi il telefono è raggiungibile sulla porta 8080.\n\n</string>
+	<string name="main_servicenotrunning">Il servizio non è attivo.</string>
+	<string name="main_unameregistered">Nickname registrato su webkey.cc.</string>
+	<string name="main_upgradingwait">Installo i nuovi binari... Attendere prego.</string>
+	<string name="main_invalidport">Porta non valida</string>
+	<string name="main_netnotexist">La rete non esiste</string>
+	<string name="main_help_btn">Aiuto</string>
+	<string name="main_upgradfailed">L\'installazione dei binari è fallita, prego riavviare il telefono.</string>
+	<string name="main_donate_btn">Effettua una donazione (apre webkey.cc)</string>
+	<string name="main_log_btn">Log</string>
+	<string name="main_control">Control</string>
+	<string name="main_usersettings_btn">Impostazioni utente</string>
+	<string name="main_progress">Attendere prego...</string>
+	<string name="main_port">Porta HTTP     (default: 80)</string>
+	<string name="main_sslport">Porta HTTPS (SSL)      (default: 443)</string>
+	<string name="main_rootfailed">Il telefono non ha i permessi di root o non ha il programma \"su\".</string>
+	
+	<string name="logview_nologmsg">Impossibile trovare il log</string>
+	<string name="logview_toobigfile">File di log troppo grande</string>
+	
+	<string name="chat_send_btn">Invia</string>
+	<string name="chat_menu_clear">Cancella</string>
+	<string name="chatui_readby">Le righe seguenti sono lette da:</string>
+	<string name="chat_servicenotrunning">Il servizio non è attivo.</string>
+	
+	<string name="manage_newuser_ticker">Un nuovo utente vuole accedere al telefono.</string>
+	<string name="manage_newuser_ongoing">Un nuovo utente vuole accedere al telefono.</string>
+	<string name="manage_username_text">Username: </string>
+	<string name="manage_password_text">Password: </string>
+	<string name="manage_userwindow_title">Crea nuovo utente</string>
+	<string name="manage_userdelete">Sei sicuro di voler cancellare questo utente?</string>
+	<string name="manage_user_edit_perm">Modifica permessi</string>
+	<string name="manage_user_changepassword">Cambia password</string>
+	<string name="manage_user_deleteuser">Cancella utente</string>
+	<string name="manage_user_setpassword">Imposta nuova password: </string>
+	<string name="permission_help_all">Tutti gli altri permessi. In aggiunta, l\'utente può mandare tasti, eventi touchscreen, lanciare comandi, lanciare comandi nel terminale, visualizzare il log. Queste funzioni non sono accessibili tramite altri permessi.</string>
+	<string name="permission_help_sceenshot">Visualizza screenshot del telefono.</string>
+	<string name="permission_help_gps">Visualizza localizzazione GPS e di rete del telefono. Il GPS è disponibile solo se attivato nelle impostazioni del telefono. La localizzazione di rete dipende dal proprio operatore.</string>
+	<string name="permission_help_chat">Leggi e scrivi messaggi. Tutti i messaggi sono sulla stessa lista, e tutti possono eliminare quella lista.</string>
+	<string name="permission_help_public">Se questo permesso è abilitato e il permesso \"Leggi files\" non lo è, allora sotto il menu \"Files\" sarà disponibile per la visualizzazione solo il contenuto di /sdcard/public. Per favore crea quella directory se vuoi usare questa funzione.</string>
+	<string name="permission_help_sms_contact">Leggi dati personali come contatti, messaggi e lista chiamate.</string>
+	<string name="permission_help_files">Visualizza tutti i files sul telefono. Attenzione: anche i contatti, messaggi, la lista delle chiamate e le password di Webkey sono salvati in files!</string>
+	<string name="permission_help_sdcard">Visualizza e modifica il contenuto della card SD.</string>
+
+
+	<string name="permission_checkbox_all">Tutti</string>
+	<string name="permission_checkbox_screenshot">Screenshot</string>
+	<string name="permission_checkbox_location">Posizione</string>
+	<string name="permission_checkbox_chat">Chat</string>
+	<string name="permission_checkbox_public">Visualizza /sdcard/public</string>
+	<string name="permission_checkbox_contact">Contatti, SMS, Chiamate</string>
+	<string name="permission_checkbox_files">Visualizza files.</string>
+	<string name="permission_checkbox_sdcard">SDcard</string>
+		
+	<string name="main_upgradfailed_restart">L\'installazione dei nuovi binari è fallita. Riavvia il telefono e riprova.</string>
+	
+	<string name="remotescreen_text_username">username</string>
+	<string name="remotescreen_hinttext_username">Username per il telefono remoto</string>        
+    <string name="remotescreen_text_password">Password per il telefono remoto:</string>        
+    <string name="remotescreen_hinttext_password">password</string>
+	<string name="remotescreen_text_address">Imposta l\'indirizzo IP del telefono remoto o il nickname del servizio webkey</string>
+	<string name="remotescreen_hinttext_phone_address">Indirizzo del telefono</string>
+	<string name="remotescreen_text_glnotsupported">Questa caratteristica non è supportata su questo telefono</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">Usa il gateway di webkey.cc</string>
+	<string name="remotescreen_radiobutton_proxy_no">Connessione diretta</string>
+	<string name="remotescreen_text_button_connect">Connetti</string>
+	
+    <string name="remotescreen_menu_quality">Qualità</string>
+    <string name="remotescreen_menu_disconnect">Disconnetti</string>
+    <string name="remotescreen_menu_sendbackkey">Invia tasto Indietro</string>
+    <string name="remotescreen_menu_sendmenukey">Invia tasto Menu</string>
+
+    <string name="remotescreen_qualitysetttins_lowres">Risoluzione bassa</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Ruota di 90° (modalità orizzontale)</string>
+    <string name="remotescreen_qualitysetttins_flip">Ruota di 180°</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (più lento di JPEG)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Usa solo il primo framebuffer</string>
+
+    <string name="remotescreen_exception_401">Username o password sbagliati</string>
+    <string name="remotescreen_exception_404">Il telefono non è raggiungibile</string>
+    <string name="remotescreen_exception_unknownhost">Problema di rete</string>
+    <string name="remotescreen_exception_timedout">Il telefono non risponde</string>
+
+</resources>

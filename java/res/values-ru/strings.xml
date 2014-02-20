@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="warning">Предупреждение</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">Сохр-то поль-ля</string>
+    <string name="btn_cancel">Отмена</string>
+    
+    <string name="main_start_btn">Запуск</string>
+    <string name="main_stop_btn">Остановка</string>
+    <string name="main_iptext">Сетевой адрес недоступен</string>
+    <string name="main_exitgui_btn">Закрыть GUI</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">Настройки</string>
+    <string name="main_ddusing_cbox">синхр-я IP to DynDNS</string>
+    <string name="main_autostart">автозапуск</string>
+    <string name="main_icon">показывать иконку в статус-баре</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">разрешить регистрацию в браузере</string>
+    
+    <string name="ddsettings_title">настройки DynDNS</string>
+    <string name="ddsettings_DDusername">имя DynDNS</string>
+    <string name="ddsettings_DDpassword">пароль DynDNS</string>
+    <string name="ddsettings_DDdomain">домен DynDNS</string>
+    
+    <string name="main_ddbsettings_btn">настройки DynDNS</string>    
+    <string name="main_notvaliddd">Не верные настройки DynDNS</string>
+    <string name="main_upgrading">установка бинарников...</string>
+    <string name="main_portWindowTitle">Выбрать порт для сервиса</string>
+    <string name="main_server">androidwebkey.com</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">поддерживать соединени с androidwebkey.com</string>
+    <string name="main_usernametext_btn">Имя на сервере</string>
+    <string name="main_usernametitle">Имя на сервере</string>
+    <string name="main_usernamemessage">Задайте имя для авторизации на androidwebkey.com</string>
+    <string name="main_emptyusername">Пустое имя не разрешено.</string>
+    <string name="main_alphabeticallowd">Только буквы и цифры допустимы.</string>
+    <string name="main_unableregisterserver">Не получается зарегестрировать пользователя на сервере.</string>    
+    <string name="main_serverreason">Если ваш 3G провайдер блокирует доступ, можете попробовать так</string>
+    <string name="main_phoneavailableat">Ваш телефон доступен на :\n</string> 
+	<string name="main_changeport_btn">Изменить порты</string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">Помощь</string>
+	<string name="main_help_txt">Эта программа содержит две части: JAVA оболочка и сервер на С++. Если нажмете на \"Start service\" должно показать: \"Your phone is available at:\" с IP адреса (если нет, используйте другой порт, или проверьте ваши рут права).\n\nIf можете подключиться используя этот адрес, и ваш телефон будет доступен по ссылке типа http://myphone.homeip.net если используете DYNdns (see http://dyndns.org), или http://androidwebkey.com/yourname используя наш сервер (эта(и) веселая(ые) часть(и), вы (не)знаете IP адрес телефона(ов)).\n\nIf вы (не)можете подсоединиться используя IP адрес (ваш 3g провайдер должно быть блокирует входящие соединения на ваш телефона или телефона находится за NAT, файерволом или прокси) тогда используйте androidwebkey.com дляперенаправляния соединения. Таким образом телефон подключается к нашему серверу. Это должно работать где угодно, если есть интернет.\n\nВы можете добавить нового пользователя в меню настроек \"Config\", или использовать кнопку \"Users\' config\".\n\nДля подробной информации изучайтте детали, или исходный код, для чего посетите нашу страницу: http://androidwebkey.com\n\nНекоторые провайдеры блокирую только порт 80, тогда телефон доступен на порту 8080.\n\n</string>
+	<!-- <string name="main_translators"> Переводы: \nGerman (Deutsch): Christian Wallert, Artur Pogoda de la Vega\nEspañol (Spanish): Roberto Yoldi\nGreek: Ilias Gerasimou\nHungarian: Péter Móra\nChinese: liuyix\nFrench: Pierre-Marc Lizé\nBrazilian Portuguese: Wanderlei Hüttel\nItalian: Marco Reni\n\nLicense: GNU General Public License version 3\n\nCopyright (C) 2010, 2011 Péter Móra, Zoltán Papp\n\n\n</string> -->
+	<string name="main_servicenotrunning">Сервис не запущен.</string>
+	<string name="main_unameregistered">Имя зарегестрировано на to androidwebkey.com.</string>
+	<string name="main_upgradingwait">Установка новых исходников ... Ждите.</string>
+	<string name="main_invalidport">неверный порт</string>
+	<string name="main_netnotexist">Сеть не существует</string>
+	<string name="main_help_btn">Помощь</string>
+	<string name="main_upgradfailed">Установка новых исходников неудачна, перезапустите телефон.</string>
+	<string name="main_donate_btn">Помощь проекту (откроется androidwebkey.com)</string>
+	<string name="main_log_btn">Лог</string>
+	<string name="main_control">Управление</string>
+	<string name="main_usersettings_btn">Пользователи\' настройки</string>
+	<string name="main_progress">Работаю...</string>
+	<string name="main_port">HTTP порт     (стандартный: 80)</string>
+	<string name="main_sslport">HTTPS (SSL) порт (стандартный: 443)</string>
+	<string name="main_rootfailed">Телефон не рутированный или отсутствует "su" программа.</string>
+	
+	<string name="logview_nologmsg">Не могу найти лог</string>
+	<string name="logview_toobigfile">Слишком большой лог файл</string>
+	
+	<string name="chat_send_btn">Отправка</string>
+	<string name="chat_menu_clear">Очистить</string>
+	<string name="chatui_readby">То, что выше, прочитано им:</string>
+	<string name="chat_servicenotrunning">Сервер не запущен.</string>
+	
+	<string name="manage_newuser_ticker">Новый пользователь хочет получить доступ.</string>
+	<string name="manage_newuser_ongoing">Новый пользователь хочет получить доступ.</string>
+	<string name="manage_username_text">Имя: </string>
+	<string name="manage_password_text">Пароль: </string>
+	<string name="manage_userwindow_title">Создать нового пользователя</string>
+	<string name="manage_userdelete">Вы уверены, что хотите удалить этого пользователя?</string>
+	<string name="manage_user_edit_perm">Редактирование разрешений</string>
+	<string name="manage_user_changepassword">Изменить пароль</string>
+	<string name="manage_user_deleteuser">Удалить пользователя</string>
+	<string name="manage_user_setpassword">Установить новый пароль: </string>
+	<string name="permission_help_all">Все другие разрешения. Вдобавок, посылать сочетания клавиш, прикосновения к экрануi, исполнять комманды, исполнять комманды в терминале, смотреть логи. Эти функции не доступны с другими разрешениями.</string>
+	<string name="permission_help_sceenshot">Просмотр скриншота.</string>
+	<string name="permission_help_gps">Показывать местоположение по GPS и сети. Gps доступен только если включен на самом телефоне.Точность зависит от многих параметров.</string>
+	<string name="permission_help_chat">Читать и набирать сообщения. Every message are in the same list, and everyone can empty that list.</string>
+	<string name="permission_help_public">Если это разрешение установлено, а "Чтение файлов" нет, тогда в меню "Файлы" показывается только /sdcard/public (только для чтение). Создайте эту директорию, если собираетесь использовать функцию.</string>
+	<string name="permission_help_sms_contact">Чтение персональных данных: контакты, сообщения, звонки.</string>
+	<string name="permission_help_files">Чтение всех файлов на телефоте. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files!</string>
+	<string name="permission_help_sdcard">Читать и модифицировать контент на SD карте.</string>
+
+
+	<string name="permission_checkbox_all">Все</string>
+	<string name="permission_checkbox_screenshot">Снимок экрана</string>
+	<string name="permission_checkbox_location">Местоположение</string>
+	<string name="permission_checkbox_chat">Чат</string>
+	<string name="permission_checkbox_public">Чтение /sdcard/public</string>
+	<string name="permission_checkbox_contact">Контакты, SMS, Звонки</string>
+	<string name="permission_checkbox_files">Read files</string>
+	<string name="permission_checkbox_sdcard">SD карта</string>
+		
+	<string name="main_upgradfailed_restart">Установка новых бинарников провалилась, перезапустите телефон и попробуйте снова.</string>
+	
+	<string name="remotescreen_text_username">имя</string>
+	<string name="remotescreen_hinttext_username">Имя для удалённоготелефона</string>        
+    <string name="remotescreen_text_password">Пароль для удаленного телефона:</string>        
+    <string name="remotescreen_hinttext_password">пароль</string>
+	<string name="remotescreen_text_address">Установить IP адрес или ник для телефона на Webkey сервере</string>
+	<string name="remotescreen_hinttext_phone_address">Адрес телефона</string>
+	<string name="remotescreen_text_glnotsupported">Эта функция недоступна на этом телефоне</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">Используйте androidwebkey.com</string>
+	<string name="remotescreen_radiobutton_proxy_no">Прямое соединение</string>
+	<string name="remotescreen_text_button_connect">Соединение</string>
+	
+    <string name="remotescreen_menu_quality">Качество</string>
+    <string name="remotescreen_menu_disconnect">Разъединение</string>
+    <string name="remotescreen_menu_sendbackkey">Нажать "назад"</string>
+    <string name="remotescreen_menu_sendmenukey">Нажать "Меню"</string>
+
+    <string name="remotescreen_qualitysetttins_lowres">Низкое разрешение</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Горизонтально</string>
+    <string name="remotescreen_qualitysetttins_flip">Повернуть</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (медленнее jpeg)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Использовать только первый буфер</string>
+
+    <string name="remotescreen_exception_401">Неправильное имя или пароль</string>
+    <string name="remotescreen_exception_404">Телефон недоступен</string>
+    <string name="remotescreen_exception_unknownhost">Проблемы с сетью</string>
+    <string name="remotescreen_exception_timedout">Телефон не отвечает</string>
+
+</resources>

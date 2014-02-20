@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="warning">警告</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">保存设置</string>
+    <string name="btn_cancel">取消</string>
+    
+    <string name="main_start_btn">启动服务</string>
+    <string name="main_stop_btn">停止服务</string>
+    <string name="main_iptext">您输入的地址无效</string>
+    <string name="main_exitgui_btn">关闭界面</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">设置</string>
+    <string name="main_ddusing_cbox">使用此IP地址连接DynDNS</string>
+    <string name="main_autostart">开机自动启动</string>
+    <string name="main_icon">显示任务栏图标</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">允许浏览器中注册新用户</string>
+    
+    <string name="ddsettings_title">DynDNS 设置</string>
+    <string name="ddsettings_DDusername">DynDNS 名称</string>
+    <string name="ddsettings_DDpassword">DynDNS 密码</string>
+    <string name="ddsettings_DDdomain">DynDNS 域名</string>
+    
+    <string name="main_ddbsettings_btn">DynDNS 设置</string>    
+    <string name="main_notvaliddd">DynDNS设置无效</string>
+    <string name="main_upgrading">正在安装程序...</string>
+    <string name="main_portWindowTitle">选择服务端口</string>
+    <string name="main_server">webkey.cc</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">保持与webkey.cc的连接</string>
+    <string name="main_usernametext_btn">手机昵称设置</string>
+    <string name="main_usernametitle">更改服务器名称</string>
+    <string name="main_usernamemessage">请您为你的手机定义一个名字（英文字母及数字）用以在webkey.cc上标识你自己手机</string>
+    <string name="main_emptyusername">名称不允许为空</string>
+    <string name="main_alphabeticallowd">只允许字母和数字</string>
+    <string name="main_unableregisterserver">服务器端注册名称失败</string>    
+    <string name="main_serverreason">如果3G网络服务上屏蔽了服务器访问您的手机权限，你可以越过屏蔽。</string>
+    <string name="main_phoneavailableat">你的手机可通过以下地址访问\n</string> 
+	<string name="main_changeport_btn">更改端口</string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">帮助</string>
+	<string name="main_help_txt">
+本程序包含2个部分：你现在使用的是Java编写的前端，后端则是用C++编写的服务器端。当你点击“开始服务”，你应该可以看到如下的提示信息“你的手机可通过以下地址访问：”接着下面是相应的IP地址（如果没有显示，那么请尝试更改端口且保证你已经拥有ROOT权限并允许本程序以ROOT权限运行）。\n\n如果你可以使用此IP地址连接互联网，那么通过使用DynDNS提供的服务，你可以通过类似http://myphone.homeip.net的地址访问你的手机(关于DynDNS,请访问http://dyndns.org)，或者你也可以使用类似http://webkey.cc/yourname这样的地址访问控制你的手机(这是最有意思的部分，因为你无需了解你手机的IP地址。)\n\n如果你不能通过显示的IP地址访问连接你的手机(很可能是由于你的3G网络提供商屏蔽了外部接入手机的通道，也可能是你的手机使用了NAT、防火墙或者是代理)，那么你可以通过webkey.cc重定向连接到你的手机。后一种方法（通过webkey.cc重定向连接到你的手机）适用于上述提到的所有情况。\n\n你可以通过在浏览器中注册用户的方式或者是通过本程序的“用户设置”添加访问手机的新用户。\n\n想了解更多信息、联系方式以及源代码，请访问我们的网站http://webkey.cc\n\n注意，一些网络提供商只屏蔽了80端口，手机可以通过8080端口访问\n\n</string>
+	<string name="main_servicenotrunning">服务未启动</string>
+	<string name="main_unameregistered">恭喜你，此名称在webkey.cc成功注册！</string>
+	<string name="main_upgradingwait">正在安装后台程序，请稍等……</string>
+	<string name="main_invalidport">无效的端口</string>
+	<string name="main_netnotexist">该网络不存在</string>
+	<string name="main_help_btn">帮助</string>
+	<string name="main_upgradfailed">安装后台程序失败。</string>	
+	<string name="main_donate_btn">捐赠 (访问webkey.cc)</string>
+	<string name="main_log_btn">操作日志</string>
+	<string name="main_control">控制选项</string>
+	<string name="main_usersettings_btn">用户管理</string>
+	<string name="main_progress">正在工作……</string>
+	<string name="main_port">HTTP 端口     (默认: 80)</string>
+	<string name="main_sslport">HTTPS (SSL) 端口     (default: 443)</string>
+	
+	<string name="logview_nologmsg">未找到日志</string>
+	<string name="logview_toobigfile">日志文件过大</string>
+	
+	<string name="chat_send_btn">发送</string>
+	<string name="chat_menu_clear">清除</string>
+	<string name="chatui_readby">read by</string>
+	<string name="chat_servicenotrunning">服务没有启动</string>
+	
+	<string name="manage_newuser_ticker">有新用户尝试访问您的手机</string>
+	<string name="manage_newuser_ongoing">有新用户尝试访问您的手机</string>
+	<string name="manage_username_text">用户名：</string>
+	<string name="manage_password_text">密码：</string>
+	<string name="manage_userwindow_title">新建用户</string>
+	<string name="manage_userdelete">确认删除此用户？</string>
+	<string name="manage_user_edit_perm">编辑权限</string>
+	<string name="manage_user_changepassword">更改密码</string>
+	<string name="manage_user_deleteuser">删除用户</string>
+	<string name="manage_user_setpassword">设置新密码：</string>
+	<string name="permission_help_all">许可所有权限。此外还允许用户操作按键、触摸屏、执行指令、在终端执行指令以及查看日志的额外功能，下列权限不能打开以上额外功能</string>
+	<string name="permission_help_sceenshot">查看手机界面</string>
+	<string name="permission_help_gps">查看GPS和手机网络位置。GPS查看功能仅在手机设置启动GPS下有效。网络位置取决于具体服务商</string>
+	<string name="permission_help_chat">选择此项，你可以同浏览器中用户进行聊天。所有信息都在同一列表，且可以被清空。</string>
+	<string name="permission_help_public">当选中该项且未选中“读取所有文件”，则浏览器中的“文件”一栏中只有/sdcard/public(路径SD存储卡中的名为public文件夹)可读。因此选中该项时请确保该文件夹存在。</string>
+	<string name="permission_help_sms_contact">读取个人数据，例如联系人、短信息、通话记录</string>
+	<string name="permission_help_files">读取手机中的所有文件，请谨慎选择！联系人、短信息、通话记录还有本应用的密码信息都保存在文件中！</string>
+	<string name="permission_help_sdcard">读取并可以更改SD存储卡的内容</string>
+
+
+	<string name="permission_checkbox_all">以下所有功能</string>
+	<string name="permission_checkbox_screenshot">查看手机界面</string>
+	<string name="permission_checkbox_location">查看位置信息</string>
+	<string name="permission_checkbox_chat">聊天</string>
+	<string name="permission_checkbox_public">读取 /sdcard/public</string>
+	<string name="permission_checkbox_contact">查看联系人、短信息、通话记录</string>
+	<string name="permission_checkbox_files">读取文件</string>
+	<string name="permission_checkbox_sdcard">读写SD存储卡</string>
+		
+	<string name="main_upgradfailed_restart">安装新的后台程序失败，请您重启手机并重试。</string>	
+
+
+
+
+	<string name="main_rootfailed">The phone is not rooted or have not "su" program.</string>
+    <string name="remotescreen_text_username">Username for remote phone:</string>
+    <string name="remotescreen_hinttext_username">username</string>        
+    <string name="remotescreen_text_password">Password for remote phone:</string>        
+    <string name="remotescreen_hinttext_password">password</string>
+	<string name="remotescreen_text_address">Set the remote phone\'s IP address or nickname at Webkey service</string>
+	<string name="remotescreen_hinttext_phone_address">Phone\'s address</string>
+	<string name="remotescreen_text_glnotsupported">This feature is not available on this phone</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">Use webkey.cc gateway</string>
+	<string name="remotescreen_radiobutton_proxy_no">Direct connect</string>
+	<string name="remotescreen_text_button_connect">Connect</string>
+    <string name="remotescreen_menu_quality">Quality</string>
+    <string name="remotescreen_menu_disconnect">Disconnect</string>
+    <string name="remotescreen_menu_sendbackkey">Send Back key</string>
+    <string name="remotescreen_menu_sendmenukey">Send Menu key</string>
+    <string name="remotescreen_qualitysetttins_lowres">Low resolution</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Horizontal</string>
+    <string name="remotescreen_qualitysetttins_flip">Flip</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (slower then jpeg)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Use only first frame buffer</string>
+    <string name="remotescreen_exception_401">Wrong username or password</string>
+    <string name="remotescreen_exception_404">The phone is unreachable</string>
+    <string name="remotescreen_exception_unknownhost">Network problem</string>
+    <string name="remotescreen_exception_timedout">The phone is not responding</string>
+</resources>

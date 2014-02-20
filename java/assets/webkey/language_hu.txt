@@ -1,0 +1,292 @@
+Net -> Net
+Sum -> Összeg
+Send on Enter -> Enterre küld
+Call list -> Híváslista
+Webkey for Android -> Webkey Androidra
+Detailed call list -> Részletes híváslista
+unknown -> ismeretlen
+rejected -> elutasított
+in -> be
+out -> ki
+min -> perc
+sec -> másodperc
+Calls which are longer than half minute in the selected month -> A fél percnél hosszabb hívások a kiválasztott hónapban
+Summarize -> Összegzés
+Name -> Név
+incoming -> bejövő
+outgoing -> kimenő
+Loading Call list... -> A híváslista töltése...
+Above lines are read by -> A fenti sorokat olvasta:
+Chat -> Csevegés
+chat message -> üzenet
+chat messages -> üzenetek
+Export -> Exportálás
+Contacts -> Kontaktok
+Messages -> Üzenetek
+to -> fájl típusa:
+plain text (pure) -> txt fájl
+semicolon-separated values (csv) -> pontosvesszővel elválasztott értékek (csv)
+xml -> xml
+where date is -> a dátum:
+dd mm yyyy -> NN HH ÉÉÉÉ
+mm dd yyyy -> HH NN ÉÉÉÉ
+yyyy mm dd -> ÉÉÉÉ HH NN
+with date separator -> a dátum elválasztó:
+in timezone -> az időzóna:
+Timezone -> időzóna
+Epoch time -> unix idő (epoch time)
+with newline type -> a sortörés típusa:
+The texts are exported in utf-8 encoding. -> A fájlok utf-8 formátumban vannak.
+GPS -> GPS
+GPS location -> GPS pozíció
+Show on map -> Mutasd a térképen
+Update continuously -> Folyamatos követés
+Network location -> Hálózati pozíció
+Error -> Hiba
+seconds ago -> másodperccel ezelőtt
+minutes ago -> perccel ezelőtt
+hours ago -> órával ezelőtt
+days ago -> nappal ezelőtt
+Notify -> Értesítés
+saved -> mentve
+failed to save -> nem sikerült a mentés
+Under development, it may not notify you because the CPU can fall deep asleep -> Fejlesztés alatt, nem mindig értesít, mert a processzor mély álomba tud zuhanni.
+Trigger events -> Események
+Watch for unread messages -> Figyeld az olvasatlan üzeneteket
+Watch for missed calls -> Figyeld a nem fogadott hívásokat
+Notification method -> Értesítési mód
+Alert every -> Riasztás minden
+minute -> percben
+Vibrate phone -> Telefon rezgetése
+Vibrate phone with the following sequence -> Telefon rezgetése a következő mintázattal
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A,B,C,D,... jelentése: rezegjen A ms-ig, várjon B ms-ot, rezegjen C ms-ig, várjon D ms-ot, ...)
+Blink led -> Villogtassa a ledet
+only for the duration of vibrate -> csak a rezgés időtartalmára
+all the time -> mindig
+When the led is blinking, it is on for -> A led a villogás közben világít
+ms, and off for -> ms-ig, majd elalszik
+ms -> ms-ig
+Save and test alert -> Mentés és az értesítés tesztelése
+Low resolution -> Alacsony felbontás
+Half size -> Fele méret
+Horizontal -> Horizontális
+Flip -> Fejjel lefelé
+PNG (slower than JPEG) -> PNG (lassabb, mint a JPEG)
+Auto refresh -> Automatikus frissítés
+Keep alive -> Tartsa ébren
+Use only first framebuffer -> Csak az első framebuffer használata
+Refresh image -> Kép frissítése
+Record images -> Képek rögzítése
+Save image -> Kép mentése
+Open in browser -> Megnyitás böngészőben
+Call -> Hívás
+Dial -> Tárcsázás
+Run -> Futtatás
+Click here to type on phone! -> Kattints ide, hogy a telefonon gépelhess!
+Send while typing -> Folyamatosan küldje
+SMS mode -> SMS mód
+Send text -> Gépelt szöveg elküldése
+Config buttons -> Gombok beállítása
+Config keys -> Billentyűk beállítása
+Adjust light -> Fényerő állítása
+SMS -> SMS
+Sent. Reload the page to see the sent message. -> Elküldve
+FAILED TO SEND -> NEM SIKERÜLT A KÜLDÉS!
+add to recipients -> hozzáadás a címzettekhez
+To -> Címzettek
+click to remove -> eltávolítás
+no recipients -> nincs címzett
+Me -> Én
+(pending...) -> (folyamatban...)
+Write here your message! -> Írd ide az üzeneted
+MMS -> MMS
+skipped chars -> kihagyott karakterek
+In the phone numbers the following characters are allowed: 0-9, +, - -> A telefonszámban csak a következő karakterek megengedettek: 0-9, +, -
+No recipients, please add at least one. -> Nincs cízett, adj hozzá legalább egyet
+Unable to send empty message. -> Küldés sikertelen, üres üzenet
+sending... -> küldés...
+Under development, tested only on GSM networks -> Fejlesztés alatt
+Loading SMS and contacts... -> Az SMS-ek és névjegyzék töltése
+SEND -> KÜLDÉS
+Show contacts -> Mutasd a névjegyzéket
+Show phone numbers -> Mutasd a telefonszámokat
+SMS mode (avoid unicode) -> SMS mód (unicode elkerülése)
+Add phone number -> Címzett hozzáadása
+Click&nbsp;to&nbsp;add&nbsp; -> Kattints&nbsp;ide,&nbsp;hogy&nbsp;hozzáadjuk:&nbsp;
+Message -> Üzenet
+Phone -> Telefon
+Terminal -> Terminál
+Config -> Beállítások
+Files -> Fájlok
+Sdcard -> SD kártya
+Help -> Segítség
+Log out -> Kijelentkezés
+results -> eredmény
+Saved, reloading ... -> Mentve, újratöltés ...
+username -> felhasználói név
+password -> jelszó
+Change password -> Jelszó megváltozatása
+Remove user -> Felhasználó eltávolítása
+ALL -> MINDEN
+Screenshot -> Képernyőkép
+Location -> Pozíció
+Read /sdcard/public/ -> /sdcard/public olvasása
+Contacts, Sms, Calls -> Névjegyzék, üzenetek, híváslista
+Read files -> Fájlok olvasása
+Save permissions -> Jogok mentése
+New user -> Új felhasználó
+Create -> Létrehozás
+Details about permissions -> A jogosultságok
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> Az összes többi jogosultság. Plusz a felhasználó tud billentyűzetleütést, egérmozdulatot injektálni, parancsot futtatni terminálban, megtekinteni a logot. Ezek a funkciók nem elérhetőek a többi jogokkal.
+View screenshot of the phone. -> A telefon képernyőképének megtekintése.
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> A GPS és ahálózati pozíció megtekintése. A GPS pozícióhoz ezt a telefon Beállítások menüjében engedélyezni kell. A hálózati pozíció függ a szolgáltatótól.
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> Üzenetek olvasása és írása. Az üzenetek egy közös listában vannak, amelyet bárki tud üríteni.
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> Ha ez a jog engedélyezve van, de a "Fájlok olvasása" nem, akkor a "Fájlok" menüpont alatt a /sdcard/public tartalma lesz cask látható.
+Read personal data such as contacts, messages and call list. -> Személyes adatok olvasása: névjegyzék, üzenetek és híváslista.
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> Minden fájl olvasása a telefonon. Óvatosan, a névjegyzék, az üzenetek, a híváslista és a Webkey jelszavai is fájlokban vannak.
+Read and modify the content of the sdcard. -> Az SD kártya olvasása és írása.
+Log (activities is logged once in every 30 minutes) -> Log (minden aktivitás csak egyszer kerül ide minden 30 percben)
+Clear log -> Log törlése
+uptime -> uptime
+uptime secs -> uptime másodpercek
+mins -> perc
+hours -> óra
+days -> nap
+hour -> óra
+CPUup -> CPUup
+CPU uptime secs -> CPU uptime másodpercek
+Brightness -> Fényerő
+Recorded -> Rögzített
+images -> kép
+This terminal will be closed after 60 minutes of inactivity. -> Ez a terminal bezarul 60 perc inaktivitas utan.
+If you already have an account to this phone -> Ha már van bejelentkezési neved, lépj be
+Login -> Bejelentkezés
+Registration -> Regisztráció
+Username -> Felhasználói név
+Password -> Jelszó
+Create new user -> Új felhasználó létrehozása
+Click here to switch to SSL. -> Átváltás SSL kapcsolatra.
+SSL provides secure (and a slightly slower) way to access Webkey. -> Az SSL titkosítja a kommunikációt a telefon és a böngésző között, bár kicsit lassabb.
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> Firefoxon kattints a "Megértem a kockázatokat", "Kivétel hozzáadása...", "Biztonsági kivétel megerősítése" gombokra.
+On Chrome you might have to click on "Proceed anyway". -> Chromeon kattints a "Továbblépés" gombra.
+Click here to disable SSL. -> Váltsunk vissza SSL módról.
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> Az SSL mód letiltása felgyorsítja a kapcsolatot, ám ekkor titkosítatlanul halad az adat.
+Language -> Nyelv
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> Az új felhasználók regisztrációja nem engedélyezett, ezt engedélyezheti a "engedély új felhasználó regisztrációjára böngészőből" opcióval.
+Reloading... -> Újratöltés...
+Registration request sent, please wait until it's authorized on the phone. -> Kérem várjon, amíg a telefonon engedélyezik a felhasználó regisztrációját.
+Save -> Mentés
+Allowable characters in GSM and their keycode in non-unicode SMS -> A nem unicode SMS-ben a megengedett karakterek és a karakterkódjuk a GSM-ben.
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). -> Azon sorok, amelyeknél az "SMS módban" engedélyezve van prioritást élveznek az SMS módban (azért, hogy elkerüljük az unicode SMS módot).
+Clicking, dragging -> Kattintás és húzás
+You should be able to click and drag on the phone by doing the same on the screenshot. -> A telefonon kattinthatsz és húzhatsz ha ugyanezt csinálod a böngészőben lévő képernyőképen.
+It makes resolution half both in horizontal and vertical direction. -> Felezi a felbontást vízszintes és függőleges irányban.
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> A JPEG egy veszteséges tömörítés. Nagyon gyors és jó a tömörítési aránya, ám a kép zajos lesz. A PNG sokkal lassabb, a tömörített kép mérete is nagyobb lesz, viszont ez veszteségmentes.
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> Általában az Android dupla buffert használ: amíg az egyik buffert tartalmát látjuk a kijelzőn, a másik bufferre rajzol, majd megcseréli őket. Ez egy régi trükk, amivel el lehet kerülni a villogást. Pár régi telefon (például a HTC G1) a sebesség érdekében megjeleníthet képrészletet az első és a második bufferról is, de ez esetben általában a második buffer nem tartalmaz teljes képet. Ennek az opciónak a hatására a Webkey csak az első buffert használja.
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> A telefon elkezd egy ideiglenes mappába (/sdcard/webkey_TEMP) elmenteni a képernyőképeket amilyen gyorsan csak tudja. A képek mentéséhez a kiválasztott opciókat használja (Alacsony felbontás, Horizontális, Fejjel lefelé, Png/Jpeg, Csak az első framebuffer használata). A Stop gomb lenyomása után a telefon becsomagolja a képeket egy zip archívumba, majd elküldi a böngészőnek.
+Typing -> Gépelés
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> A nagy szövegbeviteli mező a telefonon való gépelésre szolgál. Ezt lehet folyamatos, ha a "Folyamatosan küldje" be van kapcsolva, illetve elküldheted teljes szöveget a "Gépelt szöveg elküldése" gombbal. Minden nem angol karakter első beillesztése újrarajzolhatja a kijelződ. A DEL gomb BACK-et küld.
+You can configure the character substitution rules for SMS mode. -> Itt adhatók meg a karakter helyettesítési szabályok az SMS módhoz.
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> Ha megpróbálsz ékezetes karaktereket küldeni egy SMS üzenetben, mint például ő és ű, akkor ezek a karakterek kikényszerítik az Androidot, hogy váltson unicode formátumba, amelyben az elküldhető karakterek száma 160ról 70re csökken. Ha az SMS mód engedélyezve van, akkor az "SMS módban" karakter helyettesítő szabályok prioritást élveznek.
+Show -> Mutasd
+Key -> Karakter
+Keycode -> Karakterkód
+Char -> Karakter
+converts to -> ehelyett legyen
+works in SMS mode -> "SMS módban"
+Please visit our website for more information -> Több információért látogasd meg az (angol nyelvű) oldalunkat
+If you like our app, please support the development of Webkey. Every help is appreciated. -> Ha tetszik az alkalmazás, kérlek támogasd a fejleszést. Minden segítség jól jön.
+Screenshots' properties -> Képernyőképek beállításai
+Translations -> Fordítások
+Stop recording -> Rögzítés leállítása
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> A Webkey félpercenként megnézi, hogy van-e nem fogadott hívás vagy olvasatlan üzenet (alig használja a processzort, mert az adatbázis fájlok módosítási idejét hasonlítjuk össze, és csak akkor indítjuk az sqlite lekérdezést, ha különböztek).
+clear -> törlés
+You can always manage users on the phone. -> A telefonon mindig lehet felhasználókat hozzáadni és törölni.
+Screen properties -> Képernyőkép beállításai
+Typing properties -> Gépelés beállításai
+Open, call, run -> Megnyitás, hívás, futtatás
+Phone info -> Telefon infók
+Clipboard -> Vágólap
+Screen timeout -> Képernyő elsötétedése
+Phone number -> Telefonszám
+Network operator name -> Hálózati operátor neve
+Network type -> Hálózat típusa
+SIM operator name -> SIM operátor neve
+SIM serial number -> SIM száma
+Subscriber ID -> Előfizetői azonosító
+Phone utils -> Telefon eszközök
+Send toast -> Buborék küldése
+Vibrate -> Vibrálás
+Run application -> Alkalmazás futtatása
+Close application -> Alkalmazás bezárása
+Kill application -> Alkalmazás kilővése
+Volume -> Hangerő
+Ringer -> Csengés
+Media -> Média
+Wifi -> Wifi
+Buttons -> Gombok
+Development -> Fejlesztés
+Run SL4A request -> SL4A kérés futtatása
+loading -> töltés
+Close -> Bezárás
+Kill -> Kilővés
+ch -> csat
+level -> level
+
+Just delete a line which you don't want to translate, and remove the space at the beginning  which you want:
+
+ SOFT_LEFT -> 
+ SOFT_RIGHT -> 
+ HOME -> 
+ BACK -> 
+ CALL -> 
+ ENDCALL -> 
+ STAR -> 
+ POUND -> 
+ DPAD_UP -> 
+ DPAD_DOWN -> 
+ DPAD_LEFT -> 
+ DPAD_RIGHT -> 
+ DPAD_CENTER -> 
+ VOLUME_UP -> 
+ VOLUME_DOWN -> 
+ POWER -> 
+ CAMERA -> 
+ CLEAR -> 
+ COMMA -> 
+ PERIOD -> 
+ ALT_LEFT -> 
+ ALT_RIGHT -> 
+ SHIFT_LEFT -> 
+ SHIFT_RIGHT -> 
+ TAB -> 
+ SPACE -> 
+ SYM -> 
+ EXPLORER -> 
+ ENVELOPE -> 
+ ENTER -> 
+ DEL -> 
+ GRAVE -> 
+ MINUS -> 
+ EQUALS -> 
+ LEFT_BRACKET -> 
+ RIGHT_BRACKET -> 
+ BACKSLASH -> 
+ SEMICOLON -> 
+ APOSTROPHE -> 
+ SLASH -> 
+ AT -> 
+ NUM -> 
+ HEADSETHOOK -> 
+ FOCUS -> 
+ PLUS -> 
+ MENU -> 
+ NOTIFICATION -> 
+ SEARCH -> 
+ MEDIA_PLAY_PAUSE -> 
+ MEDIA_STOP -> 
+ MEDIA_NEXT -> 
+ MEDIA_PREVIOUS -> 
+ MEDIA_REWIND -> 
+ MEDIA_FAST_FORWARD -> 
+ MUTE -> 

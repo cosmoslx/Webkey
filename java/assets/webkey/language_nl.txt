@@ -1,0 +1,237 @@
+Call list -> Gesprekken lijst
+Webkey for Android -> Webkey voor Android
+unknown -> onbekend
+min -> min
+sec -> sec
+Detailed call list -> Uitgebreide gesprekken lijst
+rejected -> afgewezen
+in -> in
+out -> uit
+Calls which are longer than half minute in the selected month -> Gesprekken die langer zijn dan een halve minuut in de geseleteerde maand
+Summarize -> Samenvatten
+Name -> naam
+incoming -> inkomend
+outgoing -> uitgaand
+Loading Call list... -> Gesprekken lijst laden...
+Above lines are read by -> Bovenstaande lijnen zijn gelezen door
+Chat -> Chat
+clear -> leeg
+chat message -> chat gesprek
+chat messages -> chat gesprekken
+Save -> Opslaan
+Allowable characters in GSM and their keycode in non-unicode SMS -> Toegestane tekens in GSM en hun keycode in niet-unicode SMS
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). -> Lijnen met ingeschakeld "werkt in SMS modus" hebben prioriteit wanneer U unicode SMS modus wilt ontwijken (beide onder menus Telefoon en SMS).
+Export -> Exporteren
+Contacts -> Contacten
+Messages -> Berichten
+to -> Aan
+plain text (pure) -> Platte text (puur)
+semicolon-separated values (csv) -> Comma's gescheiden waarden (csv)
+xml -> xml
+where date is -> waar datum is
+dd mm yyyy -> dd mm yyyy
+mm dd yyyy -> dd mm yyyy
+yyyy mm dd -> yyyy mm dd
+with date separator -> met datum scheidingsteken
+in timezone -> in tijdzone
+Timezone -> Tijdzone
+Epoch time -> Tijdperk tijd
+with newline type -> met nieuwelijn type
+The texts are exported in utf-8 encoding. -> De berichten zijn ge-exporteerd in utf-8 encoding.
+Files -> Bestanden
+GPS -> GPS
+GPS location -> GPS locatie
+Show on map -> Toon op kaart
+Update continuously -> Update continu
+Network location -> Netwerk locatie
+Error -> Error
+BEFORETIME -> VOORTIJD
+seconds ago -> seconden geleden
+minutes ago -> minuten geleden
+hours ago -> uren geleden
+days ago -> dagen geleden
+Help -> Help
+Please visit our website for more information -> Bezoek a.u.b. onze website voor meer informatie
+If you like our app, please support the development of Webkey. Every help is appreciated. -> Wanneer U onze app leuk vindt, support dan het ontwikkelen van Webkey. Elke vorm van hulp wordt op prijs gesteld.
+Screenshots' properties -> Screenshot eigenschappen
+Clicking, dragging -> Klikken, slepen
+You should be able to click and drag on the phone by doing the same on the screenshot. -> You zou moeten kunnen klikken en slepen op de telefoon door het zelfde te doen als op de screenshot.
+Low resolution -> Lage resolutie
+It makes resolution half both in horizontal and vertical direction. -> Het maakt de resolutie half in horizontale en verticale riching.
+PNG (slower than JPEG) -> PNG (langzamer dan JPEG)
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> JPEG is een lossy compressie. Het is sneller en heeft een goede compressie ratio, maar de afbeelding krijgt ruis. PNG is veel langzamer, de bestandsgrootte is groter, maar is het een verliesvrije compressie.
+Use only first framebuffer -> Gebruik alleen het eerste framebuffer
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> Normaal gebruikt Android dubbele buffering: wanneer de telefoon gebruik maakt van één of twee framebuffers voor weergave, bereidt het de nieuwe afbeelding over de andere. En verwisseld ze dan. Dat is een oude manier om flikkering tegen te gaan. Op sommige oudere telefoons (bijvoorbeeld op HTC G1 aka Dream) kunnen delen worden weergegeven van de vorige, en sommige delen van de tweede framebuffer, maar normaal bevat de tweede framebuffer niet de hele afbeelding. Deze optie forceerd Webkey om alleen de eerste framebuffer te gebruiken.
+Record images -> Plaatjes opnemen
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> De telefoon start met het opslaan van de plaatjes naar een tijdelijke map /sdcard/webkey_TEMP/ zo snel mogelijk. Het gebruikt de geselecteerde opties (Lage resolutie, Horizontaal, Flip, PNG/JPEG, Gebruik alleen het eerste framebuffer). Nadat het indrukken van Stop opnemen, maakt de telefoon een aip van de plaatjes en zend ze naar de browser.
+Typing -> Typend
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> Het grote textveld is voor het invoeren van toetsen naar de telefoon. U kan dit direct dooen wanneer "Verzend tijdens typen" is aangevinkt, u kan ook de geschreven text verzenden door op de knop "Verzend tekst" te drukken. Bij het invoeren van elke niet engelse karakter kan u telefoon scherm herladen bij de eerste keer. De knop DEL functioneerd als terug.
+Config keys -> Configureer toetsen
+You can configure the character substitution rules for SMS mode. -> U kunt de karakter regels voor SMS modus instellen. 
+SMS mode -> SMS modus
+If you try to send special characters, like Å‘, Å± in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> Wanneer u speciale tekens probeerd te verzenden, zoals Å‘, Å± in een sms, dan kunnen deze tekens Android forceren om te schakelen naar unicode formaat, waar het aantal tekens in een bericht daald van 160 naar 70 in GMS netwerken. Wanneer SMS modus is aagevinkt, dan zullen de regels "werkt in SMS modus" voorrang hebben.
+Translations -> Vertalingen
+If you already have an account to this phone -> Wanneer u al een account hebt tot deze telefoon
+Login -> Login
+Username -> Gebruikersnaam
+Password -> Wachtwoord
+Create new user -> Maak een nieuwe gebruiker aan
+Registration -> Registratie
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> Registratie voor nieuwe gebruikers is uitgeschakeld, klik op "gebruiker registratie in browser toestaan" om het in te schakelen.
+You can always manage users on the phone. -> U kan altijd de gebruikers beheren op uw telefoon.
+Click here to switch to SSL. -> Klik hier om om te schakelen naar SSL.
+SSL provides secure (and a slightly slower) way to access Webkey. -> SSL biedt u een veilige (en een beetje langzamere) manier om toegang te verkrijgen tot Webkey.
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> In Firefox moet u mogelijk klikken op "Ik begrijp de risico's", "Uitzondering toevoegen...", "Beveiligingsuitzondering toevoegen".
+On Chrome you might have to click on "Proceed anyway". -> In Chrome moet u mogelijk klikken op "Toch doorgaan".
+Click here to disable SSL. -> Klik hier om SSL uit te schakelen.
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> Uitschakelen van SSL zal resulteren in een snellere verbinding maar de data zal onbeveiligd verzonden worden
+Language -> Taal
+Net -> Net
+Sum -> Som
+Notify -> Notificatie
+saved -> Opgeslagen
+failed to save -> Mislukt om op te slaan
+Under development, it may not notify you because the CPU can fall deep asleep -> In ontwikkeling, het kan mogelijk niet een notificatie versturen omdat de CPU in slaap kan raken.
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> Webkey zoekt naar ongelezen berichten en gemiste oproepen elke halve minuut (het gebruikt nauwelijks de processor, we controleren de wijzigings data van de database bestanden, en alleen als ze veranderd zijn is er een snelle sqlite verzoek).
+Trigger events -> Trigger evenementen
+Watch for unread messages -> Kijk uit voor ongelezen berichten
+Watch for missed calls -> Kijk uit voor gemiste oproepen
+Notification method -> Notificatie methode
+Alert every -> Waarschuw iedere
+minute -> minuut
+Vibrate phone -> Tril telefoon
+Vibrate phone with the following sequence -> Tril de telefoon met het volgende patroon
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A,B,C,D,... betekend tril voor A ms, wacht voor B ms, tril voor C ms, wacht voor D mc, ...)
+Blink led -> Knipper led
+only for the duration of vibrate -> alleen ten tijde van de tilling
+all the time -> aldoor
+When the led is blinking, it is on for -> Wanneer de led knippert, het is aan voor
+ms, and off for -> ms, en uit voor
+ms -> ms
+Save and test alert -> Opslaan en test waarschuwing
+Click here to type on phone! -> Klik hier om te typen op de telefoon!
+Stop recording -> Stop met opnemen
+results -> resultaten
+Screen properties -> Scherm eigenschappen
+Half size -> Halve grootte
+Horizontal -> Horizontaal
+Flip -> Flip
+PNG (slower than JPEG) -> PNG (trager dan JPEG)
+Auto refresh -> Automatisch verversen
+Keep alive -> Levend houden
+Refresh image -> Ververs afbeelding
+Save image -> Afbeelding opslaan
+Typing properties -> Typ opties
+Send while typing -> Verzend tijdens typen
+Send on Enter -> Verzend op Enter
+Send text -> Verzend bericht
+Config buttons -> Configureer knoppen
+Open, call, run -> Open, bel, uitvoeren
+Open in browser -> Open in browser
+Call -> Bel
+Dial -> Draaien
+Run -> Uitvoeren
+Phone info -> Telefoon informatie
+Clipboard -> Klembord
+Screen timeout -> Scherm timeout
+IMEI/MEID -> IMEI/MEID
+Phone number -> Telefoonnummer
+Network operator name -> Naam van de Netwerkoperator
+Network type -> Netwerk type
+SIM operator name -> Naam van SIM operator
+SIM serial number -> Serialnummer van SIM
+Subscriber ID -> Abonnee ID
+Phone utils -> Telefoon utils
+Send toast -> Verzend toast
+Vibrate -> Tril
+Run application -> Uitvoeren van toepassing
+Close application -> Sluit toepassing
+Kill application -> Stop toepassing
+Volume -> Volume
+Ringer -> Belsingaal
+Media -> Media
+Wifi -> WiFi
+Buttons -> Knoppen
+Development -> Ontwikkeling
+Run SL4A request -> Uitvoeren van SL4A verzoek
+Sdcard -> SD kaart
+SMS -> SMS
+Sent. Reload the page to see the sent message. -> Verzonden. Vernieuw de pagina om het verzonden bericht te zien.
+FAILED TO SEND -> MISLUKT OM TE VERZENDEN
+add to recipients -> voeg toe aan ontvangers
+To -> Aan
+click to remove -> klik om te verwijderen
+no recipients -> geen ontvangers
+Click&nbsp;to&nbsp;add&nbsp; -> Klik&nbsp;om&nbsp;toe&nbsp;te&nbsp;voegen&nbsp;
+Me -> Ik
+(pending...) -> (in afwachting...)
+Write here your message! -> Typ hier uw bericht!
+MMS -> MMS
+skipped chars -> overgeslagen tekens
+In the phone numbers the following characters are allowed: 0-9, +, - -> In het telefoonnummer zijn de volgende tekens toegestaan: 0-9, +, -
+No recipients, please add at least one. -> Geen ontvangers, voeg a.u.b. tenminste één toe.
+Unable to send empty message. -> Niet mogelijk om een leeg bericht te verzenden.
+sending... -> verzenden...
+Under development, tested only on GSM networks -> In ontwikkeling, alleen getest in GSM netwerken
+Loading SMS and contacts... -> Laden van SMS en Contacten...
+SEND -> VERZEND
+Show contacts -> Toon contacten
+Show phone numbers -> Toon telefoonnummers
+SMS mode (avoid unicode) -> SMS modus (ontwijk unicode)
+Add phone number -> Voeg telefoonnummer toe
+Message -> Bericht
+Terminal -> Terminal
+Config -> Configuratie
+Log out -> Log uit
+Adjust light -> Licht aanpassen
+loading -> laden
+Close -> Sluit
+Kill -> Kill
+ch -> ch
+level -> niveau
+Phone -> Telefoon
+Show -> tonen
+Key -> Key
+Keycode -> Keycode
+Char -> Teken
+converts to -> Converteren naar
+works in SMS mode -> werkt in SMS modus
+Reloading... -> Herladen...
+Registration request sent, please wait until it's authorized on the phone. -> Registratie verzoek verzonden, wacht a.u.b. tot toestemming is gegeven op de telefoon.
+Saved, reloading ... -> Opgeslagen, herladen...
+username -> gebruikersnaam
+password -> wachtwoord
+Change password -> Verander wachtwoord
+Remove user -> Verwijder gebruiker
+ALL -> ALLEMAAL
+Screenshot -> Screenshot
+Location -> Locatie
+Read /sdcard/public/ -> Lees /sdcard/public/
+Contacts, Sms, Calls -> Contacten, SMS, gesprekken
+Read files -> Lees bestanden
+Save permissions -> Permissies opslaan
+New user -> Nieuwe gebruiker
+Create -> Maak
+Details about permissions -> Informatie over permissies
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> Alle andere permissies. Aanvullend, gebruikers kunnen toetsen invoeren, druk events invoeren, commando's uitvoeren, comando's uitvoeren in de terminal, log bekijken. Deze functies zijn niet toegankelijk bij andere permissies.
+View screenshot of the phone. -> Bekijk screenshots van de telefoon.
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> Bekijk de GPS en netwerk locatie van de telefoon. De GPS is alleen mogelijk wanneer het aan staat op uw telefoon. Netwerklocaties hangen af van uw provider.
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> Lees en schrijf berichten. Elk bericht is in de zelfde lijst, iedereen kan de lijst legen.
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> Wanneer deze permissie is gezet en "Lees bestanden" niet, dan zal onder het menu "Bestanden" alleen de inhoud van /sdcard/public te lezen zijn. Maak a.u.b. deze map wanneer u deze functie wilt gaan gebruiken.
+Read personal data such as contacts, messages and call list. -> Lees persoonlijke informatie zoals contacten, berichten en gesprekkenlijst.
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> Lees alle bestanden van de telefoon. Pas op, de contacten, de berichten, gesprekken lijst en de wachtworden van Webkey worden opgeslagen in bestanden!
+Read and modify the content of the sdcard. -> Lees en Pas de inhoud van de SD kaart aan.
+Log (activities is logged once in every 30 minutes) -> Log (activiteiten worden gelogged eens in de 30 minuten)
+Clear log -> Leeg log
+uptime -> uptime
+uptime secs -> uptime seconden
+mins -> minuten
+hours -> uren
+days -> dagen
+hour -> uur
+CPUup -> CPUup
+CPU uptime secs -> CPU uptime seconden
+Brightness -> Helderheid
+Recorded -> Opgeslagen
+images -> afbeeldingen
+This terminal will be closed after 60 minutes of inactivity. -> Deze terminal zal worden afgesloten na 60 minuten inactiviteit.

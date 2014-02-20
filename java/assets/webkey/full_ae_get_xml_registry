@@ -1,0 +1,1577 @@
+<?xml version="1.0"?>
+<ajxp_registry><actions><action name="switch_repository">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="conf.serial"/>
+			</processing>
+		</action><action name="get_bookmarks">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="conf.serial"/>
+			</processing>
+		</action><action name="save_user_pref">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="conf.serial"/>
+			</processing>
+		</action><action name="switch_language">
+			<gui text="190" title="190" src="flag.png" accessKey="" hasAccessKey="false">
+				<context selection="false" dir="" recycle="true" actionBar="false" actionBarGroup="default" contextMenu="true" infoPanel="false" ajxpWidgets="UserWidget::logging_string"/>
+			</gui>
+			<processing>				
+				<clientCallback prepareModal="true" dialogOpenForm="switch_language_form" dialogOkButtonOnly="false" dialogSkipButtons="false">
+					<dialogOnOpen><![CDATA[
+						var userLang = ajaxplorer.user.getPreference("lang");
+						if(!userLang) userLang = window.ajxpBootstrap.parameters.get("currentLanguage");
+						var selector = $(oForm).select('select[id="language_selector"]')[0];
+						var languages = $H(window.ajxpBootstrap.parameters.get("availableLanguages"));
+						languages.each(function(pair){
+							var option = new Element('option', {value:pair.key,id:'lang_'+pair.key});
+							option.update(pair.value);
+							selector.insert(option);
+						});
+						selector.setValue(userLang);		
+						selector.observe("change", function(){
+							var value = selector.getValue();
+							ajaxplorer.user.setPreference("lang", selector.getValue());
+							ajaxplorer.user.savePreference("lang");
+						});
+					]]></dialogOnOpen>
+					<dialogOnComplete hideDialog="true"><![CDATA[
+						var oUser = ajaxplorer.user;
+						if(oUser.getPreference('lang') != null 
+							&& oUser.getPreference('lang') != "" 
+							&& oUser.getPreference('lang') != ajaxplorer.currentLanguage)
+						{
+							ajaxplorer.loadI18NMessages(oUser.getPreference('lang'));
+							ajaxplorer.displayMessage('SUCCESS', MessageHash[241]);
+						}								
+					]]></dialogOnComplete>
+					<dialogOnCancel><![CDATA[]]></dialogOnCancel>
+				</clientCallback>
+				<clientForm id="switch_language_form"><![CDATA[
+					<div id="switch_language_form" action="switch_language_form" box_width="202">
+						<select id="language_selector"></select>
+					</div>
+				]]></clientForm>				
+				<serverCallback methodName="switchAction" pluginId="conf.serial"/>
+			</processing>		
+		</action><action name="login">
+			<gui text="163" title="168" src="encrypted.png" accessKey="" hasAccessKey="false">
+				<context selection="false" dir="" recycle="false" actionBar="true" contextMenu="false" infoPanel="false" actionBarGroup="user">
+				</context>
+			</gui>
+			<rightsContext noUser="false" userLogged="hidden" guestLogged="show" read="false" write="false" adminOnly=""/>			
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var loginRedirect = false;
+					if(loginRedirect){
+						document.location.href=loginRedirect;
+					}else{
+						modal.showDialogForm('Log In', ($('login_form')?'login_form':'login_form_dynamic'), 
+						function(){
+							var oForm = modal.getForm();
+							var connexion = new Connexion();
+							connexion.addParameter("get_action", "get_seed");
+							connexion.onComplete = function(transport){
+								$('login_seed').value = transport.responseText;
+							};
+							connexion.sendSync();
+						}, 
+						function(){
+							var oForm = modal.getForm();
+							var connexion = new Connexion();
+							connexion.addParameter('userid', oForm.userid.value);
+							connexion.addParameter('get_action', 'login');
+							connexion.addParameter('login_seed', oForm.login_seed.value);
+							if(oForm.login_seed.value != '-1'){
+								connexion.addParameter('password', hex_md5(hex_md5(oForm.password.value)+oForm.login_seed.value));
+							}else{
+								connexion.addParameter('password', oForm.password.value);
+							}
+							connexion.onComplete = function(transport){ajaxplorer.actionBar.parseXmlMessage(transport.responseXML);};
+							connexion.setMethod('put');
+							connexion.sendAsync();
+							oForm.userid.value = '';
+							oForm.password.value = '';
+							return false;				
+						});
+					}
+					]]></clientCallback>
+					<clientForm id="login_form_dynamic"><![CDATA[						
+						<form id="login_form_dynamic" action="login" box_width="210">
+						<input type="hidden" name="get_action" value="login">
+						<input type="hidden" name="login_seed" id="login_seed" value="">
+						<div class="dialogLegend" style="margin-bottom: 7px;" ajxp_message_id="180">Enter login/password</div>
+						<div>
+							<table cellpadding="3" border="0" cellspacing="0" style="font-size:11px;">
+							<tr><td align="right"><ajxp:message ajxp_message_id="181">Login</ajxp:message> :</td><td><input type="text" name="userid" style="width: 100px; padding:0px;" class="dialogFocus"></td></tr>
+							<tr><td align="right"><ajxp:message ajxp_message_id="182">Password</ajxp:message> :</td><td><input type="password" name="password"  style="width: 100px; padding:0px;"></td></tr>
+							<tr><td align="left" colspan="2"><input type="checkbox" class="radio" name="remember_me" style="border: none; width:20px !important;"/><ajxp:message ajxp_message_id="261">Remember Me</ajxp:message></td></tr>
+							</table>
+						</div>
+						</form>					
+					]]></clientForm>
+				<serverCallback methodName="switchAction" pluginId="auth.serial"/>
+			</processing>
+		</action><action name="pass_change">
+			<gui text="194" title="194" src="yast_security.png" accessKey="" hasAccessKey="false">
+				<context selection="false" dir="" recycle="true" ajxpWidgets="UserWidget::logging_string"/>
+			</gui>
+			<processing>				
+				<clientCallback prepareModal="true" dialogOpenForm="pass_change_form" dialogOkButtonOnly="false" dialogSkipButtons="false">
+					<dialogOnOpen><![CDATA[
+						$('user_change_ownpass_old').value = $('user_change_ownpass1').value = $('user_change_ownpass2').value = '';
+						// Update pass_seed
+						var connexion = new Connexion();
+						connexion.addParameter("get_action", "get_seed");
+						connexion.onComplete = function(transport){
+							$('pass_seed').value = transport.responseText;
+						};
+						connexion.sendSync();			
+					]]></dialogOnOpen>
+					<dialogOnComplete hideDialog="false"><![CDATA[
+						var userOldPass = null;
+						var userPass = null;
+						var passSeed = null;
+						if($('user_change_ownpass1') && $('user_change_ownpass1').value && $('user_change_ownpass2').value)
+						{
+							if($('user_change_ownpass1').value != $('user_change_ownpass2').value){
+								alert(MessageHash[238]);
+								return false;
+							}
+							if($('user_change_ownpass_old').value == ''){
+								alert(MessageHash[239]);
+								return false;					
+							}
+							passSeed = $('pass_seed').value;
+							if(passSeed == '-1'){
+								userPass = $('user_change_ownpass1').value;
+								userOldPass = $('user_change_ownpass_old').value;
+							}else{
+								userPass = hex_md5($('user_change_ownpass1').value);
+								userOldPass = hex_md5( hex_md5($('user_change_ownpass_old').value)+$('pass_seed').value);
+							}				
+							var onComplete = function(transport){								
+								if(userPass != null){
+									if(transport.responseText == 'PASS_ERROR'){
+										alert(MessageHash[240]);
+									}else if(transport.responseText == 'SUCCESS'){
+										ajaxplorer.displayMessage('SUCCESS', MessageHash[197]);
+										hideLightBox(true);
+									}
+								}else{
+									ajaxplorer.displayMessage('SUCCESS', MessageHash[241]);
+									hideLightBox(true);
+								}
+							};
+							var conn = new Connexion();
+							conn.addParameter("get_action", "pass_change");
+							conn.addParameter("old_pass", userOldPass);
+							conn.addParameter("new_pass", userPass);
+							conn.addParameter("pass_seed", passSeed);
+							conn.onComplete = onComplete;
+							conn.sendAsync();
+						}
+					]]></dialogOnComplete>
+					<dialogOnCancel><![CDATA[]]></dialogOnCancel>
+				</clientCallback>
+				<clientForm id="pass_change_form"><![CDATA[
+					<div id="pass_change_form" action="pass_change_form" box_width="270">
+						<input type="hidden" name="pass_seed" id="pass_seed" value="">
+						<table cellpadding="2" cellspacing="0" border="0" style="font-size:11px;">
+							<tr>
+								<td align="right" style="width:100px; text-align:right;"><ajxp:message ajxp_message_id="237">Old password</ajxp:message></td><td><input type="password" id="user_change_ownpass_old" value="" style="width:140px;"></td>
+							</tr>
+							<tr>
+								<td align="right" style="text-align:right;"><ajxp:message ajxp_message_id="198">New</ajxp:message></td><td><input type="password" id="user_change_ownpass1" value="" style="width:140px;"></td>
+							</tr>
+							<tr>
+								<td align="right" style="text-align:right;"><ajxp:message ajxp_message_id="199">Confirm</ajxp:message></td><td><input type="password" id="user_change_ownpass2" value="" style="width:140px;"></td>
+							</tr>
+						</table>
+					</div>
+				]]></clientForm>				
+				<serverCallback methodName="switchAction" pluginId="auth.serial"/>
+			</processing>				
+		</action><action name="logout" expireDefault="true">
+			<gui text="164" title="169" src="decrypted.png" accessKey="" hasAccessKey="false">
+				<context selection="false" dir="" recycle="false" contextMenu="false" actionBarGroup="user" ajxpWidgets="UserWidget::logging_string">
+				</context>
+			</gui>
+			<rightsContext noUser="false" userLogged="only" guestLogged="hidden" read="false" write="false" adminOnly=""/>			
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+					clearRememberData();
+					var connexion = new Connexion();
+					connexion.addParameter('get_action', 'logout');
+					connexion.onComplete = function(transport){
+						ajaxplorer.actionBar.parseXmlMessage(transport.responseXML);
+						};
+					connexion.sendAsync();
+					]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="auth.serial"/>
+			</processing>
+		</action><action name="ls" dirDefault="true">			
+			<gui text="32" title="32" src="fileopen.png" accessKey="folder_access_key">
+				<context selection="true" dir="" recycle="false" actionBar="false" actionBarGroup="get" contextMenu="true" infoPanel="true">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="true" allowedMimes="zip">
+				</selectionContext>
+			</gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly="false">
+			</rightsContext>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var path;					
+					if(window.actionArguments && window.actionArguments.length>0){
+						path = window.actionArguments[0];
+						if(Object.isString(path)){path = new AjxpNode(path,false,getBaseName(path));}
+					}else{
+						userSelection = ajaxplorer.getUserSelection();
+						if(userSelection && userSelection.isUnique() && (userSelection.hasDir() || userSelection.hasMime(["zip"]))){
+							path = userSelection.getUniqueNode();
+						}
+					}
+					if(path){
+						ajaxplorer.updateContextData(path);
+					}						
+					]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+			</processing>
+		<pre_processing>					
+					<serverCallback methodName="preProcessAction" applyCondition="$apply=isSet($httpVars['playlist']);" pluginId="editor.audio"/>
+				</pre_processing><post_processing>					
+					<serverCallback methodName="switchAction" applyCondition="$apply=isSet($httpVars['playlist']);" capture="true" pluginId="editor.audio"/>
+				</post_processing></action><action name="upload">
+			<gui text="27" title="27" src="yast_backup.png" accessKey="upload_access_key" hasAccessKey="true">
+				<context selection="false" dir="true" recycle="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="put" inZip="false">
+				</context></gui>
+			<rightsContext noUser="true" userLogged="only" read="false" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var uploaders = ajaxplorer.getActiveExtensionByType("uploader");
+					if(uploaders.length){
+						var uploader = uploaders[0];
+						if(uploader.dialogOnOpen){							
+							uploader.resourcesManager.load();
+							var dialogOnOpen = new Function("oForm", uploader.dialogOnOpen);
+						}
+						if(uploader.dialogOnComplete){							
+							uploader.resourcesManager.load();
+							var dialogOnComplete = new Function("oForm", uploader.dialogOnComplete);
+						}						
+						modal.showDialogForm('Upload', uploader.formId, dialogOnOpen, null, dialogOnComplete, true, true);
+					}
+				]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		<pre_processing>					
+					<serverCallback methodName="preProcess" pluginId="uploader.flex"/>
+				</pre_processing><post_processing>					
+					<serverCallback methodName="postProcess" capture="true" pluginId="uploader.flex"/>
+				</post_processing><pre_processing>					
+					<serverCallback methodName="preProcess" pluginId="uploader.html"/>
+				</pre_processing><post_processing>					
+					<serverCallback methodName="postProcess" capture="true" pluginId="uploader.html"/>
+				</post_processing></action><action name="empty_recycle">
+			<gui text="220" title="221" src="trashcan_empty.png" accessKey="empty_recycle_access_key" hasAccessKey="true">
+				<context selection="false" dir="true" recycle="only" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="default"/>
+			</gui>
+			<rightsContext noUser="true" userLogged="" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+				    ajaxplorer.getContextHolder().selectAll();				    
+					window.setTimeout(function(){
+						ajaxplorer.actionBar.fireAction('delete');
+					}, 200);
+					]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="mkdir">			
+			<gui text="154" title="155" src="folder_new.png" accessKey="folder_access_key" hasAccessKey="true">
+				<context selection="false" dir="true" recycle="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="put" inZip="false"/>
+			</gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[					
+					modal.showDialogForm('Create', 'mkdir_form', null, function(){
+						var oForm = $(modal.getForm());	
+						var elementToCheck=(oForm['dirname']);
+						if(ajaxplorer.getContextHolder().fileNameExists($(elementToCheck).getValue()))
+						{
+							alert(MessageHash[125]);
+							return false;
+						}
+						ajaxplorer.actionBar.submitForm(oForm);				
+						hideLightBox(true);
+						return false;
+					});
+					]]></clientCallback>
+				<clientForm id="mkdir_form"><![CDATA[
+				<div id="mkdir_form" action="mkdir" box_width="200">
+				New folder name<br/>
+				<input type="text" name="dirname" size="30" class="dialogFocus">
+				</div>
+				]]></clientForm>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="mkfile">
+			<gui text="156" title="157" src="filenew.png" accessKey="file_access_key" hasAccessKey="true">
+				<context selection="false" dir="true" recycle="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="put" inZip="false">
+				</context></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					modal.showDialogForm('Create', 'mkfile_form', null, function(){
+						var oForm = $(modal.getForm());	
+						var elementToCheck=(oForm['filename']);
+						if(ajaxplorer.getContextHolder().fileNameExists($(elementToCheck).getValue()))
+						{
+							alert(MessageHash[125]);
+							return false;
+						}
+						ajaxplorer.actionBar.submitForm(oForm);				
+						hideLightBox(true);
+						return false;
+					});
+					]]></clientCallback>
+				<clientForm id="mkfile_form"><![CDATA[
+				<div id="mkfile_form" action="mkfile" box_width="200">
+				New file name<br/>
+				<input type="text" name="filename" size="30" class="dialogFocus">
+				</div>
+				]]></clientForm>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="download" fileDefault="true">
+			<gui text="88" title="88" src="download_manager.png" accessKey="download_access_key" hasAccessKey="true">
+				<context selection="true" dir="" recycle="false" actionBar="true" contextMenu="true" infoPanel="true" actionBarGroup="get">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var userSelection = ajaxplorer.getUserSelection();
+					if((userSelection.isUnique() && !userSelection.hasDir()) || (zipEnabled && multipleFilesDownloadEnabled))
+					{
+						if(gaTrackEvent){
+							fileNames = userSelection.getFileNames();
+							for(var i=0; i<fileNames.length;i++){
+								gaTrackEvent("Data", "Download", fileNames[i]);
+							}												
+						}
+						var agent = navigator.userAgent;
+						if(agent && (agent.indexOf('iPhone')!=-1||agent.indexOf('iPod')!=-1||agent.indexOf('iPad')!=-1||agent.indexOf('iOs')!=-1)){
+							var downloadUrl = ajxpServerAccessPath+'?get_action=download';
+							downloadUrl = userSelection.updateFormOrUrl(null,downloadUrl);
+							document.location.href=downloadUrl;
+						}else{
+							$('download_form').select("input").each(function(input){
+								if(input.name!='get_action') input.remove();
+							});
+							userSelection.updateFormOrUrl($('download_form'));
+							$('download_form').submit();
+						}
+					}
+					else
+					{
+						var loadFunc = function(oForm){
+							var dObject = oForm.getElementsBySelector('div[id="multiple_download_container"]')[0];
+							var downloader = new MultiDownloader(dObject, ajxpServerAccessPath+'?action=download&file=');
+							downloader.triggerEnd = function(){hideLightBox()};
+							fileNames = userSelection.getFileNames();
+							for(var i=0; i<fileNames.length;i++)
+							{
+								downloader.addListRow(fileNames[i]);
+							}				
+						};
+						var closeFunc = function(){
+							hideLightBox();
+							return false;
+						};
+						modal.showDialogForm('Download Multiple', 'multi_download_form', loadFunc, closeFunc, null, true);
+					}
+					]]></clientCallback>
+					<clientForm id="multi_download_form"><![CDATA[
+					<div id="multi_download_form" title="Download Multiple File"  box_width="345">
+					<div class="dialogLegend">Click on each file to download it.</div><br/>
+					<div id="multiple_download_container"></div>
+					<form style="display:inline;" action="content.php" method="GET" id="download_form" target="download_iframe">
+						<input type="hidden" name="get_action" value="download">
+					</form>
+					<iframe id="download_iframe" name="download_iframe" style="display:none"></iframe>					
+					</div>]]>
+					</clientForm>
+					<clientListener name="selectionChange"><![CDATA[
+					if(ajaxplorer){
+						var userSelection = ajaxplorer.getUserSelection();
+						var action = ajaxplorer.getActionBar().getActionByName("download");
+						if(zipEnabled && multipleFilesDownloadEnabled){
+							if(action){
+								if((userSelection.isUnique() && !userSelection.hasDir()) || userSelection.isEmpty()){
+									action.setIconSrc('download_manager.png');
+								}else{
+									action.setIconSrc('accessories-archiver.png');
+								}
+							}
+						}else{
+							if(userSelection.hasDir() && action){
+								action.selectionContext.dir = false;
+							}
+						}
+					}
+					]]></clientListener>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="compress">
+			<gui text="313" title="314" src="archive_insert.png" accessKey="" hasAccessKey="false">
+				<context selection="true" dir="" recycle="hidden" actionBar="false" contextMenu="true" infoPanel="true" actionBarGroup="get" inZip="false">
+				</context>
+				<selectionContext dir="true" file="file" recycle="false" unique="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var userSelection = ajaxplorer.getUserSelection();					
+					if((zipEnabled && multipleFilesDownloadEnabled))
+					{
+						var loadFunc = function(oForm){
+							var zipName;
+							if(userSelection.isUnique()){
+								zipName = getBaseName(userSelection.getUniqueFileName());
+								if(!userSelection.hasDir()) zipName = zipName.substr(0, zipName.lastIndexOf("\."));
+							}else{
+								zipName = getBaseName(userSelection.getContextNode().getPath());
+								if(zipName == "") zipName = "Archive";
+							}
+							var index=1;
+							var buff = zipName;
+							while(userSelection.fileNameExists(zipName + ".zip")){
+								zipName = buff + "-" + index; index ++ ;
+							}
+							oForm.select('input[id="archive_name"]')[0].value = zipName + ".zip" ;
+						};
+						var closeFunc = function(){
+							userSelection.updateFormOrUrl(modal.getForm());
+							ajaxplorer.actionBar.submitForm(modal.getForm());			
+							hideLightBox();
+						};
+						modal.showDialogForm('Compress selection to ...', 'compress_form', loadFunc, closeFunc);
+					}
+				]]></clientCallback>
+				<clientForm id="compress_form"><![CDATA[
+				<div id="compress_form" action="compress" box_width="200">
+					Compress selection to<br/>
+					<input type="text" name="archive_name" value="" id="archive_name" class="dialogFocus initFicName">
+				</div>
+				]]></clientForm>					
+				<clientListener name="selectionChange"><![CDATA[
+				if(ajaxplorer){
+					var userSelection = ajaxplorer.getUserSelection();
+					var action = ajaxplorer.getActionBar().getActionByName("compress");
+					if(!zipEnabled || !multipleFilesDownloadEnabled){
+						if(action){
+							if(userSelection.isUnique()) action.selectionContext.multipleOnly = true;
+							else action.selectionContext.unique = true;
+						}
+					}
+				}
+				]]></clientListener>				
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="ajxp_link">
+			<gui text="369" title="369" src="ajxp-link.png" hasAccessKey="false">
+				<context selection="true" dir="" recycle="false" actionBar="false" actionBarGroup="get" contextMenu="true" infoPanel="true"/>
+				<selectionContext dir="true" file="false" recycle="false" unique="true"/>
+			</gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly="false"/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var loadFunc = function (oForm){
+						var link;
+						var input = oForm.down('input[type="text"]');
+						var url = document.location.href;
+						if(url.indexOf('#') > 0){
+							url = url.substring(0, url.indexOf('#'));
+						}
+						if(url.indexOf('?') > 0){
+							url = url.substring(0, url.indexOf('?'));
+						}						
+						var repo = ajaxplorer.repositoryId;
+						link = url + '?repository_id=' + repo + '&folder=' + encodeURIComponent(ajaxplorer.getUserSelection().getUniqueFileName());
+						input.value = link;
+                        var email = oForm.down('a[id="email"]');
+                        if (email){ 
+                            email.setAttribute('href', 'mailto:unknown@unknown.com?Subject=UPLOAD&Body='+encodeURIComponent(link)); 
+                        }
+						input.select();
+					};
+                    modal.showDialogForm('Get', 'ajxp_link_form', loadFunc, function(){
+                        hideLightBox(true);
+                        return false;
+                    }, null, true);
+				]]></clientCallback>
+				<clientForm id="ajxp_link_form"><![CDATA[
+				<div id="ajxp_link_form" title="AjaXplorer Link"  box_width="280" action="public_url">
+				<fieldset>
+					<legend ajxp_message_id="296">Copy the URL below:</legend>
+					<input type="text" style="width:200px;margin-right:5px;" id="ajxp_link_container" class="dialogFocus"/>
+                    <a id="email" title="E-mail this URL"><img style="border:none;" align="absmiddle" src="client/themes/oxygen/images/actions/22/mail_generic.png" height="22" width="22"/></a>
+                  </fieldset>
+				</div>
+				]]></clientForm>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+			</processing>
+		</action><action name="open_with">
+			<gui text="316" title="316" src="fileopen.png" accessKey="open_with_access" hasAccessKey="true">
+				<context selection="true" dir="" recycle="hidden" behaviour="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="get" inZip="false">
+				</context>
+				<selectionContext dir="false" file="true" recycle="false" unique="true" allowedMimes="wms_layer,ol_layer,jpg,jpeg,txt,sql,php,php3,phtml,htm,html,cgi,pl,js,css,inc,xml,xsl,java,php4,png,bmp,pxd,gif" behaviour="hidden"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+			<subMenu>
+				<dynamicBuilder><![CDATA[
+					var context = window.builderContext;
+					context.builderMenuItems = $A([]);					
+					var selectedMime = getAjxpMimeType(ajaxplorer.getUserSelection().getUniqueNode());
+					var editors = ajaxplorer.findEditorsForMime(selectedMime);
+					if(editors.length){
+						var index = 0;
+						editors.each(function(el){							
+							if(!el.openable) return;
+							context.builderMenuItems.push({
+								name:el.text,
+								alt:el.title,
+								isDefault : (index == 0),
+								image:resolveImageSource(el.icon, '/images/actions/ICON_SIZE', 22),
+								callback:function(e){this.apply([el]);}.bind(context)
+							} );
+							index++;
+						} );					
+					}
+					if(!index){
+						context.builderMenuItems.push({
+							name:MessageHash[324],
+							alt:MessageHash[324],
+							image:resolveImageSource('button_cancel.png', '/images/actions/ICON_SIZE', 22),
+							callback:function(e){}
+						} );					
+					}
+				]]></dynamicBuilder>
+			</subMenu>			
+			<processing>			
+				<clientCallback prepareModal="false"><![CDATA[		
+					var editorData = window.actionArguments[0];
+					if(!editorData){
+						var selectedMime = getAjxpMimeType(ajaxplorer.getUserSelection().getUniqueNode());
+						var editors = ajaxplorer.findEditorsForMime(selectedMime);
+						if(editors.length){
+							editorData = editors[0];							
+						}					
+					}
+					if(editorData){
+						ajaxplorer.loadEditorResources(editorData.resourcesManager);
+						modal.openEditorDialog(editorData);
+					}
+				]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="stat">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+			</processing>
+		</action><action name="get_content">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+			</processing>
+		</action><action name="put_content">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+			</processing>
+		</action><action name="chmod">
+			<gui text="287" title="287" src="ksysv.png" accessKey="" hasAccessKey="false">
+				<context selection="true" dir="true" recycle="hidden" behaviour="hidden" actionBar="false" contextMenu="true" infoPanel="true" actionBarGroup="put" inZip="false">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="false" allowedMimes="" behaviour="hidden"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var userSelection =  ajaxplorer.getUserSelection();					
+					var loadFunc = function(oForm){
+						ajaxplorer.actionBar.propertyPane = new PropertyPanel(userSelection, oForm);
+					};
+					var completeFunc = function(){
+						if(!ajaxplorer.actionBar.propertyPane.valueChanged()){
+							hideLightBox();
+							return false;					
+						}
+						userSelection.updateFormOrUrl(modal.getForm());
+						ajaxplorer.actionBar.submitForm(modal.getForm());
+						hideLightBox();
+						return false;
+					};
+					modal.showDialogForm('Edit Online', 'properties_box', loadFunc, completeFunc);
+					]]></clientCallback>
+				<clientForm id="properties_box"><![CDATA[
+					<div id="properties_box" action="chmod" box_width="180"></div>				
+				]]></clientForm>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="restore">
+			<gui text="222" title="223" src="folder1_important.png" accessKey="restore_access_key" hasAccessKey="true">
+				<context selection="true" dir="" recycle="only" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="change">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="true" image="false" editable="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+				   var userSelection = ajaxplorer.getUserSelection();
+				   var fileNames = $A(userSelection.getFileNames());
+				   var connexion = new Connexion();
+				   connexion.addParameter('get_action', 'restore');
+				   connexion.addParameter('dir', userSelection.getCurrentRep());
+				   connexion.onComplete = function(transport){
+				   		ajaxplorer.actionBar.parseXmlMessage(transport.responseXML);
+				   };
+				   fileNames.each(function(filename){
+				   		connexion.addParameter('file', filename);
+				   		connexion.sendAsync();
+				   });
+					]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="rename">
+			<gui text="6" title="158" src="applix.png" accessKey="rename_access_key" hasAccessKey="true">
+				<context selection="true" dir="" recycle="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="change" inZip="false">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="true" image="false" editable="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var callback = function(node, newValue){
+						var filename = node.getPath();
+						var conn = new Connexion();
+						conn.addParameter('get_action', 'rename');
+						conn.addParameter('file', filename);
+						conn.addParameter('filename_new', newValue);
+						conn.onComplete = function(transport){
+							ajaxplorer.actionBar.parseXmlMessage(transport.responseXML);
+						};
+						conn.sendSync();
+					};
+					if(ajaxplorer.getUserSelection() && ajaxplorer.getUserSelection().getSelectionSource() && ajaxplorer.getUserSelection().getSelectionSource().switchCurrentLabelToEdition) {ajaxplorer.getUserSelection().getSelectionSource().switchCurrentLabelToEdition(callback);}
+				]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="copy" ctrlDragndropDefault="true">
+			<gui text="66" title="159" src="editcopy.png" accessKey="copy_access_key" hasAccessKey="true">
+				<context selection="true" dir="" recycle="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="change">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="false" image="false" editable="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					if(ajaxplorer.user){
+						var user = ajaxplorer.user;
+						var activeRepository = user.getActiveRepository();
+						if(ajaxplorer.getUserSelection().hasDir() && !user.canWrite()){
+							throw new Error(MessageHash[374]);
+						}
+					}
+					var context = ajaxplorer.actionBar;
+					var onLoad = function(oForm){
+						var getAction = oForm.select('input[name="get_action"]')[0];
+						getAction.value = 'copy';					
+						this.treeSelector = new TreeSelector(oForm);
+						if(!ajaxplorer.getUserSelection().hasDir() && user && user.canCrossRepositoryCopy() && user.hasCrossRepositories()){
+							var firstKey ;
+							var reposList = new Hash();
+							user.getCrossRepositories().each(function(pair){
+								if(!firstKey) firstKey = pair.key;
+								reposList.set(pair.key, pair.value.getLabel());								
+							}.bind(this));
+							if(!user.canWrite()){
+								var nodeProvider = new RemoteNodeProvider();
+								nodeProvider.initProvider({tmp_repository_id:firstKey});
+								var rootNode = new AjxpNode("/", false, MessageHash[373], "folder.png", nodeProvider);								
+								this.treeSelector.load(rootNode);
+							}else{
+								this.treeSelector.load();								
+							}
+							this.treeSelector.setFilterShow(true);							
+							reposList.each(function(pair){
+								this.treeSelector.appendFilterValue(pair.key, pair.value);
+							}.bind(this)); 
+							if(user.canWrite()) this.treeSelector.appendFilterValue(activeRepository, "&lt;"+MessageHash[372]+"&gt;", 'top');
+							this.treeSelector.setFilterSelectedIndex(0);
+							this.treeSelector.setFilterChangeCallback(function(e){
+								externalRepo = this.filterSelector.getValue();
+								var nodeProvider = new RemoteNodeProvider();
+								nodeProvider.initProvider({tmp_repository_id:externalRepo});
+								this.resetAjxpRootNode(new AjxpNode("/", false, MessageHash[373], "folder.png", nodeProvider));
+							});
+						}else{
+							this.treeSelector.load();
+						}
+					}.bind(context);
+					var onCancel = function(){
+						this.treeSelector.unload();
+						hideLightBox();
+					}.bind(context);
+					var onSubmit = function(){
+						var oForm = modal.getForm();
+						var getAction = oForm.select('input[name="get_action"]')[0];
+						var selectedNode = this.treeSelector.getSelectedNode();
+						if(activeRepository && this.treeSelector.getFilterActive(activeRepository)){
+							getAction.value = "cross_copy" ;
+						}
+						ajaxplorer.getUserSelection().updateFormOrUrl(oForm);
+						this.submitForm(oForm);
+						this.treeSelector.unload();
+						hideLightBox();
+					}.bind(context);
+					modal.showDialogForm('Move/Copy', 'copymove_form', onLoad, onSubmit, onCancel);				
+					]]></clientCallback>
+				<clientForm id="copymove_form"><![CDATA[
+					<div id="copymove_form" action="copy" box_width="272">
+						<input type="hidden" name="dest_node" value=""/>
+						<div class="dialogLegend">Select destination folder</div>					
+						<select id="external_repository" name="dest_repository_id" style="width: 248px; font-size: 12px; height: 21px; margin-top:5px; margin-bottom:7px; border: 1px solid #ccc;"></select>
+						<div style="height:200px; width:246px; padding: 0px 0px; border: 1px solid #ccc;">
+							<div id="treeCopy" style="height:194px; padding: 3px 2px; overflow:auto; text-align:left;background-image:url('../images/strip.png');" class="treeCopyContainer"></div>							
+						</div>
+						<input type="text" name="dest" value="/" readonly  style="width:248px; border: 1px solid #ccc; margin-top:7px; margin-bottom:2px;background-image:none;"/>
+					</div>
+				]]></clientForm>
+				<clientListener name="contextChange"><![CDATA[
+				if(ajaxplorer){
+					var action = ajaxplorer.getActionBar().getActionByName("copy");
+					if(action){
+						action.rightsContext.write = true;
+						var ajxpUser = ajaxplorer.user;
+						if(ajxpUser && !ajxpUser.canWrite() && ajxpUser.canCrossRepositoryCopy() && ajxpUser.hasCrossRepositories()){
+							action.rightsContext.write = false;
+							action.selectionContext.dir = false;
+							ajaxplorer.actionBar.defaultActions.unset('ctrldragndrop');
+							ajaxplorer.actionBar.defaultActions.unset('dragndrop');
+						}
+						if(ajaxplorer.getContextNode().hasAjxpMimeInBranch("ajxp_browsable_archive")){
+							action.setLabel(247, 248);
+							action.setIconSrc('ark_extract.png');
+						}else{
+							action.setLabel(66, 159);
+							action.setIconSrc('editcopy.png');
+						}
+					}
+				}
+				]]></clientListener>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="move" dragndropDefault="true">
+			<gui text="70" title="160" src="editpaste.png" accessKey="move_access_key" hasAccessKey="true">
+				<context selection="true" dir="" recycle="hidden" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="change" inZip="false">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="false" image="false" editable="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var context = ajaxplorer.actionBar;
+					if(ajaxplorer.user){
+						var user = ajaxplorer.user;
+						var activeRepository = user.getActiveRepository();
+					}
+					var context = ajaxplorer.actionBar;
+					var onLoad = function(oForm){
+						var getAction = oForm.select('input[name="get_action"]')[0];
+						getAction.value = 'move';
+						this.treeSelector = new TreeSelector(oForm);
+						this.treeSelector.load();
+						if(!ajaxplorer.getUserSelection().hasDir() && user && user.canCrossRepositoryCopy() && user.hasCrossRepositories()){
+							this.treeSelector.setFilterShow(true);
+							user.getCrossRepositories().each(function(pair){
+								this.treeSelector.appendFilterValue(pair.key, pair.value.getLabel());
+							}.bind(this));
+							this.treeSelector.appendFilterValue(activeRepository, "&lt;"+MessageHash[372]+"&gt;", 'top');
+							this.treeSelector.setFilterSelectedIndex(0);
+							this.treeSelector.setFilterChangeCallback(function(e){
+								externalRepo = this.filterSelector.getValue();
+								var nodeProvider = new RemoteNodeProvider();
+								nodeProvider.initProvider({tmp_repository_id:externalRepo});
+								this.resetAjxpRootNode(new AjxpNode("/", false, MessageHash[373], "folder.png", nodeProvider));
+							});
+						}						
+					}.bind(context);
+					var onCancel = function(){
+						this.treeSelector.unload();
+						hideLightBox();
+					}.bind(context);
+					var onSubmit = function(){
+						var oForm = modal.getForm();
+						var getAction = oForm.down('input[name="get_action"]');
+						var selectedNode = this.treeSelector.getSelectedNode();
+						if(selectedNode == ajaxplorer.getContextNode().getPath()){
+							alert(MessageHash[183]);
+							return false;
+						}
+						ajaxplorer.getUserSelection().updateFormOrUrl(oForm);						
+						if(activeRepository && this.treeSelector.getFilterActive(activeRepository)){
+							getAction.value = "cross_copy" ;
+							var subAction = new Element('input', {type:'hidden',name:'moving_files',value:'true'});
+							oForm.insert(subAction);
+							this.submitForm(oForm, false, function(transport){
+								var message = XPathSelectSingleNode(transport.responseXML, "//message");
+								if(message.getAttribute("type") == "ERROR"){
+									ajaxplorer.displayMessage("ERROR", message.firstChild.nodeValue);
+									return;
+								}
+								getAction.value = "delete";
+								subAction.name = "force_deletion"; 								
+								this.submitForm(oForm, false, function(transport2){
+									var deleteMessage = XPathSelectSingleNode(transport2.responseXML, "//message");
+									if(deleteMessage.getAttribute("type") == "ERROR"){
+										ajaxplorer.displayMessage("ERROR", message.firstChild.nodeValue + '\n\n' + deleteMessage.firstChild.nodeValue);
+										return;								
+									}else{
+										ajaxplorer.displayMessage("SUCCESS", message.firstChild.nodeValue);
+										ajaxplorer.fireContextRefresh();
+									}
+								}.bind(this));
+							}.bind(this));
+						}else{
+							this.submitForm(oForm);
+						}
+						this.treeSelector.unload();
+						hideLightBox();
+					}.bind(context);
+					modal.showDialogForm('Move/Copy', 'copymove_form', onLoad, onSubmit, onCancel);				
+					]]></clientCallback>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="delete">			
+			<gui text="7" title="161" src="editdelete.png" accessKey="delete_access_key" hasAccessKey="true">
+				<context selection="true" dir="" recycle="false" actionBar="true" contextMenu="true" infoPanel="false" actionBarGroup="change" inZip="false">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="false" image="false" editable="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+					var onLoad = function(oForm){
+				    	var message = MessageHash[177];
+				    	var repoHasRecycle = ajaxplorer.getContextHolder().getRootNode().getMetadata().get("repo_has_recycle");
+				    	if(repoHasRecycle && repoHasRecycle == "true" && ajaxplorer.getContextNode().getAjxpMime() != "ajxp_recycle"){
+				    		message = MessageHash[176];
+				    	}
+		   		    	$(oForm).getElementsBySelector('span[id="delete_message"]')[0].innerHTML = message;
+					};
+					modal.showDialogForm('Delete', 'delete_form', onLoad, function(){
+						var oForm = modal.getForm();
+						ajaxplorer.getUserSelection().updateFormOrUrl(oForm);
+						ajaxplorer.actionBar.submitForm(oForm);
+						hideLightBox(true);
+						return false;
+					});
+					]]></clientCallback>
+				<clientForm id="delete_form"><![CDATA[
+				<div id="delete_form" action="delete" box_width="200">
+				<span id="delete_message"></span>
+				</div>				]]></clientForm>
+				<serverCallback methodName="switchAction" pluginId="access.fs"/>
+				</processing>
+		</action><action name="post_to_server">
+				<processing>
+					<serverCallback methodName="switchAction" pluginId="editor.pixlr"/>
+				</processing>
+			</action><action name="retrieve_pixlr_image">
+				<processing>
+					<serverCallback methodName="switchAction" pluginId="editor.pixlr"/>
+				</processing>
+			</action><action name="slideshow_sel">
+				<gui text="234" title="234" src="frame_image.png" accessKey="" hasAccessKey="false">
+					<context selection="true" dir="" recycle="hidden" actionBar="false" contextMenu="false" infoPanel="true" actionBarGroup="get">
+					</context>
+					<selectionContext dir="true" file="true" recycle="true" unique="false" multipleOnly="true" allowedMimes="png,bmp,jpg,jpeg,gif" behaviour="hidden"/></gui>
+				<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+				<processing>
+					<clientCallback prepareModal="true"><![CDATA[					
+						var selectedMime = getAjxpMimeType(ajaxplorer.getUserSelection().getUniqueNode());
+						var editors = ajaxplorer.findEditorsForMime(selectedMime);
+						var editorData;
+						if(editors.length){
+							editorData = editors[0];							
+						}					
+						if(editorData){
+							ajaxplorer.loadEditorResources(editorData.resourcesManager);
+							modal.openEditorDialog(editorData);
+						}else{
+							alert('no data found!');
+						}
+						]]></clientCallback>
+					<serverCallback methodName="switchAction" pluginId="editor.diaporama"/>
+					</processing>
+			</action><action name="preview_data_proxy">
+				<processing>
+					<serverCallback methodName="switchAction" pluginId="editor.diaporama"/>
+				</processing>
+			</action><action name="video_proxy">
+				<processing>
+					<serverCallback methodName="switchAction" pluginId="editor.video"/>
+				</processing>
+			</action><action name="audio_proxy">
+				<processing>
+					<serverCallback methodName="switchAction" pluginId="editor.audio"/>
+				</processing>
+			</action><action name="play_whole_folder">
+				<gui text="140" title="140" src="player_play.png" accessKey=""><context selection="true" dir="" recycle="false" actionBar="false" contextMenu="false" infoPanel="true"/><selectionContext dir="false" file="true" recycle="false" unique="true" allowedMimes="mp3"/></gui>
+				<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+				<processing>
+					<clientCallback><![CDATA[
+					var editor = ajaxplorer.findEditorById('editor.audio');
+					if(editor){
+						ajaxplorer.loadEditorResources(editor.resourcesManager);
+						var editorClass = Class.getByName(editor.editorClass);
+						if(editorClass){
+							editorClass.prototype.createFolderPlayer(ajaxplorer.getContextNode());
+						}					
+					}
+					]]></clientCallback>
+					<serverCallback methodName="switchAction" pluginId="editor.audio"/>
+				</processing>
+			</action><action name="get_drop_bg">
+				<processing>					
+					<serverCallback methodName="getDropBg" pluginId="uploader.html"/>
+				</processing>
+			</action><action name="get_boot_conf">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+		</action><action name="get_xml_registry">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+		</action><action name="get_template">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+		</action><action name="get_i18n_messages">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+		</action><action name="get_editors_registry">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+		</action><action name="display_doc">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+		</action><action name="check_software_update">
+			<processing>
+				<serverCallback methodName="switchAction" pluginId="gui.ajax"/>
+			</processing>
+			<rightsContext noUser="true" userLogged="only" read="true" write="true" adminOnly="true"/>			
+		</action><action name="up_dir">
+			<gui text="148" title="24" src="up.png" hasAccessKey="true" accessKey="parent_access_key">
+				<context selection="false" dir="false" recycle="false" actionBar="false" contextMenu="false" infoPanel="false" actionBarGroup="default">
+				</context>
+			</gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>			
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+					ajaxplorer.fireContextUp();
+					]]></clientCallback>
+			</processing>
+		</action><action name="refresh">
+			<gui text="149" title="149" src="reload.png" hasAccessKey="true" accessKey="refresh_access_key">
+				<context selection="false" dir="true" recycle="false" actionBar="false" contextMenu="true" infoPanel="false">
+				</context>
+			</gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+					ajaxplorer.fireContextRefresh();
+					]]></clientCallback>
+			</processing>
+		</action><action name="ext_select">
+			<gui text="321" title="322" src="download_manager.png" accessKey="" hasAccessKey="false">
+				<context selection="true" dir="" recycle="false" actionBar="true" contextMenu="true" infoPanel="true" actionBarGroup="put" inZip="false">
+				</context>
+				<selectionContext dir="true" file="true" recycle="false" unique="false"/></gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+					var userSelection = ajaxplorer.getUserSelection();
+					if((userSelection.isUnique() && !userSelection.hasDir()))
+					{
+						var fileName = userSelection.getUniqueFileName();
+						var selectorData = ajaxplorer.actionBar.selectorData;
+						if(selectorData.get('type') == "ckeditor"){
+							var ckData = selectorData.get('data');
+							if (ckData['CKEditorFuncNum']) {
+								var imagePath = fileName;
+								if(ckData['relative_path']){
+									imagePath = ckData['relative_path'] + fileName;
+								}
+								window.opener.CKEDITOR.tools.callFunction(ckData['CKEditorFuncNum'], imagePath);
+								window.close();
+							}
+						}
+					}
+					]]></clientCallback>
+				</processing>
+		</action><action name="bookmark">
+			<gui text="152" title="153" src="bookmark.png" hasAccessKey="true" accessKey="bookmarks_access_key">
+				<context selection="false" dir="true" recycle="hidden" actionBar="false" contextMenu="true" infoPanel="false" actionBarGroup="default">
+				</context>
+			</gui>
+			<rightsContext noUser="true" userLogged="only" read="true" write="false" adminOnly=""/>
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+					document.fire("ajaxplorer:add_bookmark");
+					]]></clientCallback>
+			</processing>
+		</action><action name="delete_bookmark">
+			<gui text="154" title="155" src="folder_new.png" accessKey="folder_access_key">
+				<context selection="false" dir="" recycle="false" actionBar="false" contextMenu="false" infoPanel="false">
+				</context>
+			</gui>
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[
+					// TO DO
+					]]></clientCallback>
+			</processing>
+		</action><action name="rename_bookmark">
+			<gui text="154" title="155" src="folder_new.png" accessKey="folder_access_key">
+				<context selection="false" dir="" recycle="false" actionBar="false" contextMenu="false" infoPanel="false">
+				</context>
+			</gui>
+			<processing>
+				<clientCallback prepareModal="false"><![CDATA[]]></clientCallback>
+				<clientForm id="rename_bookmark"><![CDATA[
+				<div id="rename_bookmark" action="get_bookmarks" box_width="200">
+				<input type="text" name="bm_title" value="" id="bm_title" class="dialogFocus">
+				<input type="hidden" name="bm_path" value="">
+				</div>				
+				]]></clientForm>
+			</processing>
+		</action><action name="splash">
+			<gui text="166" title="167" src="info.png" hasAccessKey="true" accessKey="about_access_key">
+				<context selection="false" dir="" recycle="false" actionBar="true" contextMenu="false" infoPanel="false" actionBarGroup="user">
+				</context>
+			</gui>
+			<processing>
+				<clientCallback prepareModal="true"><![CDATA[
+				modal.showDialogForm(
+					'Ajaxplorer', 
+					'splash_form', 
+					function(oForm){						
+						var docDiv = $(oForm).down('#docDiv');
+						if(!docDiv.isLoaded){
+							var conn = new Connexion(window.ajxpServerAccessPath + '?get_action=display_doc&doc_file=CREDITS');
+							conn.onComplete = function(transport){
+								docDiv.insert({top:transport.responseText});
+								docDiv.isLoaded = true;
+								var updateLink = docDiv.down('#software_update');
+								if(!updateLink) return;
+								updateLink.setStyle({cursor:'pointer'});
+								updateLink.observeOnce("click", function(){
+									var checkConn = new Connexion();
+									checkConn.addParameter("get_action", "check_software_update");
+									updateLink.update("Checking....");
+									updateLink.setStyle({cursor:'default',color:'black'});
+									checkConn.onComplete= function(trans){
+										updateLink.update(trans.responseText);
+									};
+									checkConn.sendSync();
+								});
+							};
+							conn.sendAsync();													
+						}
+					}, 
+					function(){hideLightBox();return false;}, 
+					null, 
+					true, true);		
+					]]></clientCallback>
+				<clientForm id="splash_form"><![CDATA[
+					<div id="splash_form" box_width="455" box_padding="0">						
+						<div id="docDiv" style="padding:5px;overflow:auto;height:300px;">
+							<div class="dialogButtons" style="text-align:right;padding-right:6px;"><input type="image" src="client/themes/oxygen/images/actions/22/dialog_close.png" width="16" height="16" class="dialogButton"/></div>
+						</div>
+					</div>				
+				]]></clientForm>
+			</processing>
+		</action></actions><plugins uuidAttr="name"><confdriver name="serial" label="Serialized Storage" description="Stores the conf data as serialized PHP values on the filesystem.">
+	<server_settings>
+		<param name="REPOSITORIES_FILEPATH" type="string" label="Repositories" description="The file in which the repositories are stored" mandatory="true"/>
+		<param name="USERS_DIRPATH" type="string" label="Users" description="The folder in which all users files will be stored" mandatory="true"/>
+	</server_settings>
+	<class_definition filename="plugins/conf.serial/class.serialConfDriver.php" classname="serialConfDriver"/>
+	
+</confdriver><authdriver name="serial" label="Serialized Storage" description="Stores the Authentication data as serialized PHP values on the filesystem.">
+	<server_settings>
+		<param name="USERS_FILEPATH" type="string" label="Users" description="The users list" mandatory="true"/>
+	</server_settings>
+	<class_definition filename="plugins/auth.serial/class.serialAuthDriver.php" classname="serialAuthDriver"/>
+	
+</authdriver><ajxpdriver name="fs" label="File System (Standard)" description="Standard access to the filesystem on your server">
+	<client_settings icon="plugins/access.fs/icon.png"/>
+	<server_settings>
+		<param name="PATH" type="string" label="Path" description="Real path to the root folder on the server" mandatory="true"/>
+		<param name="CREATE" type="boolean" label="Create" description="Create folder if it does not exists" default="true" mandatory="true"/>
+		<param name="RECYCLE_BIN" type="string" label="Recycle Bin Folder" description="Leave empty if you do not want to use a recycle bin." default="recycle_bin"/>	
+		<param name="CHMOD_VALUE" type="string" label="File Creation Mask" description="Optionnaly apply a chmod operation. Value must be numeric, like 0777, 0644, etc." default="0666"/>	
+		<param name="DEFAULT_RIGHTS" type="string" label="Default Rights" description="This right pattern (empty, r, or rw) will be applied at user creation for this repository." default=""/>
+		<param name="CHARSET" type="string" label="Character Encoding" description="If your server does not set correctly its charset, it can be good to specify it here manually." mandatory="false"/>
+		<param name="PAGINATION_THRESHOLD" type="integer" label="Pagination Threshold" description="When a folder will contain more items than this number, display will switch to pagination mode, for better performances." default="500"/>
+		<param name="PAGINATION_NUMBER" type="integer" label="#Items per page" description="Once in pagination mode, number of items to display per page." default="200"/>
+	</server_settings>
+	<class_definition filename="plugins/access.fs/class.fsAccessDriver.php" classname="fsAccessDriver"/>
+	<class_stream_wrapper filename="plugins/access.fs/class.fsAccessWrapper.php" classname="fsAccessWrapper" protocol="ajxp.fs"/>
+	
+</ajxpdriver><editor id="editor.openlayer" openable="true" mimes="wms_layer,ol_layer" text="openlayer.1" title="openlayer.1" icon="frame_image.png" className="OLViewer" formId="openlayer_box">
+	<resources>
+		<js file="plugins/editor.openlayer/class.OLViewer.js" className="OLViewer"/>
+		<css file="plugins/editor.openlayer/openlayer/theme/default/style.css"/>
+		<i18n namespace="openlayer" path="plugins/editor.openlayer/i18n"/>
+	</resources>
+	<processing>
+		<!-- Hack : use activeCondition as an extension starter, we should enable extensionOnInit instead
+			Cannot use the standard library mechanism for OpenLayer otherwise it cannot find the images and styles.
+		 -->
+		<activeCondition><![CDATA[
+			if(!window.OpenLayers && !window.OpenLayersLoading){
+				window.OpenLayersLoading = true;
+				if(Prototype.Browser.IE) window.originalEvent = window.Event;
+				var script = new Element('script', {
+					src:"plugins/editor.openlayer/openlayer/OpenLayers.js", 
+					type:"text/javascript"}
+				);
+				if(Prototype.Browser.IE){
+					script.attachEvent("onreadystatechange", function(){
+						 if(script.readyState == "loaded"){
+						  window.Event = window.originalEvent;
+						 }
+					}, false);
+				}
+				$(document.body).insert(script);
+			}
+			return true;
+		]]></activeCondition>
+	</processing>	
+	<clientForm id="openlayer_box"><![CDATA[
+		<div id="openlayer_box" action="ol_view" box_width="80%" box_height="90%" box_padding="0">
+			<div class="action_bar" style="border-bottom:1px solid #DDDDDD;">
+				<div id="filterButton" style="cursor:pointer;-moz-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;background-color:#FFF8D1;border:1px solid #CCCCCC;float:right;margin-right:3px;margin-top:34px;padding:1px 5px;border-bottom:0px;"><b>Filter</b> <img width="10" height="6" border="0" src="client/themes/oxygen/images/arrow_down.png" align="top" style="margin-left:3px;margin-top:5px"></div>
+				<div style="float:right;align:right;padding-top: 1px; padding-right: 5px; height: 21px;margin-top:35px;font-size:11px;">
+					<b>Position :</b> <span id="location"></span>
+				</div>
+				<a href="#" onclick="return false;" id="downloadFileButton"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/download_manager.png" alt="Download" border="0"><br><span message_id="88">Download</span></a>
+			</div>
+			<div class="filter" style="background-color:#FFF8D1;border-bottom:1px solid #CCCCCC;padding:3px 5px;font-size:11px; font-family:Trebuchet MS;">
+                <a>Layers:</a>
+                <select id="layerSelector" style="width:110px !important;"></select>
+                <span id="wms_filters">
+                <a>Antialias:</a>
+                <select id="antialiasSelector">
+                    <option value="full" selected="true">Full</option>
+                    <option value="text">Text only</option>
+                    <option value="none">Disabled</option>
+                </select>
+                <a>Format:</a>
+                <select id="imageFormatSelector">
+                    <option value="image/png">PNG 24bit</option>
+                    <option value="image/png8">PNG 8bit</option>
+                    <option value="image/gif">GIF</option>
+                    <option id="jpeg" value="image/jpeg">JPEG</option>
+
+                </select>
+                <a>Styles:</a>
+                <select id="imageStyleSelector">
+                    <option value="">Default</option>
+                </select>
+                <a>Filter:</a>
+                <select id="filterType">
+                    <option value="cql">CQL</option>
+                    <option value="ogc">OGC</option>
+                    <option value="fid">FeatureID</option>
+                </select>
+                <input type="text" size="80" id="filter"/>
+                <img width="16" id="submitFilter" height="16" border="0" align="absmiddle" src="client/themes/oxygen/images/actions/16/search.png" title="Search">
+                <img width="16" id="resetFilter" height="16" border="0" align="absmiddle" src="client/themes/oxygen/images/actions/16/fileclose.png" title="Clear">
+                </span>
+			</div>
+		</div>				
+	]]></clientForm>	
+	<dependencies>
+		<!-- Stream Wrapper must be implemented -->
+		<activePlugin pluginName="access.wms|access.fs|meta.exif"/>
+	</dependencies>				
+</editor><editor id="editor.text" openable="true" text="51" title="162" icon="edit.png" className="TextEditor" mimes="txt,sql,php,php3,phtml,htm,html,cgi,pl,js,css,inc,xml,xsl,java" formId="edit_box">
+	<resources>
+		<js file="plugins/editor.text/class.TextEditor.js" className="TextEditor"/>
+	</resources>
+	<clientForm id="edit_box"><![CDATA[
+		<div id="edit_box" action="editer" box_width="80%" box_height="90%" box_padding="0">
+			<div class="action_bar">
+				<a href="#" onclick="return false;" id="saveButton" onclick="saveForm();return false;"><img src="client/themes/oxygen/images/actions/22/filesave.png" width="22" height="22" alt="Save" border="0"><br><span message_id="53">Save</span></a>
+				<a href="#" onclick="return false;" id="downloadFileButton"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/download_manager.png" alt="Download" border="0"><br><span message_id="88">Download</span></a>
+			</div>
+		</div>				
+	]]></clientForm>	
+	<dependencies>
+		<!-- Stream Wrapper Access -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>					
+</editor><editor id="editor.codepress" openable="true" text="317" title="318" icon="codepress_images/source_edit.png" className="CodePressEditor" mimes="php,php3,php4,php4,phtml,js,java,pl,sql,html,htm,xml,css" formId="edit_box" write="true">
+	<dependencies>
+		<pluginResources pluginName="editor.text"/>
+		<!-- Stream Wrapper Access -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>
+	<resources>
+		<js file="plugins/editor.codepress/codepress/codepress.js" className="CodePress"/>
+		<js file="plugins/editor.codepress/class.CodePressEditor.js" className="CodePressEditor"/>
+		<img_library alias="codepress_images" path="plugins/editor.codepress"/>
+	</resources>
+</editor><editor id="editor.pixlr" openable="true" text="333" title="333" icon="pixlr_images/actions/ICON_SIZE/color_fill.png" className="PixlrEditor" mimes="jpg,jpeg,png,bmp,pxd" formId="pixlr_box" write="true">
+	<class_definition filename="plugins/editor.pixlr/class.PixlrEditor.php" classname="PixlrEditor"/>
+	<resources>
+		<js file="plugins/editor.diaporama/class.Diaporama.js" className="Diaporama"/>
+		<js file="plugins/editor.pixlr/class.PixlrEditor.js" className="PixlrEditor"/>
+		<img_library alias="pixlr_images" path="plugins/editor.pixlr/images"/>		
+	</resources>
+	<clientForm id="pixlr_box"><![CDATA[
+		<div id="pixlr_box" action="edit_image" box_width="90%" box_height="90%" box_padding="0">			
+			<div id="pixlrContainer"></div>
+		</div>				
+	]]></clientForm>
+	
+	<dependencies>
+		<!-- Image proxy must be implemented -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>				
+</editor><editor id="editor.diaporama" openable="true" text="186" title="136" icon="frame_image.png" className="Diaporama" mimes="png,bmp,jpg,jpeg,gif" formId="diaporama_box">
+	<class_definition filename="plugins/editor.diaporama/class.ImagePreviewer.php" classname="ImagePreviewer"/>
+	<resources>
+		<js file="plugins/editor.diaporama/class.Diaporama.js" className="Diaporama"/>
+	</resources>
+	<clientForm id="diaporama_box"><![CDATA[
+		<div id="diaporama_box" action="view_diapo" box_width="90%" box_height="90%" box_padding="0">
+			<div class="action_bar" style="width: 100%;">			
+				<div align="right" style="float:right; padding-top: 1px; padding-right: 5px; height: 21px;margin-top:28px;">
+					<input id="zoomValue" type="text" style="text-align: center; width: 34px;height: 16px;padding:0px;border: 1px solid #ccc; padding-right: 1px;"/><input id="time" type="text" value="3 s" style="text-align: center; width: 26px;height: 16px;padding:0px;border: 1px solid #ccc; padding-right: 1px;margin-left:10px;"/>
+				</div>
+			
+				<a href="#" id="prevButton" onclick="return false;"><img  width="22" height="22" src="client/themes/oxygen/images/actions/22/back_22.png" alt="" border="0"><br><span message_id="178">Previous</span></a>
+				<a href="#" id="stopButton" onclick="return false;"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/player_stop.png" alt="Stop Slideshow" border="0"><br><span message_id="232">Stop</span></a>
+				<a href="#" id="playButton" onclick="return false;"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/player_play.png" alt="Play Slideshow" border="0"><br><span message_id="230">Play</span></a>
+				<a href="#" id="nextButton" onclick="return false;"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/forward_22.png" alt="" border="0"><br><span message_id="179">Next</span></a>	
+				<div class="separator"></div>
+				<a href="#" id="actualSizeButton" onclick="return false;"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/zoom-original.png" alt="" border="0"><br><span message_id="327">100%</span></a>
+				<a href="#" id="fitToScreenButton" onclick="return false;"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/zoom-fit-best.png" alt="Fit Best" border="0"><br><span message_id="325">Fit Best</span></a>
+				<div class="separator"></div>
+				<a href="#" id="downloadDiapoButton" onclick="return false;"><img width="22" height="22" src="client/themes/oxygen/images/actions/22/download_manager.png" alt="" border="0"><br><span message_id="88">Download</span></a>
+			</div>
+			<div style="text-align:center; vertical-align:center;overflow:auto; background-color:#333333; border:1px solid black;" id="imageContainer">
+				<div id="imageBorder" style="border: 1px solid white;background-color:#676965;"><img id="mainImage" src=""></div>
+			</div>
+		</div>				
+	]]></clientForm>
+	
+	<dependencies>
+		<!-- Image proxy must be implemented -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>				
+</editor><editor id="editor.video" openable="false" mimes="flv,mov,mp4,m4a,aac" text="186" title="136" icon="frame_image.png" className="VideoPreviewer">
+	<resources>
+		<js file="plugins/editor.video/class.VideoPreviewer.js" className="VideoPreviewer"/>
+	</resources>
+	
+	<dependencies>
+		<!-- Stream Wrapper must be implemented -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>				
+</editor><editor id="editor.audio" openable="false" text="186" title="136" icon="frame_image.png" className="AudioPreviewer" mimes="mp3">
+	<class_definition filename="plugins/editor.audio/class.AudioPreviewer.php" classname="AudioPreviewer"/>
+	<resources>
+		<js file="plugins/editor.audio/class.AudioPreviewer.js" className="AudioPreviewer"/>
+	</resources>
+	
+	<dependencies>
+		<!-- Stream Wrapper must be implemented -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>				
+</editor><uploader id="uploader.flex" text="51" title="162">
+	<class_definition filename="plugins/uploader.flex/class.FlexUploadProcessor.php" classname="FlexUploadProcessor"/>
+	<processing>
+		<clientForm id="flash_upload_form"><![CDATA[
+			<!-- FLEX UPLOAD FORM -->
+			<div id="flash_upload_form" box_width="470">
+			<div id="flashscreen">
+			<iframe id="flashframe" frameborder="0" src="content.php?get_action=get_template&template_name=flash_tpl.html&pluginName=uploader.flex&encode=false"></iframe>
+			</div>
+			</div>	
+		]]></clientForm>
+		<activeCondition><![CDATA[		
+			return (ajaxplorer.actionBar.getFlashVersion() >= 8 && (document.location.href.substring(0,5)!='https' || Prototype.Browser.IE)) && ! ((typeof File != "undefined" && typeof (new XMLHttpRequest()).upload != "undefined"  && 'draggable' in new Element('span')) && (Prototype.Browser.Gecko?(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Firefox/')+8, navigator.userAgent.indexOf('Firefox/')+11)) >= 3.6?true:false):true))
+		]]></activeCondition>
+	</processing>
+	
+	<dependencies>
+		<!-- Stream Wrapper Access -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>					
+</uploader><uploader id="uploader.html" text="51" title="162" className="MultiUploader">
+	<class_definition filename="plugins/uploader.html/class.SimpleUploadProcessor.php" classname="SimpleUploadProcessor"/>
+	<resources>
+		<js file="plugins/uploader.html/class.MultiUploader.js" className="MultiUploader"/>
+		<js file="plugins/uploader.html/class.XHRUploader.js" className="XHRUploader"/>
+	</resources>
+		
+	<processing>	
+		<clientForm id="originalUploadForm"><![CDATA[
+			<!-- UPLOAD FORM -->
+			<form action="content.php" target="hidden_iframe" enctype="multipart/form-data" method="POST" id="originalUploadForm" style="text-align:left; display:none;" box_width="420">					
+			<table>
+				<tr>                                
+				        <td id="fileInputContainer" valign="top"><div id="fileInputContainerDiv">                                
+				                <div id="fileInputPos"><input type="file" name="userfile_1" class="dialogFocus"></div>                              
+				                <div id="uploadBrowseButton" class="fakeUploadButton"><img src="client/themes/oxygen/images/actions/22/view_list_details.png"><br/>Browse</div>
+				                <div id="uploadSendButton" class="fakeUploadButton"><img src="client/themes/oxygen/images/actions/22/yast_backup.png"><br/>Send</div>
+				        </div></td>                                
+				        <td rowspan="2" id="uploadFilesListContainer">                                
+				                <div id="upload_files_list" class="uploadFilesList"></div>                                
+				        </td>                                
+				</tr>                                
+				<tr>                                
+				        <td id="optClosButtonsContainer">                                
+				                <div class="fakeUploadButton fakeOptionButton" id="uploadOptionsButton">Options <span style="display:none;">[x]</span></div>
+				                <div class="fakeUploadButton fakeOptionButton" id="uploadCloseButton">Close</div>                        
+				        </td>				       
+				</tr> 
+			</table>
+			<input type="hidden" name="get_action" value="upload">	
+			<input type="hidden" name="simple_uploader" value="true">	
+			</form>
+			<script language="javascript">$('originalUploadForm').hide();</script>
+		]]></clientForm>
+		<dialogOnOpen><![CDATA[ 
+			if(typeof File != "undefined" && typeof (new XMLHttpRequest()).upload != "undefined"  && 'draggable' in new Element('span')){
+				ajaxplorer.actionBar.multi_selector = new XHRUploader(oForm);
+			}else{
+				ajaxplorer.actionBar.multi_selector = new MultiUploader(oForm);
+			}
+		]]></dialogOnOpen>
+		<extensionOnInit><![CDATA[		
+		if(typeof File != "undefined" && typeof (new XMLHttpRequest()).upload != "undefined"  && 'draggable' in new Element('span') && (Prototype.Browser.Gecko?(parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Firefox/')+8, navigator.userAgent.indexOf('Firefox/')+11)) >= 3.6?true:false):true) ){
+			var dropzone = $('content_pane');
+			dropzone.addClassName('droparea');
+			var dragOverFunc = function(event) {
+  				event.preventDefault();
+			};
+			var dropFunc = function(event) {
+  				event.preventDefault();
+  				if(event.dataTransfer.files.length){
+	  				window.UploaderDroppedFiles = event.dataTransfer.files;
+	  				ajaxplorer.actionBar.fireAction('upload');
+	  			}
+			};
+			var enterFunc = function(){
+				dropzone.addClassName("dropareaHover");
+			};
+			var leaveFunc = function(){
+				dropzone.removeClassName("dropareaHover");
+			};
+			dropzone.addEventListener("dragover", dragOverFunc, true);
+			dropzone.addEventListener("drop", dropFunc, true);
+			dropzone.addEventListener("dragenter", enterFunc, true);
+			dropzone.addEventListener("dragleave", leaveFunc, true);
+			document.observeOnce("ajaxplorer:trigger_repository_switch", function(){				
+				dropzone.removeClassName('droparea');
+				dropzone.removeEventListener("dragover", dragOverFunc, true);
+				dropzone.removeEventListener("drop", dropFunc, true);
+				dropzone.removeEventListener("dragenter", enterFunc, true);
+				dropzone.removeEventListener("dragleave", leaveFunc, true);
+			});
+		}
+		]]></extensionOnInit>		
+	</processing>
+	<dependencies>
+		<!-- Stream Wrapper Access -->
+		<activePlugin pluginName="access.AJXP_STREAM_PROVIDER"/>
+	</dependencies>					
+</uploader><ajxpdriver name="ajxp_client" label="Client Plugin" description="Basic GUI actions">
+	<class_definition filename="plugins/gui.ajax/class.AJXP_ClientDriver.php" classname="AJXP_ClientDriver"/>
+	
+</ajxpdriver></plugins><user id="admin"><active_repo id="0" write="1" read="1"/><repositories><repo access_type="fs" id="0" allowCrossRepositoryCopy="true"><label>Default Files</label><client_settings icon="plugins/access.fs/icon.png"/></repo><repo access_type="ajxp_shared" id="ajxp_shared"><label>Shared Elements</label><client_settings icon="plugins/access.ajxp_shared/preferences_system_network.png"><resources><i18n namespace="ajxp_shared" path="plugins/access.ajxp_shared/i18n"/></resources></client_settings></repo><repo access_type="ajxp_conf" id="1"><label>Settings</label><client_settings icon="plugins/access.ajxp_conf/admin.png"><resources><i18n namespace="ajxp_conf" path="plugins/access.ajxp_conf/i18n"/><i18n namespace="ajxp_shared" path="plugins/access.ajxp_shared/i18n"/><js file="plugins/access.ajxp_conf/class.ConfigEditor.js" className="ConfigEditor"/></resources></client_settings></repo></repositories><preferences><pref name="display" value=""/><pref name="lang" value=""/><pref name="diapo_autofit" value=""/><pref name="sidebar_splitter_size" value=""/><pref name="vertical_splitter_size" value=""/><pref name="history_last_repository" value=""/><pref name="ls_history"><![CDATA[]]></pref><pref name="pending_folder" value=""/><pref name="thumb_size" value=""/><pref name="columns_size" value=""/><pref name="columns_visibility" value=""/><pref name="plugins_preferences" value=""/><pref name="upload_auto_send" value=""/><pref name="upload_auto_close" value=""/><pref name="upload_existing" value=""/></preferences><special_rights is_admin="1"/></user><client_configs>
+			<template_part ajxpId="search_container" ajxpClass="SearchEngine" ajxpOptions="{}"/>
+			<component_config className="FilesList">
+				<columns switchGridMode="filelist">
+					<column messageId="1" attributeName="ajxp_label" sortType="StringDirFile"/>
+					<column messageId="2" attributeName="filesize" sortType="NumberKo"/>
+					<column messageId="3" attributeName="mimestring" sortType="String"/>
+					<column messageId="4" attributeName="ajxp_modiftime" sortType="MyDate"/>
+				</columns>
+			</component_config>
+			<component_config className="FoldersTree">
+				<property name="display" value="dz"/>
+			</component_config>			
+		<component_config className="InfoPanel">
+			<infoPanel mime="no_selection" attributes="">
+				<messages>
+					<message key="folders_string" id="130"/>
+					<message key="files_string" id="265"/>
+					<message key="totalsize_string" id="259"/>
+				</messages>
+				<html><![CDATA[
+					<div>
+						<table class="infoPanelTable" cellspacing="0" border="0" cellpadding="0">
+							<tr>
+								<td class="infoPanelLabel">#{folders_string}</td>
+								<td class="infoPanelValue">#{filelist_folders_count}</td>
+							</tr>
+							<tr class="even">
+								<td class="infoPanelLabel">#{files_string}</td>
+								<td class="infoPanelValue">#{filelist_files_count}</td>
+							</tr>
+							<tr>
+								<td class="infoPanelLabel">#{totalsize_string}</td>
+								<td class="infoPanelValue">#{filelist_totalsize}</td>
+							</tr>
+						</table>
+					</div>					
+				]]></html>
+			</infoPanel>
+			<infoPanel mime="generic_file" attributes="basename,preview_rich,filesize,mimestring,formated_date">
+				<messages>
+					<message key="name_string" id="133"/>
+					<message key="size_string" id="127"/>
+					<message key="type_string" id="134"/>
+					<message key="modif_string" id="138"/>
+					<message key="header_string" id="341"/>
+				</messages>
+				<html><![CDATA[
+				<div>
+					<div class="infoPanelImagePreview">
+						#{preview_rich}
+					</div>
+					<div class="panelHeader infoPanelGroup">#{header_string}</div>
+					<table class="infoPanelTable" cellspacing="0" border="0" cellpadding="0">
+						<tr>
+							<td class="infoPanelLabel">#{name_string}</td>
+							<td class="infoPanelValue">#{basename}</td>
+						</tr>
+						<tr class="even">
+							<td class="infoPanelLabel">#{size_string}</td>
+							<td class="infoPanelValue">#{filesize}</td>
+						</tr>
+						<tr>
+							<td class="infoPanelLabel">#{modif_string}</td>
+							<td class="infoPanelValue">#{formated_date}</td>
+						</tr>
+						<tr class="even">
+							<td class="infoPanelLabel">#{type_string}</td>
+							<td class="infoPanelValue">#{mimestring}</td>
+						</tr>
+					</table>					
+				</div>
+				]]></html>
+			</infoPanel>
+			<infoPanel mime="generic_dir" attributes="basename,icon,formated_date">
+				<messages>
+					<message key="name_string" id="133"/>
+					<message key="modif_string" id="138"/>
+					<message key="header_string" id="342"/>
+				</messages>
+				<html><![CDATA[
+					<div>
+						<div class="folderImage infoPanelImagePreview">
+							<img src="client/themes/oxygen/images/mimes/64/#{icon}" height="64" width="64">
+						</div>
+						<div class="panelHeader infoPanelGroup">#{header_string}</div>
+						<table class="infoPanelTable" cellspacing="0" border="0" cellpadding="0">
+							<tr>
+								<td class="infoPanelLabel">#{name_string}</td>
+								<td class="infoPanelValue">#{basename}</td>
+							</tr>
+							<tr class="even">
+								<td class="infoPanelLabel">#{modif_string}</td>
+								<td class="infoPanelValue">#{formated_date}</td>
+							</tr>
+						</table>						
+					</div>
+				]]></html>
+			</infoPanel>
+		</component_config><component_config className="FilesList">
+				<columns>
+					<additional_column messageId="135" attributeName="readable_dimension" sortType="String"/>
+				</columns>
+			</component_config><component_config className="InfoPanel">			
+				<infoPanelExtension mime="png,bmp,jpg,jpeg,gif" attributes="image_width,image_height,image_type">
+					<messages>
+						<message key="type_string" id="134"/>				
+						<message key="dim_string" id="135"/>
+						<message key="header_string" id="343"/>
+					</messages>
+					<html><![CDATA[
+						<div style="">
+							<div class="panelHeader infoPanelGroup" colspan="2">#{header_string}</div>
+							<table class="infoPanelTable" cellspacing="0" border="0" cellpadding="0">
+								<tr>
+									<td class="infoPanelLabel">#{dim_string}</td>
+									<td class="infoPanelValue">#{image_width}px X #{image_height}px</td>
+								</tr>
+								<tr class="even">
+									<td class="infoPanelLabel">#{type_string}</td>
+									<td class="infoPanelValue">#{image_type}</td>
+								</tr>
+							</table>
+						</div>
+					]]></html>
+				</infoPanelExtension>
+			</component_config><template name="main" element="ajxp_desktop" position="top"><![CDATA[
+				<div id="toolbars">
+					<div id="action_bar">
+						<div id="buttons_bar" ajxpClass="ActionsToolbar"></div>
+						<div id="locationbar_cont">
+							<div style="height: 100%;" class="separator"></div>
+							<div style="padding-top : 5px;">
+								<div id="repo_chooser" ajxpClass="RepositorySelect"></div>
+								<div id="locationBar" ajxpClass="LocationBar" ajxpOptions="{flexTo:'locationbar_cont'}"></div>
+								<div id="logging_string" ajxpClass="UserWidget"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="browser" ajxpClass="AjxpPane" ajxpOptions="{fit:'height',fitParent:'ajxp_desktop'}">
+					<div id="vertical_splitter" style="background-color: #fff;" ajxpClass="Splitter" ajxpOptions="{direction: 'vertical', initA: 200, maxA:600, minA:50,fit:'height',fitParent:'browser'}">
+						<div id="sidebar_splitter" style="float:left; overflow:hidden;" ajxpClass="Splitter" ajxpOptions="{direction:'horizontal',initB:200,minB:24,maxB:500}">
+							<div id="topPane" ajxpClass="FoldersTree" ajxpOptions="{display:'dz'}" ajxpPaneHeader="130" style="border: 1px solid #676965;"></div>		
+					    	<div id="bottomSplitPane" ajxpClass="AjxpTabulator" style="border: 1px solid #676965;" ajxpOptions="{defaultTabId : 'info',tabInfos : [{id:'info',label:'131',icon:'file_info.png',element:'info_panel'},{id:'search',label:'87',icon:'search.png',element:'search_container'}]}">
+						    	<div id="search_container" ajxpClass="SearchEngine"></div>
+						    	<div id="info_panel" ajxpClass="InfoPanel"></div>
+					    	</div>    	
+					    </div>
+						<div id="content_pane" ajxpClass="FilesList" ajxpOptions="'list'" style="border: 1px solid #676965;"></div>	
+					</div>
+				</div>				
+			]]></template><template name="widget" element="ajxp_widget" position="top"><![CDATA[
+				<div id="toolbars">
+					<div id="action_bar">
+						<div id="buttons_bar" ajxpClass="ActionsToolbar"></div>
+						<div id="locationbar_cont">
+							<div style="height: 100%;" class="separator"></div>
+							<div style="padding-top : 5px;">
+								<div id="locationBar" ajxpClass="LocationBar" ajxpOptions="{flexTo:'locationbar_cont'}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="browser" ajxpClass="AjxpPane" ajxpOptions="{fit:'height',fitParent:'ajxp_desktop'}">
+					<div id="content_pane" ajxpClass="FilesList"  ajxpOptions="{fit:'height',fitParent:'browser'}" style="border: 1px solid #676965; background-color: #fff;"></div>	
+				</div>				
+			]]></template><component_config className="FilesList">
+				<property name="thumbSize" value="64"/>
+				<property name="displayMode" value="list"/>
+			</component_config><component_config className="FilesList">
+				<property name="thumbSize" value="64"/>
+				<property name="displayMode" value="list"/>
+			</component_config></client_configs><hooks>
+			<serverCallback hookName="ls.metadata" methodName="extractImageMetaData" pluginId="editor.diaporama"/>
+		</hooks></ajxp_registry>
+

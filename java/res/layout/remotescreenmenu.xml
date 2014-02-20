@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menukey"    
+          android:title="@string/remotescreen_menu_sendmenukey" />         
+	<item android:id="@+id/backey"
+          android:title="@string/remotescreen_menu_sendbackkey" />                   
+    <item android:id="@+id/homekey"    
+          android:title="@string/remotescreen_menu_sendhomekey" />         
+   	<item android:id="@+id/quality"
+          android:title="@string/remotescreen_menu_quality" />
+	<item android:id="@+id/disconnect"
+          android:title="@string/remotescreen_menu_disconnect" />
+</menu>

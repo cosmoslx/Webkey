@@ -1,0 +1,237 @@
+Call list -> 
+Webkey for Android -> 
+unknown -> 
+min -> 
+sec -> 
+Detailed call list -> 
+rejected -> 
+in -> 
+out -> 
+Calls which are longer than half minute in the selected month -> 
+Summarize -> 
+Name -> 
+incoming -> 
+outgoing -> 
+Loading Call list... -> 
+Above lines are read by -> 
+Chat -> 
+clear -> 
+chat message -> 
+chat messages -> 
+Save -> 
+Allowable characters in GSM and their keycode in non-unicode SMS -> 
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). -> 
+Export -> 
+Contacts -> 
+Messages -> 
+to -> 
+plain text (pure) -> 
+semicolon-separated values (csv) -> 
+xml -> 
+where date is -> 
+dd mm yyyy -> 
+mm dd yyyy -> 
+yyyy mm dd -> 
+with date separator -> 
+in timezone -> 
+Timezone -> 
+Epoch time -> 
+with newline type -> 
+The texts are exported in utf-8 encoding. -> 
+Files -> 
+GPS -> 
+GPS location -> 
+Show on map -> 
+Update continuously -> 
+Network location -> 
+Error -> 
+BEFORETIME -> 
+seconds ago -> 
+minutes ago -> 
+hours ago -> 
+days ago -> 
+Help -> 
+Please visit our website for more information -> 
+If you like our app, please support the development of Webkey. Every help is appreciated. -> 
+Screenshots' properties -> 
+Clicking, dragging -> 
+You should be able to click and drag on the phone by doing the same on the screenshot. -> 
+Low resolution -> 
+It makes resolution half both in horizontal and vertical direction. -> 
+PNG (slower than JPEG) -> 
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> 
+Use only first framebuffer -> 
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> 
+Record images -> 
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> 
+Typing -> 
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> 
+Config keys -> 
+You can configure the character substitution rules for SMS mode. -> 
+SMS mode -> 
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> 
+Translations -> 
+If you already have an account to this phone -> 
+Login -> 
+Username -> 
+Password -> 
+Create new user -> 
+Registration -> 
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> 
+You can always manage users on the phone. -> 
+Click here to switch to SSL. -> 
+SSL provides secure (and a slightly slower) way to access Webkey. -> 
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> 
+On Chrome you might have to click on "Proceed anyway". -> 
+Click here to disable SSL. -> 
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> 
+Language -> 
+Net -> 
+Sum -> 
+Notify -> 
+saved -> 
+failed to save -> 
+Under development, it may not notify you because the CPU can fall deep asleep -> 
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> 
+Trigger events -> 
+Watch for unread messages -> 
+Watch for missed calls -> 
+Notification method -> 
+Alert every -> 
+minute -> 
+Vibrate phone -> 
+Vibrate phone with the following sequence -> 
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> 
+Blink led -> 
+only for the duration of vibrate -> 
+all the time -> 
+When the led is blinking, it is on for -> 
+ms, and off for -> 
+ms -> 
+Save and test alert -> 
+Click here to type on phone! -> 
+Stop recording -> 
+results -> 
+Screen properties -> 
+Half size -> 
+Horizontal -> 
+Flip -> 
+PNG (slower than JPEG) -> 
+Auto refresh -> 
+Keep alive -> 
+Refresh image -> 
+Save image -> 
+Typing properties -> 
+Send while typing -> 
+Send on Enter -> 
+Send text -> 
+Config buttons -> 
+Open, call, run -> 
+Open in browser -> 
+Call -> 
+Dial -> 
+Run -> 
+Phone info -> 
+Clipboard -> 
+Screen timeout -> 
+IMEI/MEID -> 
+Phone number -> 
+Network operator name -> 
+Network type -> 
+SIM operator name -> 
+SIM serial number -> 
+Subscriber ID -> 
+Phone utils -> 
+Send toast -> 
+Vibrate -> 
+Run application -> 
+Close application -> 
+Kill application -> 
+Volume -> 
+Ringer -> 
+Media -> 
+Wifi -> 
+Buttons -> 
+Development -> 
+Run SL4A request -> 
+Sdcard -> 
+SMS -> 
+Sent. Reload the page to see the sent message. -> 
+FAILED TO SEND -> 
+add to recipients -> 
+To -> 
+click to remove -> 
+no recipients -> 
+Click&nbsp;to&nbsp;add&nbsp; -> 
+Me -> 
+(pending...) -> 
+Write here your message! -> 
+MMS -> 
+skipped chars -> 
+In the phone numbers the following characters are allowed: 0-9, +, - -> 
+No recipients, please add at least one. -> 
+Unable to send empty message. -> 
+sending... -> 
+Under development, tested only on GSM networks -> 
+Loading SMS and contacts... -> 
+SEND -> 
+Show contacts -> 
+Show phone numbers -> 
+SMS mode (avoid unicode) -> 
+Add phone number -> 
+Message -> 
+Terminal -> 
+Config -> 
+Log out -> 
+Adjust light -> 
+loading -> 
+Close -> 
+Kill -> 
+ch -> 
+level -> 
+Phone -> 
+Show -> 
+Key -> 
+Keycode -> 
+Char -> 
+converts to -> 
+works in SMS mode -> 
+Reloading... -> 
+Registration request sent, please wait until it's authorized on the phone. -> 
+Saved, reloading ... -> 
+username -> 
+password -> 
+Change password -> 
+Remove user -> 
+ALL -> 
+Screenshot -> 
+Location -> 
+Read /sdcard/public/ -> 
+Contacts, Sms, Calls -> 
+Read files -> 
+Save permissions -> 
+New user -> 
+Create -> 
+Details about permissions -> 
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> 
+View screenshot of the phone. -> 
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> 
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> 
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> 
+Read personal data such as contacts, messages and call list. -> 
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> 
+Read and modify the content of the sdcard. -> 
+Log (activities is logged once in every 30 minutes) -> 
+Clear log -> 
+uptime -> 
+uptime secs -> 
+mins -> 
+hours -> 
+days -> 
+hour -> 
+CPUup -> 
+CPU uptime secs -> 
+Brightness -> 
+Recorded -> 
+images -> 
+This terminal will be closed after 60 minutes of inactivity. -> 

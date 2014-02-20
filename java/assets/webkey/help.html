@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Help` - `Webkey for Android`</title>
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+</head>
+<body>
+	<<MENU>>
+		`Please visit our website for more information`: <a href="http://webkey.cc">http://webkey.cc</a>
+<br/>`If you like our app, please support the development of Webkey. Every help is appreciated.`
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_donations">
+		<input type="hidden" name="business" value="morapeter@gmail.com">
+		<input type="hidden" name="lc" value="US">
+		<input type="hidden" name="item_name" value="Android Webkey">
+		<input type="hidden" name="item_number" value="Support the development of Webkey">
+		<input type="hidden" name="no_note" value="0">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest">
+		<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>
+	<h2>Help</h2>
+
+	<img alt="help screenshot" src="help.png"/>
+	<h3>`Screenshots' properties`</h3>
+	<strong>`Clicking, dragging`</strong><br/>
+	`You should be able to click and drag on the phone by doing the same on the screenshot.`
+	<br/><strong>`Low resolution`</strong><br/>
+	`It makes resolution half both in horizontal and vertical direction.`
+	<br/><strong>`PNG (slower than JPEG)`</strong><br/>
+	`JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression.`
+	<br/><strong>`Use only first framebuffer`</strong><br/>
+	`Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer.`
+	<br/><strong>`Record images`</strong><br/>
+	`The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser.`
+	<br/><strong>`Typing`</strong><br/>
+	`The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back.`
+	<br/><strong>`Config keys`</strong><br/>
+	`You can configure the character substitution rules for SMS mode.`
+	<br/><strong>`SMS mode`</strong><br/>
+	`If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority.`
+
+	SL4A, https://github.com/douglascrockford/JSON-js
+
+	<h2>`Translations`</h2>
+	<strong>German (Deutsch): </strong>Christian Wallert<br/>
+	<strong>Español (Spanish): </strong> Roberto Yoldi<br/>
+	<strong>Greek: </strong> Ilias Gerasimou<br/>
+	<strong>Chinese: </strong>liuyix<br/>
+	<strong>Hungarian: </strong><a href="http://www.math.bme.hu/~morap/">Péter Móra</a>
+
+
+	<h2>LICENSE</h2>
+
+	Copyright (C) 2010-2011  <a href="http://www.math.bme.hu/~morap/">Péter Móra</a>, Zoltán Papp<br/>
+<br/>
+	This program is free software: you can redistribute it and/or modify<br/>
+	it under the terms of the GNU General Public License as published by<br/>
+	the Free Software Foundation, either version 3 of the License, or<br/>
+	(at your option) any later version.<br/>
+<br/>
+	This program is distributed in the hope that it will be useful,<br/>
+	but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br/>
+	GNU General Public License for more details.<br/>
+<br/>
+	You should have received a copy of the GNU General Public License<br/>
+	along with this program.  If not, see <a href=http://www.gnu.org/licenses/>http://www.gnu.org/licenses/</a>.<br/>
+
+</body>
+</html>

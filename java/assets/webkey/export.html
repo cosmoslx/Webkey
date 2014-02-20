@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Export` - `Webkey for Android`</title>
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+</head>
+<body>
+	<<MENU>>
+
+<style type="text/css">
+	.div1 {
+		float:left;
+		width:230px;
+		padding-top:10px;
+		padding-left: 10px;
+	}
+	.div2 {
+		clear:both;
+		padding-left:10px;
+		padding-above: 15px;
+	}
+</style>
+<script type="text/javascript">
+	function radio1()
+	{
+		for (var i=0; i < document.myform.group1.length; i++)
+		{
+			if (document.myform.group1[i].checked)
+				return i;
+		}
+		return -1;
+	}
+	function radio2()
+	{
+		for (var i=0; i < document.myform.group2.length; i++)
+		{
+			if (document.myform.group2[i].checked)
+				return i;
+		}
+		return -1;
+	}
+	function radio3()
+	{
+		for (var i=0; i < document.myform.group3.length; i++)
+		{
+			if (document.myform.group3[i].checked)
+				return i;
+		}
+		return -1;
+	}
+	function radio4()
+	{
+		for (var i=0; i < document.myform.group4.length; i++)
+		{
+			if (document.myform.group4[i].checked)
+				return i;
+		}
+		return -1;
+	}
+	function radio5()
+	{
+		for (var i=0; i < document.myform.group5.length; i++)
+		{
+			if (document.myform.group5[i].checked)
+				return i;
+		}
+		return -1;
+	}
+	function radio6()
+	{
+		for (var i=0; i < document.myform.group6.length; i++)
+		{
+			if (document.myform.group6[i].checked)
+				return i;
+		}
+		return -1;
+	}
+
+			function send()
+			{
+				var timezone = document.getElementById('timezone').selectedIndex+10;
+				var t = "export_";
+				t += radio1();
+				t += radio2();
+				t += radio3();
+				t += radio4();
+				t += radio5();
+				t += radio6();
+				t += timezone;
+				window.location =t;
+//				t += document.getElementById('smson').checked+"_";
+//				t += document.getElementById('interval').value+"_";
+//				t += document.getElementById('vibrate').checked+"_";
+//				t += document.getElementById('vibratepatt').value.replace('/ /g','')+"_";
+//				t += document.getElementById('blink').checked+"_";
+//				t += document.getElementById('blinktype').selectedIndex+"_";
+//				t += document.getElementById('blinkon').value+"_";
+//				t += document.getElementById('blinkoff').value;
+			}
+</script>
+<form name="myform">
+<div class="div1">
+<h3>`Export`</h3>
+<input type="radio" name="group1" value="Contacts" checked>`Contacts`</input><br/>
+<input type="radio" name="group1" value="Messages">`Messages` (<abbr title="An other two databases are required to find out contact names, and it's complicated. I will do it later, when I have some freetime.">only with phone numbers yet</abbr>)</input><br/>
+<input type="radio" name="group1" value="Calls">`Call list`</input><br/>
+<h3>`to`</h3>
+<input type="radio" name="group2" value="text" checked>`plain text (pure)`</input><br/>
+<input type="radio" name="group2" value="csv">`semicolon-separated values (csv)`</input><br/>
+<input type="radio" name="group2" value="xml">`xml`</input><br/>
+</div>
+<div class="div1">
+<h3>`where date is`</h3>
+<input type="radio" name="group3" value="dmy" checked>`dd mm yyyy`</input><br/>
+<input type="radio" name="group3" value="mdy">`mm dd yyyy`</input><br/>
+<input type="radio" name="group3" value="ymd">`yyyy mm dd`</input><br/>
+<h3>`with date separator`</h3>
+<input type="radio" name="group4" value="sla" checked>/</input><br/>
+<input type="radio" name="group4" value="kot">-</input><br/>
+<input type="radio" name="group4" value="poi">.</input><br/>
+</div>
+<div class="div1">
+<h3>`in timezone`</h3>
+<input type="radio" name="group5" value="tformat" checked>`Timezone`:</input>
+<select id="timezone">
+	<option>GMT-12</option>
+	<option>GMT-11</option>
+	<option>GMT-10</option>
+	<option>GMT-9</option>
+	<option>GMT-8</option>
+	<option>GMT-7</option>
+	<option>GMT-6</option>
+	<option>GMT-5</option>
+	<option>GMT-4</option>
+	<option>GMT-3</option>
+	<option>GMT-2</option>
+	<option>GMT-1</option>
+	<option selected="yes">GMT</option>
+	<option>GMT+1</option>
+	<option>GMT+2</option>
+	<option>GMT+3</option>
+	<option>GMT+4</option>
+	<option>GMT+5</option>
+	<option>GMT+6</option>
+	<option>GMT+7</option>
+	<option>GMT+8</option>
+	<option>GMT+9</option>
+	<option>GMT+10</option>
+	<option>GMT+11</option>
+	<option>GMT+12</option>
+</select>
+<br/>
+<input type="radio" name="group5" value="epo">`Epoch time`</input><br/>
+<h3>`with newline type`</h3>
+<input type="radio" name="group6" value="lin" checked>linux (\n)</input><br/>
+<input type="radio" name="group6" value="win">windows (\r\n)</input><br/>
+</div>
+<div class="div2">
+<br/>
+`The texts are exported in utf-8 encoding.`<br/>
+<input type="button" class="butt" style="font-size: 15pt" value="Export" onclick="send()"/>
+</div>
+</form>
+<div id="outer3"></div>
+</html>

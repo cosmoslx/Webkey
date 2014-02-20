@@ -1,0 +1,856 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Webkey for Android`</title>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <script type="text/javascript" src="js/jquery.js"></script>
+	  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	  <script type="text/javascript" src="js/webkey.js"></script>
+	  <script type="text/javascript" src="js/screenshot.js"></script>
+	  <script type="text/javascript" src="js/json2.js"></script>
+</head>
+<body style="height:100%">
+	<<MENU>>
+<script type="text/javascript">
+	var lastClick = 0;
+	var runningConns = 0;
+	var id = 0;
+	$(document).ready(function()
+	{
+	$(document).keydown(function(e){
+		if ($('#gamemode').attr('checked'))
+		{
+			gameKeyDown(e.keyCode || e.which);
+			return false;
+		}
+		});
+	$(document).keyup(function(e){
+		if ($('#gamemode').attr('checked'))
+		{
+			gameKeyUp(e.keyCode || e.which);
+			return false;
+		}
+		});
+	$(document).keypress(function(e){
+		if ($('#gamemode').attr('checked'))
+		{
+			gameKeyPress(e.charCode? e.charCode : e.keyCode);
+			return false;
+		}
+		});
+	$('#rightpart').resizable({ handles: 'w', minWidth: 250 }); 
+	<<ADMIN
+	if (getCookie("sms") == "true")
+		document.getElementById('sms').checked = true;
+	if (getCookie("sendtyping") == "false")
+		document.getElementById('sendtyping').checked = false;
+	if (getCookie("sendonenter") == "true")
+		document.getElementById('sendonenter').checked = true;
+	>>
+	if (getCookie("lowres") == "true")
+		document.getElementById('lowres').checked = true;
+	if (getCookie("halfsize") == "true")
+		document.getElementById('halfsize').checked = true;
+	if (getCookie("lowres") == "")
+		document.getElementById('lowres').checked = true;
+	if (getCookie("halfsize") == "")
+		document.getElementById('halfsize').checked = true;
+	if (getCookie("orient") == "true")
+		document.getElementById('orient').checked = true;
+	if (getCookie("flip") == "true")
+		document.getElementById('flip').checked = true;
+	if (getCookie("gamemode") == "true")
+	{
+		document.getElementById('gamemode').checked = true;
+		$('#text').attr('disabled',true);
+	}
+//	if (getCookie("old") == "true")
+//		document.getElementById('old').checked = true;
+	if (getCookie("first") == "true")
+		document.getElementById('first').checked = true;
+	if (getCookie("png") == "true")
+		document.getElementById('png').checked = true;
+	if (getCookie("auto") == "true")
+	{
+		document.getElementById('auto').checked = true;
+		setTimeout("refreshImage(false)",200);
+	}
+<<ADMIN	if (getCookie("kalive") == "true")
+	document.getElementById('kalive').checked = true;>>
+	if (getCookie("auto")=="")
+	{
+		document.getElementById('auto').checked = true;
+		setTimeout("refreshImage(false)",200);
+	}
+<<ADMIN	if (getCookie("kalive")=="")
+	document.getElementById('kalive').checked = true;>>
+//	if (getCookie("forcems")!="")
+//		document.getElementById('forcems').value = getCookie("forcems");
+//	else
+//		document.getElementById('forcems').value = getCookie("1000");
+//	if (getCookie("force")=="true")
+//	{
+//		document.getElementById('force').checked = true;
+//		forcerefresh();
+//	}
+	});
+
+
+	var preload = new Image();
+	preload.src = "down.png";
+	preload.src = "up.png";
+	preload.src = "left.png";
+	preload.src = "right.png";
+	preload.src = "center.png";
+
+   var img;
+   var recording = false;
+
+   var http_request = false;
+   var KMhttp_request = false;
+   var pressed = false;
+   var moveevent = "";
+   var wait = false;
+   var Mqueue = false;
+   var Kqueue = false;
+   var firsttype = true;
+   var refrid = 0;
+ //  var forcerefrid = 0;
+   var keyq = '';
+   var lasturl = '';
+   var lasturlcount = 0;
+   var ignore_backspace = 0;
+   function makeRequest(url, parameters) {
+      http_request = false;
+      if (window.XMLHttpRequest) { // Mozilla, Safari,...
+         http_request = new XMLHttpRequest();
+         if (http_request.overrideMimeType) {
+            http_request.overrideMimeType('text/xml');
+         }
+      } else if (window.ActiveXObject) { // IE
+         try {
+            http_request = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+            try {
+               http_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+         }
+      }
+      if (!http_request) {
+         alert('Cannot create XMLHTTP instance');
+         return false;
+      }
+      http_request.onreadystatechange = alertContents;
+      http_request.open('GET', url + parameters, true);
+      markYellow();
+	//document.getElementById('ind').className = 'yellow';
+      http_request.send(null);
+   }
+   function recordmakeRequest(url, parameters) {
+      recordhttp_request = false;
+      if (window.XMLHttpRequest) { // Mozilla, Safari,...
+         recordhttp_request = new XMLHttpRequest();
+         if (recordhttp_request.overrideMimeType) {
+            recordhttp_request.overrideMimeType('text/xml');
+         }
+      } else if (window.ActiveXObject) { // IE
+         try {
+            recordhttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+            try {
+               recordhttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+         }
+      }
+      if (!recordhttp_request) {
+         alert('Cannot create XMLHTTP instance');
+         return false;
+      }
+      recordhttp_request.open('GET', url + parameters, true);
+      recordhttp_request.send(null);
+   }
+   function lightmakeRequest(url, parameters) {
+      lighthttp_request = false;
+      if (window.XMLHttpRequest) { // Mozilla, Safari,...
+         lighthttp_request = new XMLHttpRequest();
+         if (lighthttp_request.overrideMimeType) {
+            lighthttp_request.overrideMimeType('text/xml');
+         }
+      } else if (window.ActiveXObject) { // IE
+         try {
+            lighthttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+            try {
+               lighthttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+         }
+      }
+      if (!lighthttp_request) {
+         alert('Cannot create XMLHTTP instance');
+         return false;
+      }
+      //lighthttp_request.onreadystatechange = alertContents;
+      lighthttp_request.open('GET', url + parameters, true);
+      lighthttp_request.send(null);
+   }
+   function KMmakeRequest(url, parameters,method) {
+      KMhttp_request = false;
+      if (window.XMLHttpRequest) { // Mozilla, Safari,...
+         KMhttp_request = new XMLHttpRequest();
+         if (KMhttp_request.overrideMimeType) {
+            KMhttp_request.overrideMimeType('text/xml');
+         }
+      } else if (window.ActiveXObject) { // IE
+         try {
+            KMhttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+            try {
+               KMhttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+         }
+      }
+      if (!KMhttp_request) {
+         alert('Cannot create XMLHTTP instance');
+         return false;
+      }
+      KMhttp_request.onreadystatechange = KMalertContents;
+      lasturl = url + parameters;
+      lasturlcount = 10;
+      if (method == 'POST')
+	      KMhttp_request.open('POST', url, true);
+      else
+	      KMhttp_request.open('GET', url + parameters, true);
+      markYellow();
+	//document.getElementById('ind').className = 'yellow';
+      KMhttp_request.send(parameters);
+   }
+   function alertContents() {
+	   try{
+	      if (http_request.responseText != '')
+		      show_in_dialog(http_request.responseText);
+	   } catch (e) {};
+      if (http_request.readyState == 4) {
+         if (http_request.status == 200) {
+		 markGreen();
+		//document.getElementById('ind').className = 'green';
+         }
+	 else
+	 {
+		 markRed();
+		 //document.getElementById('ind').className = 'red';
+	 }
+      }
+   }
+   function KMalertContents() {
+      if (KMhttp_request.readyState == 4) {
+         if (KMhttp_request.status == 200) {
+		 markGreen();
+		//document.getElementById('ind').className = 'green';
+
+		wait = false;
+		if (Kqueue)
+		{
+			keyLater();
+		}
+		else
+		{
+			if (Mqueue)
+			{
+				moveLater();
+			}
+		}
+         }
+	 else
+	 {
+		 markRed();
+		 //document.getElementById('ind').className = 'red';
+		 if (lasturlcount == 0)
+		 {
+			wait = false;
+			if (Kqueue)
+			{
+				keyLater();
+			}
+			else
+			{
+				if (Mqueue)
+				{
+					moveLater();
+				}
+			}
+		 }
+		 else
+		 {
+			 var l = lasturlcount-1;
+			 KMmakeRequest(lasturl,'','');
+			 lasturlcount = l;
+		 }
+	 }
+      }
+   }
+function mytimer()
+{
+<<ADMIN	if (document.getElementById('kalive').checked==true)
+	keepAlive();>>
+	setTimeout("mytimer()",14000);
+}
+setTimeout("mytimer()",1500);
+function sendkey(e) {
+	var evtobj=window.event? event : e; //distinguish between IE's explicit event object (window.event) and Firefox's implicit.
+	var unicode=evtobj.charCode? evtobj.charCode : -evtobj.keyCode;
+	if (unicode == 8)
+		unicode = -8;
+	if (unicode == -8 && ignore_backspace > 0)
+		ignore_backspace -= 1;
+	else
+	{
+		if (typeof evtobj.charCode === 'undefined')
+			submitkey(unicode,true);
+		else
+			submitkey(unicode,false);
+	}
+}
+function submitkey(unicode,old)
+{
+	if (unicode == -13)
+		unicode = 13;
+	if (document.getElementById('sendonenter').checked==true && unicode == 13)
+	{
+		setTimeout("resend();document.getElementById('text').value = ''",0);
+		return;
+	}
+	if (document.getElementById('sendtyping').checked==false)
+		return;
+	if (unicode == -10)
+		unicode = 10;
+//	if (unicode == 13)
+//		unicode = 10;
+	var t = 'injkey';
+//	if (document.getElementById('old').checked==true)
+//		t = 'oldkey';
+	if (old==true)
+		t = 'oldkey';
+	if (document.getElementById('orient').checked==true)
+		t = t+'h';
+	else
+		t = t+'v';
+	if (document.getElementById('sms').checked==true)
+		t = t+'s';
+	else
+		t = t+'n';
+	if (wait == false)
+	{
+		KMmakeRequest(t+'_'+unicode,'','');
+		wait = true;
+		keyq = t;
+	}
+	else
+	{
+		if (Kqueue == true)
+			keyq = keyq + '_' + unicode;		
+		else
+			keyq = t+'_'+unicode;
+		Kqueue = true;
+	}
+}
+function keyLater()
+{
+	KMmakeRequest(keyq,'','');
+	keyq = '';
+	Kqueue = false;
+	wait = true;
+}
+function keepAlive()
+{
+	makeRequest('button_28',''); //send CLEAR to keep alive
+}
+function keyDown(e)
+{
+	isBackspace(e);
+}
+function keyUp(e)
+{
+}
+function isBackspace(e)
+{
+	var evtobj=window.event? event : e //distinguish between IE's explicit event object (window.event) and Firefox's implicit.
+	if (evtobj.keyCode == 8)
+	{
+//		makeRequest('button_67','');//DEL
+		ignore_backspace += 1;
+		submitkey(-8,false);
+		return false;
+	}
+//	if (evtobj.keyCode == 13)
+//	{
+//		makeRequest('button_66','');//ENTER
+//	}
+}
+function intent(act,dat)
+{
+	var addr = 'intent';
+	var st='-a '+act+' -d '+dat;
+	var l=st.length;
+	var i = 0;
+	for (i = 0; i < l; i++)
+		addr += '_'+st.charCodeAt(i);
+	makeRequest(addr,'');
+}
+function runline(st)
+{
+	var addr = 'run';
+	var l=st.length;
+	var i = 0;
+	for (i = 0; i < l; i++)
+		addr += '_'+st.charCodeAt(i);
+	makeRequest(addr,'');
+}
+function cleartext()
+{
+	if (firsttype && document.getElementById('text').value == "`Click here to type on phone!`")
+	{
+		document.getElementById('text').value = "" ;
+	}
+	firsttype = false;
+}
+function call(number)
+{
+	var st = 'service call phone 2 s16 "'+number+'"';
+	var addr = 'run';
+	var l=st.length;
+	var i = 0;
+	for (i = 0; i < l; i++)
+		addr += '_'+st.charCodeAt(i);
+	makeRequest(addr,'');
+}
+function resend()
+{
+	var st = document.getElementById('text').value;
+	var l = st.length;
+	var i = 0;
+	var t = 'injkey';
+	if (document.getElementById('orient').checked==true)
+		t = t+'h';
+	else
+		t = t+'v';
+	if (document.getElementById('sms').checked==true)
+		t = t+'s';
+	else
+		t = t+'n';
+//	for (i = 0; i < l; i++)
+//		t = t + '_'+st.charCodeAt(i);
+//	makeRequest(t,'');
+	$.ajax({
+		url: t,
+		dataType: 'text',
+		data: st,
+		type: 'POST',
+		cache: false,
+		timeout: 10000
+	});
+}
+function checklowres()
+{
+	if (document.getElementById('halfsize').checked)
+		document.getElementById('lowres').checked = true;
+	refreshImage(false);
+}
+function arrows_move(event)
+{
+	var top = 0;
+	var left = 0;
+	var ob = document.images['arrows'];
+	do{
+		left += ob.offsetLeft;
+		top += ob.offsetTop;
+		ob = ob.offsetParent;
+	}while (ob);
+	var x = event.offsetX?(event.offsetX):event.pageX-left;
+	var y = event.offsetY?(event.offsetY):event.pageY-top;
+	if (x < 11 && x < y && x < 36-y)
+	{
+		document.images['arrows'].src = 'left.png';
+		return;
+	}
+	if (y < 11 && y < 36-x)
+	{
+		document.images['arrows'].src = 'up.png';
+		return;
+	}
+	if (x > 24  && y < x)
+	{
+		document.images['arrows'].src = 'right.png';
+		return;
+	}
+	if (y > 24)
+	{
+		document.images['arrows'].src = 'down.png';
+		return;
+	}
+	document.images['arrows'].src = 'center.png';
+}
+function arrow_left()
+{
+	if (document.getElementById('orient').checked==true)
+		makeRequest('button_19','');
+	else
+		makeRequest('button_21','');
+}
+function arrow_up()
+{
+	if (document.getElementById('orient').checked==true)
+		makeRequest('button_22','');
+	else
+		makeRequest('button_19','');
+}
+function arrow_down()
+{
+	if (document.getElementById('orient').checked==true)
+		makeRequest('button_21','');
+	else
+		makeRequest('button_20','');
+}
+function arrow_right()
+{
+	if (document.getElementById('orient').checked==true)
+		makeRequest('button_20','');
+	else
+		makeRequest('button_22','');
+}
+function arrows_down(event)
+{
+	var top = 0;
+	var left = 0;
+	var ob = document.images['arrows'];
+	do{
+		left += ob.offsetLeft;
+		top += ob.offsetTop;
+		ob = ob.offsetParent;
+	}while (ob);
+	var x = event.offsetX?(event.offsetX):event.pageX-left;
+	var y = event.offsetY?(event.offsetY):event.pageY-top;
+	if (x < 11 && x < y && x < 36-y)
+	{
+		if (document.getElementById('orient').checked==true)
+			makeRequest('button_19','');
+		else
+			makeRequest('button_21','');
+		return;
+	}
+	if (y < 11 && y < 36-x)
+	{
+		if (document.getElementById('orient').checked==true)
+			makeRequest('button_22','');
+		else
+			makeRequest('button_19','');
+		return;
+	}
+	if (x > 24  && y < x)
+	{
+		if (document.getElementById('orient').checked==true)
+			makeRequest('button_20','');
+		else
+			makeRequest('button_22','');
+		return;
+	}
+	if (y > 24)
+	{
+		if (document.getElementById('orient').checked==true)
+			makeRequest('button_21','');
+		else
+			makeRequest('button_20','');
+		return;
+	}
+	makeRequest('button_23','');
+}
+function arrows_out()
+{
+	document.images['arrows'].src = 'arrows.png';
+}
+
+//document.getElementById('lowres').checked = getCookie("lowres");
+function updatecookies()
+{
+	setCookie("lowres",document.getElementById('lowres').checked?'true':'false',30);
+	setCookie("halfsize",document.getElementById('halfsize').checked?'true':'false',30);
+	setCookie("orient",document.getElementById('orient').checked?'true':'false',30);
+	setCookie("flip",document.getElementById('flip').checked?'true':'false',30);
+	<<ADMIN	setCookie("sms",document.getElementById('sms').checked?'true':'false',30); >>
+	<<ADMIN	setCookie("sendonenter",document.getElementById('sendonenter').checked?'true':'false',30); >>
+	<<ADMIN	setCookie("sendtyping",document.getElementById('sendtyping').checked?'true':'false',30); >>
+//	setCookie("old",document.getElementById('old').checked?'true':'false',30);
+	setCookie("auto",document.getElementById('auto').checked?'true':'false',30);
+	<<ADMIN setCookie("kalive",document.getElementById('kalive').checked?'true':'false',30); >>
+	setCookie("png",document.getElementById('png').checked?'true':'false',30);
+	setCookie("first",document.getElementById('first').checked?'true':'false',30);
+	setCookie("gamemode",document.getElementById('gamemode').checked?'true':'false',30);
+//	setCookie("force",document.getElementById('force').checked?'true':'false',30);
+//	setCookie("forcems",document.getElementById('forcems').value,30);
+}
+//function forcereload(id)
+//{
+//	if (id == forcerefrid && document.getElementById('force').checked == true)
+//	{
+//		refreshImage();
+//		setTimeout("forcereload("+id+")",document.getElementById('forcems').value);
+//	}
+//}
+//function forcerefresh()
+//{
+//	if (document.getElementById('force').checked && document.getElementById('forcems').value < 400)
+//		document.getElementById('forcems').value = 400;
+//	forcerefrid++;
+//	if (document.getElementById('force').checked)
+//		setTimeout("forcereload("+forcerefrid+")",document.getElementById('forcems').value);
+//}
+function autorefresh()
+{
+	if (document.getElementById('auto').checked==true)
+		refreshImage(false)
+}
+function recordImages()
+{
+	if (recording == false)
+	{
+		recording = true;
+		var t = document.getElementById('png').checked?'png':'jpg';
+		var or = document.getElementById('orient').checked?'h':'v';
+		var lowr = document.getElementById('lowres').checked?'l':'n';
+		var f = document.getElementById('first').checked?'f':'n';
+		var fli = document.getElementById('flip').checked?'f':'n';
+		recordmakeRequest('startrecord'+t+'?'+or+lowr+f+fli,'');
+		document.getElementById('recbut').value="`Stop recording`";
+	}
+	else
+	{
+		recording = false;
+		document.getElementById('recbut').value="Record images";
+		window.location = 'finishrecord';
+	}
+	refreshImage(false);
+}
+function adjust(i)
+{
+	lightmakeRequest("adjust_light_"+i,"");
+}	
+function saveTime()
+{
+	var date = new Date();
+	lastClick = date.getTime();
+}
+function requestWithTime(request)
+{
+	var date = new Date();
+	var t = date.getTime()-lastClick;
+	if (t > 4000)
+		t = 4000;
+	makeRequest(request+'_'+t,'');
+}
+<<GAMECODE>>
+</script>
+
+
+<div class="main" style="height:100%;width:100%">
+<!-- <div class="leftpart" style="float:left"> -->
+<table border="0" style="width:100%;height:100%;table-layout:fixed">
+	<col width="100%">
+	<col width="260">
+<tr>
+<td valign="top">
+	<div id="imgholder">
+		<div class="aboveimg"> <<MODELNAME>> </div>
+		<img class="kep" src="" id="screenshot" align="left" ondragstart="return false">
+<<ADMIN
+		<div class="belowimg">
+			<!--			<div style="float:left;padding:5px"><img src="arrows.png" id="arrows" onmousedown="arrows_down(event)" onmousemove="arrows_move(event)" onmouseout="arrows_out()" ondragstart="return false" style="vertical-align:middle;padding-right:10px"> </div> -->
+			<div style="width: 100%; margin:auto;">
+				<span class="phonebutton" id="button-call" onmousedown="saveTime()" onmouseup="requestWithTime('button_5')"></span>
+				<span  class="phonebutton" id="button-home" onmousedown="saveTime()" onmouseup="requestWithTime('button_3')"></span>
+				<span  class="phonebutton" id="button-back" onmousedown="saveTime()" onmouseup="requestWithTime('button_4')"></span>
+				<div style="height:36px; width:36px; position: relative; display: inline-block">
+					<span class="littlebutton ui-icon ui-icon-arrowthick-1-n" style="position: absolute; left:12px;" onclick="arrow_up()"></span>
+					<span class="littlebutton ui-icon ui-icon-arrowthick-1-w" style="position: absolute; top:12px;" onclick="arrow_left()"></span>
+					<span class="littlebutton ui-icon ui-icon-arrowthick-1-s" style="position: absolute; left:12px; top:24px" onclick="arrow_down()"></span>
+					<span class="littlebutton ui-icon ui-icon-arrowthick-1-e" style="position: absolute; left:24px; top:12px" onclick="arrow_right()"></span>
+					<span class="littlebutton ui-icon ui-icon-bullet"         style="position: absolute; left:12px; top:12px" onclick="makeRequest('button_23','')"></span>
+				</div>
+				<span  class="phonebutton" id="button-menu" onmousedown="saveTime()" onmouseup="requestWithTime('button_82')"></span>
+				<span  class="phonebutton" id="button-search" onmousedown="saveTime()" onmouseup="requestWithTime('button_84')"></span>
+				<span  class="phonebutton" id="button-end" onmousedown="saveTime()" onmouseup="requestWithTime('button_6')"></span>
+			</div>
+		</div>
+>>
+	</div> <!-- end of imgholder -->
+	<div style="overflow: auto;height: 100%;"> <!-- textarea -->
+		<div id="leftside"></div>
+		<textarea id="text" value="`Click here to type on phone!`" cols="50" rows="10" style="float:left; margin-top:10px: clear: right;"
+			onkeypress="if (!$('#gamemode').attr('checked')) sendkey(event);" 
+			onkeydown="if (!$('#gamemode').attr('checked')) keyDown(event);"
+			onkeyup="if (!$('#gamemode').attr('checked')) keyUp(event);" onfocus="cleartext()">`Click here to type on phone!`</textarea>
+		<div style="clear:left"></div>
+		<div id="gameres" style="float:left"></div>
+		<div style="clear:left"></div>
+	</div>
+	<div id="res">`results`</div>
+<!-- </div>  leftpart -->
+<!-- <div id="rightpart" style="float:right;overflow:auto;width:250px"> -->
+</td>
+<td valign="top">
+	<div id="rightmenu">
+		<div class="right-container">
+			<div class="right-header"><span>`Screen properties`</span></div>
+			<div class="toggleable">
+				<div class="widget" id="lowreswidget"><input type="checkbox" id="lowres" onclick="updatecookies()" >`Low resolution`</input></div>
+				<div class="widget" id="halfsizewidget"><input type="checkbox" id="halfsize" onclick="checklowres();updatecookies()">`Half size`</input></div>
+				<div class="widget" id="orientwidget"><input type="checkbox" id="orient" onclick="refreshImage(false);updatecookies()">`Horizontal`</input></div>
+				<div class="widget" id="flipwidget"><input type="checkbox" id="flip" onclick="refreshImage(false);updatecookies()">`Flip`</input></div>
+				<div class="widget" id="pngwidget"><input type="checkbox" id="png" onclick="refreshImage(false);updatecookies()">`PNG (slower than JPEG)`</input></div>
+				<div class="widget" id="autowidget"><input type="checkbox" id="auto" onclick="updatecookies();autorefresh()">`Auto refresh`</input></div>
+				<<ADMIN<div class="widget" id="kalivewidget"><input type="checkbox" id="kalive" onclick="keepAlive();updatecookies()">`Keep alive`</input></div> >>
+				<div class="widget" id="firstwidget"><input type="checkbox" id="first" onclick="updatecookies()">`Use only first framebuffer`</input></div>
+				<div class="widget" id="savebutwidget">
+					<input type="button" class="butt" value="`Refresh image`" onclick="refreshImage(false)">
+					<input id="savebut" type="button" class="butt" value="`Save image`" onclick="saveImage(false)">
+				</div>
+				<div class="widget" id="recbutwidget">
+					<input id="recbut" type="button" class="butt" value="`Record images`" onclick="recordImages()">
+				</div>
+			</div>
+		</div>
+<<ADMIN
+		<div class="right-container">
+			<div class="right-header"><span>`Typing properties`</span></div>
+			<div class="toggleable">
+				<div class="widget" id="sendtypingwidget">
+					<input type="checkbox" id="sendtyping" checked="checked" onclick="document.getElementById('sendonenter').checked = false;updatecookies()">`Send while typing`</input>
+				</div>
+				<div class="widget" id="sendonenterwidget">
+					<input type="checkbox" id="sendonenter" onclick="document.getElementById('sendtyping').checked = false;updatecookies()">`Send on Enter`</input>
+				</div>
+				<div class="widget" id="smswidget">
+					<input type="checkbox" id="sms" onclick="updatecookies()">`SMS mode`</input><br>
+				</div>
+				<div class="widget" id="gamemodewidget">
+					<input type="checkbox" id="gamemode" onclick="updatecookies();if ($('#gamemode').attr('checked')) $('#text').attr('disabled',true); else $('#text').attr('disabled',false);">`Game mode`</input><br>
+				</div>
+				<div class="widget" id="gamemodebuttonswidget">
+					<input id="gamemodebutton" type="button" class="butt" value="`Configure game mode`" onclick="window.location = 'edit_gamecode.html'">
+				</div>
+				<div class="widget" id="resendbuttonwidget">
+					<input id="resendbutton" type="button" class="butt" value="`Send text`" onclick="resend()"><br>
+				</div>
+				<div class="widget" id="configbuttonswidget">
+					<input id="configbuttons" type="button" class="butt" value="`Config buttons`" onclick="window.location = 'config_buttons.html'">
+				</div>
+				<div class="widget" id="configkeyswidget">
+					<input id="configkeys" type="button" class="butt" value="`Config keys`" onclick="window.location = 'config_keys.html'"><br>
+				</div>
+			</div>
+		</div>
+		<div class="right-container">
+			<div class="right-header"><span>`Open, call, run`</span></div>
+			<div class="toggleable">
+				<div class="widget" id="uriwidget">
+					<input class="inputtext" type="text" id="uri" value="http://" rows="1" onkeydown="if (event.keyCode==13) {document.getElementById('urisend').click(); return false;}">
+					<input id="urisend" type="button" class="butt" value="`Open in browser`" onclick=intent('android.intent.action.VIEW',document.getElementById('uri').value)>
+				</div>
+				<div class="widget" id="dialwidget">
+					<input class="inputtext" type="text" id="dial" value="" rows="1" onkeydown="if (event.keyCode==13) {document.getElementById('callsend').click(); return false;}">
+					<input id="callsend" type="button" class="butt" value="`Call`" onclick="call(document.getElementById('dial').value)">
+					<input id="dialsend" type="button" class="butt" value="`Dial`" onclick=intent('android.intent.action.DIAL','tel:'+document.getElementById('dial').value)>
+				</div>
+				<div class="widget" id="runwidget">
+					<input class="inputtext" type="text" id="run" value="ls -l -a" rows="1" onkeydown="if (event.keyCode==13) {document.getElementById('runsend').click(); return false;}">
+					<input id="runsend" type="button" class="butt" value="`Run`" onclick="runline(document.getElementById('run').value)">
+				</div>
+			</div>
+		</div>
+>>
+		<div class="right-container">
+			<div class="right-header" id="phoneinfo"><span class="strong">`Phone info`</span></div>
+			<div class="toggleable">
+				<div class="widget" id="clipboardwidget">`Clipboard`: <span id="clipboard" class="strong"></span></div>
+				<div class="widget auto-widget" id="getScreenTimeout">`Screen timeout`: </div>
+				<div class="widget auto-widget" id="getDeviceId">`IMEI/MEID`: </div>
+				<div class="widget auto-widget" id="getLine1Number">`Phone number`: </div>
+				<div class="widget auto-widget" id="getNetworkOperatorName">`Network operator name`: </div>
+				<div class="widget auto-widget" id="getNetworkType">`Network type`: </div>
+				<div class="widget auto-widget" id="getSimOperatorName">`SIM operator name`: </div>
+				<div class="widget auto-widget" id="getSimSerialNumber">`SIM serial number`: </div>
+				<div class="widget auto-widget" id="getSubscriberId">`Subscriber ID`: </div>
+			</div>
+		</div>
+		<div class="right-container">
+			<div class="right-header" id="phoneutils"><span>`Phone utils`</span></div>
+			<div class="toggleable">
+				<div id="light" class="widget"> </div>
+				<div class="widget" id="toastwidget">
+					<input class="inputtext" type="text" id="toast" value="" rows="1" onkeydown="if (event.keyCode==13) {$('#toastsend').click(); return false;}">
+					<input id="toastsend" type="button" class="butt" value="`Send toast`" onclick="sendtoast()">
+					<input id="vibratebutton" type="button" class="butt" value="`Vibrate`" onclick="sl4a('vibrate',[300])">
+				</div>
+			</div>
+		</div>
+		<div class="right-container" id="runapplication">
+			<div class="right-header"><span>`Run application`</span></div>
+			<div class="toggleable">
+			</div>
+		</div>
+		<div class="right-container" id="closeapplication">
+			<div class="right-header"><span>`Close application`</span></div>
+			<div class="toggleable">
+			</div>
+		</div>
+		<div class="right-container" id="killapplication">
+			<div class="right-header"><span>`Kill application`</span></div>
+			<div class="toggleable">
+			</div>
+		</div>
+		<div class="right-container" id="runapplication">
+			<div class="right-header"><span>`Volume`</span></div>
+			<div class="toggleable">
+				<div class="widget" id="volumeringerwidget">
+					`Ringer`: 
+					<div id="volumeringer"></div>
+				</div>
+				<div class="widget" id="volumemediawidget">
+					`Media`: 
+					<div id="volumemedia"></div>
+				</div>
+			</div>
+		</div>
+		<div class="right-container" id="wifi">
+			<div class="right-header"><span>`Wifi`</span></div>
+			<div class="toggleable">
+			</div>
+		</div>
+		<div class="right-container" id="buttons">
+			<div class="right-header"><span>`Buttons`</span></div>
+			<div class="toggleable">
+				<<BUTTONS>>
+			</div>
+		</div>
+		<div class="right-container" id="development">
+			<div class="right-header"><span>`Development`</span></div>
+			<div class="toggleable">
+				<div class="widget" id="sl4awidget">
+					<input class="inputtext" type="text" id="sl4acommand" value="getLastKnownLocation()" rows="1" onkeydown="if (event.keyCode==13) {document.getElementById('sl4arun').click(); return false;}">
+					<input id="sl4arun" type="button" class="butt" value="`Run SL4A request`" onclick="customSl4aCall()"> <a href="http://code.google.com/p/android-scripting/wiki/ApiReference" target="_blank">API ref</a>
+				</div>
+				<div class="widget" id="translate">
+					<a href="http://webkey.cc/html/language/" target="_blank">Translate Webkey</a>
+				</div>
+			</div>
+		</div>
+	</div> <!-- rightmenu -->
+</td>
+</tr>
+</table>
+
+
+</div>
+</body>
+</html>

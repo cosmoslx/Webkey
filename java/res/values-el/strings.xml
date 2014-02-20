@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="warning">Προσοχή</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">Αποθήκευση</string>
+    <string name="btn_cancel">Ακύρωση</string>
+    
+    <string name="main_start_btn">Εκκίνηση</string>
+    <string name="main_stop_btn">Τερματισμός</string>
+    <string name="main_iptext">Η διεύθυνση δικτύου δεν υπάρχει</string>
+    <string name="main_exitgui_btn">Κλείσιμο</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">Ρυθμίσεις</string>
+    <string name="main_ddusing_cbox">Συγχρονισμός IP με DynDNS</string>
+    <string name="main_autostart">Αυτόματη εκκίνηση</string>
+    <string name="main_icon">Εικονίδιο στην μπάρα ειδοποιήσεων</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">Να επιτρέπεται εγγραφή νέου χρήστη</string>
+    
+    <string name="ddsettings_title">Ρυθμίσεις DynDNS</string>
+    <string name="ddsettings_DDusername">DynDNS Όνομα</string>
+    <string name="ddsettings_DDpassword">DynDNS Κωδικός</string>
+    <string name="ddsettings_DDdomain">DynDNS domain</string>
+    
+    <string name="main_ddbsettings_btn">Ρυθμίσεις DynDNS</string>    
+    <string name="main_notvaliddd">Μη έγκυρες ρυθμίσεις DynDNS</string>
+    <string name="main_upgrading">Αρχικοποίηση</string>
+    <string name="main_portWindowTitle">Επιλέξτε θύρα</string>
+    <string name="main_server">webkey.cc</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">Διατηρήστε σύνδεση με webkey.cc</string>
+    <string name="main_usernametext_btn">Nickname στον  server</string>
+    <string name="main_usernametitle">Nickname στον server</string>
+    <string name="main_usernamemessage">Παρακαλώ διαλέξτε nickname για το webkey.cc</string>
+    <string name="main_emptyusername">Παρακαλώ διαλέξτε nickname</string>
+    <string name="main_alphabeticallowd">Επιτρέπονται μόνο αλφαριθμιτικοί χαρακτήρες</string>
+    <string name="main_unableregisterserver">Αδύνατη η εγγραφή του χρήστη</string>    
+    <string name="main_serverreason">Εαν ο πάροχος κινητής σας μπλοκάρει την σύνδεση μπορέιτε να συνδεθείτε απο </string>
+    <string name="main_phoneavailableat">Μπορείτε να συνδεθείτε στην διεύθυνση :\n</string> 
+	<string name="main_changeport_btn">Αλλαγή θυρών </string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">Βοήθεια</string>
+	<string name="main_help_txt">Αυτό το πρόγραμμα αποτελέίται απο 2 μέρη : Απο εδώ ελέγχει την σύνδεση με τον server . Εάν πατήσετε \"Εκκίνηση\" θα δείτε  μια διεύθυνση IP (εαν όχι χρησιμοποιείστε άλλη θύρα και βεβαιωθείτε οτι έχετε δικαιώματα SuperUser).\n\nΕαν μπορείτε να συνδεθείτε με επιτυχία σε αυτήν την IP , τότε χρησιμοποιώντας την υπηρεσία DynDNS (http://dyndns.org) μπορείτε να έχετε πρόσβαση στην συσκευή απο μια διεύθυνση του τύπου http://myphone.homeip.net ή αλλιώς http://webkey.cc/yourname χρησιμοποιώντας τον δικό μας server (δεν είναι ανάγκη έτσι να γνωρίζεται την IP σας κάθε φορά).\n\nΕαν δεν μπορείτε να συδεθείτε έτσι (ο πάροχος κινητής μπλοκάρει την θύρα επικοινωνίας ή είσαστε πίσω απο Firewall , NAT ή proxy) τότε χρησιμοποιείστε τον server μας (webkey.cc) για ανακτεύθυνση της σύνδεσης. Με αυτόν τον τρόπο θα μπορείτε να συνδεέστε πάντα.\n\n Μπορείτε να προσθαφαιρείτε χρήστες είτε μεσα απο τον πλοηγό (στο PC σας) είτε απο την συσκευή σας(Ρυθμίσεις χρηστών).\n\nΓια περισσότερες πληροφορίες ,στοιχεία  επικοινώνια επισκεφθείτε μας στο http://webkey.cc\n\nΜερικοί πάροχοι κινητής μπλοκάρουν την θύρα 80 , αλλά μπορεί να έχετε πρόσβαση απο την θύρα 8080.\n\n</string>
+	<string name="main_servicenotrunning">Η υπηρεσία δεν είναι ενεργή</string>
+	<string name="main_unameregistered">Επιτυχής εγγραφή στο webkey.cc.</string>
+	<string name="main_upgradingwait">Αρχικοποίηση ρυθμίσεων , περιμένετε...</string>
+	<string name="main_invalidport">Μη έγκυρη θύρα</string>
+	<string name="main_netnotexist">Δεν υπάρχει δίκτυο</string>
+	<string name="main_help_btn">Βοήθεια</string>
+	<string name="main_upgradfailed">Η αρχικοποίηση ρυθμίσεων απέτυχε .</string>	
+	<string name="main_upgradfailed_restart">Η αρχικοποίηση ρυθμίσεων απέτυχε .Παρακαλώ κάνετε μια επανεκκίνηση στην συσκευή σας και ξαναπροσπαθήστε.</string>
+	<string name="main_donate_btn">Δωρεά (σας πάει στο webkey.cc)</string>
+	<string name="main_log_btn">Ιστορικό</string>
+	<string name="main_control">Έλεγχος</string>
+	<string name="main_usersettings_btn">Ρυθμίσεις χρήστη</string>
+	<string name="main_progress">Επεγεργασία...</string>
+	<string name="main_port">Θύρα HTTP     (default: 80)</string>
+	<string name="main_sslport">Θύρα HTTPS (SSL)     (default: 443)</string>
+	
+	<string name="logview_nologmsg">Δεν υπάρχει ιστορικό</string>
+	<string name="logview_toobigfile">Πολύ μεγάλο αρχείο ιστορικού</string>
+	
+	<string name="chat_send_btn">Αποστολή</string>
+	<string name="chat_menu_clear">Καθαρισμός</string>
+	<string name="chatui_readby">Διαβάζεται απο :</string>
+	<string name="chat_servicenotrunning">Η υπηρεσία δεν είναι ενεργή</string>
+	
+	<string name="manage_newuser_ticker">Ένας νέος χρήστης ζητάει πρόσβαση στην συσκευή</string>
+	<string name="manage_newuser_ongoing">Ένας νέος χρήστης ζητάει πρόσβαση στην συσκευή</string>
+	<string name="manage_username_text">Χρήστης: </string>
+	<string name="manage_password_text">Κωδικός: </string>
+	<string name="manage_userwindow_title">Δημιουργία νέου χρήστη</string>
+	<string name="manage_userdelete">Είστε σίγουροι για την διαγραφή του χρήστη;</string>
+	<string name="manage_user_edit_perm">Επεξεργασία πρόσβασης</string>
+	<string name="manage_user_changepassword">Αλλαγή κωδικού</string>
+	<string name="manage_user_deleteuser">Διαγραφή χρήστη</string>
+	<string name="manage_user_setpassword">Δώστε νέο κωδικό</string>
+	<string name="permission_help_all">Πρόσβαση σε όλα. Έπειτα μπορείτε να εκτελέσετε όλες τις λειτουργίες απομακρυσμένης πρόσβασης</string>
+	<string name="permission_help_sceenshot">Προβολή και χειρισμός οθόνης συσκευής.</string>
+	<string name="permission_help_gps">Δείτε το στίγμα GPS και δικτύου της κινητής. Το GPS δουλεύει μόνο εάν είναι ενεργοποιημένο από την συσκευή . Το στίγμα δικτύου εξαρτάται από τον πάροχο .</string>
+	<string name="permission_help_chat">Ανάγνωση και γράψιμο μηνυμάτων. Κάθε μήνυμα είναι κοινό για όλους τους χρήστες και οποιοσδήποτε μπορεί να τα διαγράψει.</string>
+	<string name="permission_help_public">Εάν αυτή η πρόσβαση είναι ενεργή και η “Πρόσβαση όλων των  αρχείων” δεν είναι τότε θα έχετε πρόσβαση μόνο σε  /sdcard/public .Παρακαλώ να φτιάξετε αυτόν τον φάκελο χειροκίνητα.</string>
+	<string name="permission_help_sms_contact">Πρόσβαση σε προσωπικά αρχεία όπως επαφές , μηνύματα και αρχείο κλήσεων .</string>
+	<string name="permission_help_files">Πρόσβαση σε όλα τα αρχεία του τηλεφώνου. Έχετε υπ’ όψιν σας ότι το πρόγραμμα τα αποθηκεύει όλα σε μη-κωδικοποιημένα αρχεία!</string>
+	<string name="permission_help_sdcard">Πρόσβαση και αλλαγή περιεχομένων κάρτας SD .</string>
+
+
+	<string name="permission_checkbox_all">Παντού</string>
+	<string name="permission_checkbox_screenshot">Οθόνη</string>
+	<string name="permission_checkbox_location">Τοποθεσία</string>
+	<string name="permission_checkbox_chat">Chat</string>
+	<string name="permission_checkbox_public">Ανάγνωση /sdcard/public/</string>
+	<string name="permission_checkbox_contact">Επαφές , SMS , κλήσεις</string>
+	<string name="permission_checkbox_files">Ανάγνωση αρχείων</string>
+	<string name="permission_checkbox_sdcard">Κάρτα SD</string>
+
+
+
+	<string name="main_rootfailed">The phone is not rooted or have not "su" program.</string>
+    <string name="remotescreen_text_username">Username for remote phone:</string>
+    <string name="remotescreen_hinttext_username">username</string>        
+    <string name="remotescreen_text_password">Password for remote phone:</string>        
+    <string name="remotescreen_hinttext_password">password</string>
+	<string name="remotescreen_text_address">Set the remote phone\'s IP address or nickname at Webkey service</string>
+	<string name="remotescreen_hinttext_phone_address">Phone\'s address</string>
+	<string name="remotescreen_text_glnotsupported">This feature is not available on this phone</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">Use webkey.cc gateway</string>
+	<string name="remotescreen_radiobutton_proxy_no">Direct connect</string>
+	<string name="remotescreen_text_button_connect">Connect</string>
+    <string name="remotescreen_menu_quality">Quality</string>
+    <string name="remotescreen_menu_disconnect">Disconnect</string>
+    <string name="remotescreen_menu_sendbackkey">Send Back key</string>
+    <string name="remotescreen_menu_sendmenukey">Send Menu key</string>
+    <string name="remotescreen_qualitysetttins_lowres">Low resolution</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Horizontal</string>
+    <string name="remotescreen_qualitysetttins_flip">Flip</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (slower then jpeg)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Use only first frame buffer</string>
+    <string name="remotescreen_exception_401">Wrong username or password</string>
+    <string name="remotescreen_exception_404">The phone is unreachable</string>
+    <string name="remotescreen_exception_unknownhost">Network problem</string>
+    <string name="remotescreen_exception_timedout">The phone is not responding</string>
+</resources>

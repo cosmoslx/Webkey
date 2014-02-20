@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory android:title="Screen quality settings">
+        
+         <CheckBoxPreference
+                        android:title="@string/remotescreen_qualitysetttins_formatum"
+                        android:defaultValue="true"
+                        android:summary="This preference can be true or false"
+                        android:key="rscformatum" />
+		 <CheckBoxPreference
+                        android:title="@string/remotescreen_qualitysetttins_lowres"
+                        android:defaultValue="true"
+                        android:summary="This preference can be true or false"
+                        android:key="rsclowres" />
+<!--                        
+         <CheckBoxPreference
+                        android:title="@string/remotescreen_qualitysetttins_halfsize"
+                        android:defaultValue="true"
+                        android:summary="This preference can be true or false"
+                        android:key="rschalfsize" />
+-->
+         <CheckBoxPreference
+                        android:title="@string/remotescreen_qualitysetttins_horizontal"
+                        android:defaultValue="false"
+                        android:summary="This preference can be true or false"
+                        android:key="rscorient" />            
+         <CheckBoxPreference
+                        android:title="@string/remotescreen_qualitysetttins_flip"
+                        android:defaultValue="false"
+                        android:summary="This preference can be true or false"
+                        android:key="rscflip" />
+		 <CheckBoxPreference
+                        android:title="@string/remotescreen_qualitysetttins_framebuffer"
+                        android:defaultValue="true"
+                        android:summary="This preference can be true or false"
+                        android:key="rscframebuffer" />
+        </PreferenceCategory>        
+</PreferenceScreen>

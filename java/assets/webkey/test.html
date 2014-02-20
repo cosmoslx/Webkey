@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo</title>
+	</head>
+	<style>
+		a.test { font-weight: bold; }
+	</style>
+	<body>
+		<a href="http://jquery.com/">jQuery</a>
+		<div id="rating"></div>
+		<script src="jquery-1.6.2.js"></script>
+		<script>
+			$(document).ready(function() {
+				// generate markup
+				$("#rating").append("Please rate: ");
+
+				for ( var i = 1; i <= 5; i++ )
+				$("#rating").append("<a href='#'>" + i + "</a> ");
+
+				// add markup to container and apply click handlers to anchors
+				$("#rating a").click(function(e){
+					// stop normal link click
+					e.preventDefault();
+
+					// send request
+					$.post("rate.php", {rating: $(this).html()}, function(xml) {
+						// format and output result
+						$("#rating").html(
+						"Thanks for rating, current average: " +
+						$("average", xml).text() +
+						", number of votes: " +
+						$("count", xml).text()
+						);
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

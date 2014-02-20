@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Call list` - `Webkey for Android`</title>
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+</head>
+<body>
+	<<MENU>>
+
+<style type="text/css">
+	#outer3 {
+		background:#ffffff;
+		padding-top:10px;
+		padding-left:10px;
+		padding-bottom:10px;
+		border-bottom-width:2px;
+		border-bottom-style:solid;
+		border-color:black;
+	}
+	#outer4 {
+		padding-top:10px;
+		padding-left:10px;
+	}
+	#outer5 {
+		padding-top:10px;
+		padding-left:10px;
+		position: relative;
+		height: 470px;
+	}
+	#outer6 {
+		padding-top:10px;
+		padding-left:10px;
+	}
+	
+	#footer {clear:both; background:#455c5a;}
+	#menu {clear:both; background:#455c5a;}
+	.butt {font-size: 10pt;background-color:#404040;color: #FFFFFF;}
+	#xy { color: white; 
+		background-color: black;
+		text-decoration: none;
+		border: 2px solid white; 
+		}
+
+	a {color: black;}
+	#dev {	
+		border-top-style:solid;
+		border-top-width:2px;
+		border-color:white;
+		
+		padding-left:10px;
+		background-color:#f6d19c;
+	}
+	
+	#smsLine{
+		padding-bottom:5px;
+	}
+	#smsDate{
+		color:gray;
+		font-size:11px;
+	}
+	td, th {
+		    border: 1px solid black;
+	    }
+
+	    table {
+		        border-collapse: collapse;
+			padding: 1px;
+		}
+
+</style>
+
+<script type="text/javascript">
+
+		var xmlCalls = null;
+		var contactsArray = null;
+	function zerofill(st){
+		if(st<10)
+			return "0"+st;
+		else
+			return st;
+	}
+		function makeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	http_request = new XMLHttpRequest();
+				if (http_request.overrideMimeType) {
+		            http_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		http_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	http_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!http_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			http_request.onreadystatechange = alertContents;
+			http_request.open('GET', url, true);
+			http_request.send(null);
+   		}
+			function alertContents() 
+			{
+			   if (http_request.readyState == 4 && http_request.status == 200) 
+			   {
+				   xmlCalls = http_request.responseXML;
+				showList();
+			 }
+		      }
+
+		function loadxml(){
+			makeRequest("calls.xml");
+			//showList();
+		};
+		function compdur(a,b)
+		{
+			try{
+				return (contactsArray[b][0]+contactsArray[b][1] - contactsArray[a][0]-contactsArray[a][1]);
+			}
+			catch(e){return 1;}
+		}
+
+		function drawcal()
+		{
+			var w = document.getElementById('sel').selectedIndex;
+			var selected_text = document.getElementById('sel').options[w].text;
+			var m = selected_text.substr(0,2);
+			var year = selected_text.substr(3,4);
+			var calls=xmlCalls.documentElement.getElementsByTagName("call");
+			var text = "";
+			var d = new Date(year,m,1,0,0,0,0);
+//			for (var i=0; i<7; i++)
+//			{
+//				var x = i*140;
+//				var y = 0;
+//				text += "<div style='width=140px;min-width:140px;height:30px;position: absolute;top:"+y+"px;left:"+x+"px'>";
+//				if (i == 0)
+//					text += "Sunday</div>";
+//				else if (i == 1)
+//					text += "Monday</div>";
+//				else if (i == 2)
+//					text += "Tuesday</div>";
+//				else if (i == 3)
+//					text += "Wednesday</div>";
+//				else if (i == 4)
+//					text += "Thursday</div>";
+//				else if (i == 5)
+//					text += "Friday</div>";
+//				else if (i == 6)
+//					text += "Saturday</div>";
+//			}
+//			var r = 1;
+			var maxim = 0;
+			for(var i=calls.length-1; i>=0; i--)
+			{
+				var dat;
+				try{
+					dat = calls[i].getElementsByTagName("date")[0].firstChild.nodeValue;
+				}catch(e){continue;}
+				var myDate = new Date(parseInt(dat));
+				myDate.toLocaleString();
+				if (myDate.getFullYear() == year && myDate.getMonth()+1 == m)
+				{
+					var p = parseInt(myDate.getDate());
+					if (p > maxim)
+						maxim = p;
+				}
+			}
+			for (var i=1; i<maxim+1; i++)
+			{
+//				var x = d.getDay()*140;
+//				var x = d.getDay()*900;
+				var x = 0;
+				var y = (i-1)*15;
+//				text += "<div style='width:140px;height:30px;border:1px solid black;position: absolute;top:"+y+"px;left:"+x+"px'>"+i+":</div>";
+				text += "<div style='width:900px;height:14px;border:1px solid gray;position: absolute;top:"+y+"px;left:"+x+"px;font-size:11px;'>";
+				try{
+					d.setDate(i);
+				}catch(e){break;}
+				if (d.getDay() == '0')
+					text += "<span style=\"color:#900000;\">"+i+"</span>:</div>";
+				else
+					text += i+":</div>";
+//				if (d.getDay() == '6')
+			}
+			var minsize = 880.0/24/60;
+			var offset = 20;
+			for(var i=calls.length-1; i>=0; i--)
+			{
+				var id, num, dat, dur, type, ne, name, numbertype;
+				try{
+					id = calls[i].getElementsByTagName("id")[0].firstChild.nodeValue;
+					num = calls[i].getElementsByTagName("number")[0].firstChild.nodeValue;
+					dat = calls[i].getElementsByTagName("date")[0].firstChild.nodeValue;
+					dur = parseInt(calls[i].getElementsByTagName("duration")[0].firstChild.nodeValue);
+					type = calls[i].getElementsByTagName("type")[0].firstChild.nodeValue;
+					ne = calls[i].getElementsByTagName("new")[0].firstChild.nodeValue;
+					if (calls[i].getElementsByTagName("name")[0].firstChild)
+						name = calls[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+					else
+						name = num;
+					if (name == "-1")
+						name = "`unknown`";
+					numbertype = calls[i].getElementsByTagName("numbertype")[0].firstChild.nodeValue;
+				}catch(e){continue;}
+				var myDate = new Date(parseInt(dat));
+				myDate.toLocaleString();
+				if (myDate.getFullYear() == year && myDate.getMonth()+1 == m && dur > 30)
+				{
+					var x = offset + minsize*(myDate.getHours()*60+myDate.getMinutes());
+					var p = parseInt(myDate.getDate());
+					var y = (p-1)*15;
+					var s = minsize*(dur/60)+1.5;
+					text += "<div style='min-width:"+s+"px;height:15px;border-right: 1px solid white;font-size:14px;background-color:";
+					if (type == 1)
+						text += "#00a000";
+					if (type == 2)
+						text += "#e00000";
+					if (type == 3)
+						text += "#000000";
+					var t = Math.floor(dur/60) + " `min` ";
+					dur -= Math.floor(dur/60)*60;
+					t += dur +" `sec`";
+					text += ";position: absolute;top:"+y+"px;left:"+x+"px;' id='d"+i+"' onmouseover=\"document.getElementById('d"+i+"').innerHTML='&nbsp;&nbsp;"+name + " ("+num+"), " + myDate.getHours()+":"+zerofill(myDate.getMinutes())+", " + t+"';\" onmouseout=\"document.getElementById('d"+i+"').innerHTML=''\"></div>";
+				}
+			}
+			document.getElementById('outer5').innerHTML = text;
+			document.getElementById('outer5').style.height = 15*maxim+'px';
+		}
+		function showList(){
+			calls=xmlCalls.documentElement.getElementsByTagName("call");
+			var text = "<strong>`Detailed call list`:</strong><table>";
+			contactsArray = new Array();
+			var months = [];
+			for(var i=0; i < calls.length; i++)
+			{
+				var id, num, dat, dur, type, ne, name, numbertype;
+				try{
+					id = calls[i].getElementsByTagName("id")[0].firstChild.nodeValue;
+					num = calls[i].getElementsByTagName("number")[0].firstChild.nodeValue;
+					dat = calls[i].getElementsByTagName("date")[0].firstChild.nodeValue;
+					dur = parseInt(calls[i].getElementsByTagName("duration")[0].firstChild.nodeValue);
+					type = calls[i].getElementsByTagName("type")[0].firstChild.nodeValue;
+					ne = calls[i].getElementsByTagName("new")[0].firstChild.nodeValue;
+					if (calls[i].getElementsByTagName("name")[0].firstChild)
+						name = calls[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+					else
+						name = num;
+					if (name == "-1")
+						name = "`unknown`";
+					numbertype = calls[i].getElementsByTagName("numbertype")[0].firstChild.nodeValue;
+				}catch(e){continue;}
+				if (contactsArray[name] == undefined)
+				{
+					contactsArray[name] = [0,0];
+				}
+				var myDate = new Date(parseInt(dat));
+				myDate.toLocaleString();
+				months.push(myDate.getFullYear()+'/'+zerofill(myDate.getMonth()+1));
+				text += "<tr><td><em>"+ name+"</em></td><td>";
+				if (num == -1)
+					text += "`unknown`";
+				else
+					text += num;
+				text += "</td><td>"+myDate.toLocaleString()+"</td><td>";
+				if (type == 3)
+					text += "`rejected`";
+				if (type == 1)
+				{
+					text += "<span style='color:#00a000'>`in`</span>";
+					contactsArray[name][0] = contactsArray[name][0]+dur;
+				}
+				if (type == 2)
+				{
+					text += "<span style='color:#e00000'>`out`</span>";
+					contactsArray[name][1] = contactsArray[name][1]+dur;
+				}
+				text += "</td><td>";
+				if (dur > 60)
+				{
+					text += Math.floor(dur/60) + " `min` ";
+					dur -= Math.floor(dur/60)*60;
+				}
+				text += dur + " `sec`</td></tr>";
+			}
+			text += "</table>";
+			document.getElementById('outer3').innerHTML=text;
+			//document.getElementById('outer3').scrollTop = document.getElementById('outer3').scrollHeight;
+
+			months.sort();
+			if (months.length == 0)
+				return;
+			var munique = [months[0]];
+			for (var i=1; i < months.length; i++)
+			{
+				if (months[i] != months[i-1])
+					munique.push(months[i]);
+			}
+			text = "<select id='sel' onchange=\"drawcal()\">";
+			for (var i=0; i < munique.length-1; i++)
+			{
+				text += "<option>"+munique[i].substr(5,2)+'/'+munique[i].substr(0,4)+"</option>";
+			}
+			text += "<option selected=\"true\">"+munique[munique.length-1].substr(5,2)+'/'+munique[munique.length-1].substr(0,4)+"</option>";
+			text += "</select> <strong>`Calls which are longer than half minute in the selected month`:</strong>";
+			document.getElementById('outer4').innerHTML=text;
+			drawcal();
+
+
+			var forsort = [];
+			for (n in contactsArray)
+			{
+				forsort.push(n);
+			}
+			forsort.sort(compdur);
+			text = "<strong>`Summarize`:</strong><br/><table><tr><th>`Name`</th><th><span style='color:#00a000'>`incoming`</span></th><th><span style='color:#e00000'>`outgoing`</span></th></tr>";
+			for (var i=0; i < forsort.length; i++)
+			{
+				n = forsort[i];
+				text += "<tr><td><em>"+ n+"</em></td><td>";
+				dur = contactsArray[n][0];
+				if (dur > 60)
+				{
+					text += Math.floor(dur/60) + " `min` ";
+					dur -= Math.floor(dur/60)*60;
+				}
+				text += dur + " `sec`</td><td>";
+				dur = contactsArray[n][1];
+				if (dur > 60)
+				{
+					text += Math.floor(dur/60) + " `min` ";
+					dur -= Math.floor(dur/60)*60;
+				}
+				text += dur + " `sec`</td></tr>";
+			}
+			text += "</table>";
+			document.getElementById('outer6').innerHTML=text;
+		}
+
+		
+
+</script>
+</head>
+<body onload="loadxml();">
+	<div id="outer4" style="padding-left:10px;" >
+		`Loading Call list...`
+	</div>
+	<div id="outer5" style="padding-left:10px;" >
+	</div>
+	<div id="outer6" style="padding-left:10px;" >
+	</div>
+        <div id="outer3" style="padding-left:10px;" >
+        </div> <!-- end outer3 -->
+
+</body>
+</html>

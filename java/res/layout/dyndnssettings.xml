@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory android:title="@string/ddsettings_title">
+       			<EditTextPreference
+       					android:key="dddomain"
+						android:summary=""
+						android:title="@string/ddsettings_DDdomain"
+						android:imeOptions="actionDone"		                       
+				        />                                         
+                       
+                <EditTextPreference
+                		android:key="ddusername"
+                        android:summary=""
+                        android:title="@string/ddsettings_DDusername"
+                        android:imeOptions="actionDone"
+                        />                     
+       			<EditTextPreference
+       					android:key="ddpassword"
+						android:summary=""
+						android:title="@string/ddsettings_DDpassword"				                
+				        android:password="true"
+				        android:imeOptions="actionDone"
+				        />                                         
+        </PreferenceCategory>
+        
+</PreferenceScreen>
+<!-- http://www.old.kaloer.com/android-preferences/ -->

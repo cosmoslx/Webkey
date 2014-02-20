@@ -1,0 +1,201 @@
+﻿Call list -> Αρχείο κλήσεων
+Webkey for Android -> Webkey για το Android
+unknown -> άγνωστο
+min -> λεπτά
+sec -> δευτ.
+Detailed call list -> Λεπτομερές αρχείο κλήσεων
+rejected -> Απορρίφθηκε
+in -> Εισερχόμενη
+out -> Εξερχόμενη
+Calls which are longer than half minute in the selected month -> Κλήσεις που ξεπερνούν το μισό λεπτό για τον συγκεκριμένο μήνα
+Summarize -> Περίληψη
+Name -> Όνομα
+incoming -> Εισερχόμενες
+outgoing -> Εξερχόμενες
+Loading Call list... -> Το αρχείο κλήσεων φορτώνεται...
+Above lines are read by -> Οι παραπάνω γραμμές διαβάζονται από 
+Chat -> Chat
+chat message -> Μήνυμα chat
+chat messages -> Μηνύματα chat
+Save -> Σώσιμο
+Allowable characters in GSM and their keycode in non-unicode SMS -> Επιτρεπόμενοι χαρακτήρες από GSM και αντιστοιχία σε non-unicode SMS
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). ->  Σειρές που εχουν ενεργοποιημένη την λειτουργία “Λειτουργεί σε SMS” έχουν προτεραιότητα όταν δεν θέλετε να στείλετε Unicode χαρακτήρες . 
+Export -> Εξαγωγή
+Contacts -> Επαφές
+Messages -> Μηνύματα(υποστηρίζονται μόνο οι αριθμοί προς το παρόν)
+to -> τύπος αρχείου
+plain text (pure) -> Αρχείο txt
+semicolon-separated values (csv) -> Αρχείο CSV
+xml -> xml
+where date is -> Φορμά Ημερομηνίας
+dd mm yyyy -> ΗΗ ΜΜ ΧΧΧΧ
+mm dd yyyy -> ΜΜ ΗΗ ΧΧΧΧ
+yyyy mm dd -> ΧΧΧΧ ΜΜ ΗΗ
+with date separator -> Διαχωρισμός Ημερομηνίας με
+in timezone -> Ζώνη ώρας
+Timezone -> Ζώνη ώρας
+Epoch time -> Σύστημα UNIX
+with newline type -> Διακριτικό νέας γραμμής
+The texts are exported in utf-8 encoding. -> Τα αρχεία κειμένου εξάγονται σε κωδικοποίηση utf-8.
+GPS -> GPS
+GPS location -> Στίγμα GPS
+Show on map -> Δείξε στον χάρτη
+Update continuously -> Συνεχής ανανέωση
+Network location -> Στίγμα από δίκτυο κινητής
+Error -> Σφάλμα
+seconds ago -> δευτερόλεπτα πριν 
+minutes ago -> λεπτά πριν
+hours ago -> ώρες πριν
+days ago -> μέρες πριν
+Please visit our website for more information -> Παρακαλώ επισκεφθείτε την ιστοσελίδα μας για περισσότερες πληροφορίες.
+If you like our app, please support the development of Webkey. Every help is appreciated. -> Εάν σας αρέσει το πρόγραμμα μας , βοηθήστε μας να συνεχίσουμε την ανάπτυξη του. 
+Screenshots' properties -> Ιδιότητες εικόνας
+Clicking, dragging -> Κλίκ και σύρσιμο
+You should be able to click and drag on the phone by doing the same on the screenshot. -> Μπορείτε ,μέσω της εικόνας , να χειρίζεστε την συσκευή σας με το ποντίκι.
+Low resolution -> Χαμηλή ανάλυση
+It makes resolution half both in horizontal and vertical direction. -> Μειώνει την ανάλυση κατά το ήμισυ.  
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> Με χρήση JPEG έχετε καλύτερη απόκριση αλλά χειρότερη εικόνα . Με χρήση PNG καλύτερη εικόνα αλλά πιο αργή απόκριση. 
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> Χρησιμοποιήστε αυτήν την λειτουργία εάν η εικόνα φαίνεται αλλοιωμένη.  
+Record images -> Εγγραφή εικόνων 
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> Η συσκευή αρχίζει και καταγράφει εικόνες σε έναν προσωρινό φάκελο στην κάρτα SD (/sdcard/webkey_TEMP/). Αφού πατήσετε λήξη εγγραφής , η συσκευή συμπιέζει τις εικόνες σε ένα αρχείο Zip και τις στέλνει πίσω στον πλοηγό σας . Το αποτέλεσμα εξαρτάται από τις δυνατότητες της εκάστοτε συσκευής .
+Typing -> Πληκτρολογεί
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> Χρησιμοποιείται για την αποστολή χαρακτήρων στην συσκευή . Μπορείτε να στέλνετε καθώς πληκτρολογείτε εάν η επιλογή “Άμεση πληκτρολόγηση” είναι ενεργοποιημένη ή να στείλετε μαζεμένους εάν πατήσετε “Αποστολή κειμένου”. Το κουμπί Del ισοδυναμεί με το Back .
+Config keys -> Επιλογή χαρακ.
+You can configure the character substitution rules for SMS mode. -> Μπορείτε να κάνετε αντιστοίχιση χαρακτήρων για την λειτουργία SMS. 
+SMS mode -> Λειτουργία SMS
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> Αν θέλετε να στείλετε ειδικούς χαρακτήρες όπως ő, ű και ελληνικά σε SMS τότε το όριο των χαρακτήρων θα πέσει από τους 160 στους 70. Εάν η λειτουργία SMS είναι ενεργή τότε οι σειρές με την ένδειξη “ Λειτουργεί σε SMS” έχουν προτεραιότητα .
+Translations -> Μεταφράσεις
+If you already have an account to this phone -> Εάν έχετε ήδη λογαριασμό στην συσκευή
+Login -> Είσοδος
+Registration -> Εγγραφή χρήστη
+Username -> Χρήστης 	
+Password -> Κωδικός
+Create new user -> Δημιουργήστε νέο χρήστη
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> Η δημιουργία νέου χρήστη απέτυχε . Ενεργοποιήστε την επιλογή “ Επιτρέπεται δημιουργία νέου χρήστη “ στην συσκευή σας.
+Click here to switch to SSL. -> Ενεργοποίηση SSL (Ασφαλής σύνδεση)
+SSL provides secure (and a slightly slower) way to access Webkey. -> Η λειτουργία SSL επιτρέπει ασφαλή σύνδεση αλλά έχει επίπτωση στην ταχύτητα
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> Στον Firefox μπορεί να χρειαστεί να πατήσετε "I Understand the Risks", "Add exception...", "Conform Security Exception".
+On Chrome you might have to click on "Proceed anyway". -> Στον Chrome μπορεί να πρέπει να πατήσετε στο "Proceed anyway".
+Click here to disable SSL. -> Απενεργοποίηση SSL.
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> Απενεργοποιώντας το SSL η σύνδεση θα είναι λιγότερο ασφαλής αλλά γρηγορότερη.
+Language -> Γλώσσα
+Notify -> Ειδοποιήσεις
+saved -> Αποθηκεύτηκε 
+failed to save -> Αποτυχία αποθήκευσης 
+Under development, it may not notify you because the CPU can fall deep asleep -> Πειραματικό , μπορεί να μην σας ειδοποιήσει εάν η CPU είναι σε sleep mode.
+Trigger events -> Να ειδοποιούμαι για :
+Watch for unread messages -> Νέα μηνύματα
+Watch for missed calls -> Αναπάντητες κλήσεις
+Notification method -> Μέθοδος ειδοποίησης 
+Alert every -> Ειδοποίηση κάθε
+minute -> λεπτά
+Vibrate phone -> Δόνηση
+Vibrate phone with the following sequence -> Δόνηση με μοτίβο
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A,B,C,D,... σημαίνει δόνηση για A ms, παύση για B ms, δόνηση για C ms, παύση για D ms, ...)
+Blink led -> Αναβόσβησε το LED
+only for the duration of vibrate -> μόνο κατά την διάρκεια της δόνησης
+all the time -> συνέχεια
+When the led is blinking, it is on for -> Το LED παραμένει αναμμένο για
+ms, and off for -> ms , και σβηστό για
+ms -> ms
+Save and test alert -> Αποθήκευση και τέστ 
+Click here to type on phone! -> Πληκτρολογήστε απευθείας στην συσκευή!
+Half size -> Μισό μέγεθος
+Horizontal -> Οριζόντια
+Flip -> Αντιστροφή
+PNG (slower than JPEG) -> PNG ( πιο αργό από JPEG)
+Auto refresh -> Αυτόματη ανανέωση
+Keep alive -> Κράτησε ανοιχτό
+Use only first framebuffer -> Λειτουργία εναλλακτικής σάρωσης
+Refresh image -> Ανανέωση εικόνας
+Save image -> Αποθ. εικόνας
+Open in browser -> Άνοιγμα στον πλοηγό
+Call -> Κλήση
+Dial -> Αριθμός 
+Run -> Εκτέλεση
+Send while typing -> Άμεση πληκτρολόγηση
+Send text -> Στείλε κείμενο
+Config buttons -> Επιλογή κουμπιών
+Adjust light -> Φωτεινότητα
+SMS -> SMS
+Sent. Reload the page to see the sent message. -> Στάλθηκε. Ανανεώστε την σελίδα για να δείτε το εξερχόμενο μήνυμα.
+FAILED TO SEND -> Αποτυχία αποστολής
+add to recipients -> Προσθήκη στους παραλήπτες
+To -> Προς
+click to remove ->Αφαίρεση 
+no recipients -> Χωρίς παραλήπτες
+Me -> Εγώ 
+(pending...) -> (Αναμένεται…)
+Write here your message! -> Γράψτε εδώ το μήνυμα σας! 
+MMS -> MMS
+skipped chars -> αναπήδηση 
+In the phone numbers the following characters are allowed: 0-9, +, - -> Στα νούμερα τηλεφώνων μόνο οι ακόλουθοι χαρακτήρες επιτρέπονται : 0-9, +, - 
+No recipients, please add at least one. -> Παρακαλώ προσθέστε τουλάχιστον έναν παραλήπτη.
+Unable to send empty message. -> Δεν υπάρχει κείμενο.
+sending... -> Αποστολή
+Under development, tested only on GSM networks -> Πειραματικό , δοκιμασμένο μόνο σε δίκτυο GSM
+Loading SMS and contacts... -> Φορτώνονται οι επαφές και τα SMS...
+SEND -> Αποστολή...
+Show contacts -> Λεπτομέρειες 
+Show phone numbers -> Εμφάνιση αριθμών
+SMS mode (avoid unicode) -> Λειτουργία SMS(όχι Unicode)
+Add phone number -> Προσθέστε τηλ. αριθμό
+Message -> Μήνυμα
+Phone -> Συσκευή
+Terminal -> Γραμμή εντολών
+Config -> Ρυθμίσεις
+Files -> Αρχεία
+Sdcard -> Κάρτα SD
+Help -> Βοήθεια
+Log out -> Έξοδος
+results -> Αποτελέσματα
+Show -> Εμφάνιση
+Key -> Πλήκτρο
+Keycode -> Κωδικός χαρακτήρα
+Char -> Χαρακτήρας
+converts to -> αντιστοιχεί σε
+works in SMS mode -> Λειτουργεί σε SMS
+Reloading... -> Επαναφόρτωση
+Registration request sent, please wait until it's authorized on the phone. -> Τα στοιχεία στάλθηκαν , περιμένετε για εξουσιοδότηση από συσκευή
+Saved, reloading ... -> Αποθηκεύτηκε,επαναφόρτωση...
+username -> Χρήστης
+password -> Κωδικός
+Change password -> Αλλαγή κωδικού
+Remove user -> Διαγραφή χρήστη
+ALL -> Παντού
+Screenshot -> Οθόνη
+Location -> Τοποθεσία
+Read /sdcard/public/ -> Πρόσβαση /sdcard/public/
+Contacts, Sms, Calls -> Επαφές , SMS , κλήσεις
+Read files -> Πρόσβαση όλων των αρχείων
+Save permissions -> Αποθ. προσβάσεων 
+New user -> Νέος χρήστης
+Create -> Δημιούργησε
+Details about permissions -> Λεπτομέρειες προσβάσεων
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> Πρόσβαση παντού. Έπειτα μπορείτε να εκτελέσετε όλες τις λειτουργίες απομακρυσμένης πρόσβασης
+View screenshot of the phone. -> Προβολή και χειρισμός οθόνης συσκευής 
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> Δείτε το στίγμα GPS και δικτύου της κινητής. Το GPS δουλεύει μόνο εάν είναι ενεργοποιημένο από την συσκευή . Το στίγμα δικτύου εξαρτάται από τον πάροχο. 
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> Ανάγνωση και γράψιμο μηνυμάτων. Κάθε μήνυμα είναι κοινό για όλους τους χρήστες και οποιοσδήποτε μπορεί να τα διαγράψει.
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> Εάν αυτή η πρόσβαση είναι ενεργή και η “Πρόσβαση όλων των  αρχείων” δεν είναι τότε θα έχετε πρόσβαση μόνο σε  /sdcard/public .Παρακαλώ να φτιάξετε αυτόν τον φάκελο χειροκίνητα.
+Read personal data such as contacts, messages and call list. -> Πρόσβαση σε προσωπικά αρχεία όπως επαφές , μηνύματα και αρχείο κλήσεων . 
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> Πρόσβαση σε όλα τα αρχεία του τηλεφώνου. Έχετε υπ’ όψιν σας ότι το πρόγραμμα τα αποθηκεύει όλα σε μη-κωδικοποιημένα αρχεία!
+Read and modify the content of the sdcard. -> Πρόσβαση και αλλαγή περιεχομένων κάρτας SD .
+Log (activities is logged once in every 30 minutes) -> Καταγραφή ιστορικού σε αρχείο (κάθε 30 λεπτα)
+Clear log -> Καθάρισμα ιστορικού
+uptime -> Ανοιχτό εδώ και 
+uptime secs -> Ανοιχτό εδώ και Χ δευτ.
+mins -> λεπτά
+hours -> ώρες 
+days -> μέρες
+hour -> ώρα
+CPUup -> cPU εν ενεργεία 
+CPU uptime secs -> cPU εν ενεργεία Χ δευτ.
+Brightness -> Φωτεινότητα
+Recorded -> Εγγράφτηκε
+images -> εικόνες
+This terminal will be closed after 60 minutes of inactivity. -> Η γραμμή εντολών θα τερματιστεί μετά από 60 λεπτά αδράνειας 
+
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> Το πρόγραμμα ελέγχει για νέα μηνύματα και αναπάντητες κλήσεις κάθε 30 δεύτερα (Δεν χρησιμοποιεί σχεδόν καθόλου τη CPU , απλώς γίνεται μια σύγκριση σε μια λίστα SQLite).
+clear -> Kαθαρισμός
+
+Stop recording -> Λήξη εγγραφής

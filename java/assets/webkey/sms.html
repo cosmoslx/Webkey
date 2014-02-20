@@ -1,0 +1,805 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`SMS` - `Webkey for Android`</title>
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+</head>
+<body>
+	<<MENU>>
+
+<style type="text/css">
+	#outer2 {
+		float:right;
+		width:180px;
+		height: 315px;
+		padding-top:10px;
+		padding-bottom: 5px;
+		overflow:auto;
+
+		border-left-width:2px;
+		border-left-style:solid;
+		border-color:black;
+
+	}
+	#outer3 {
+		float:left;
+		height:320px;
+		width: 100%;
+		overflow:auto;
+	}
+	#smsconverted {
+		color: #202020;
+		font-family: cursive;
+	}
+	.smsstyle {
+		font-family: monospace;
+	}
+	#wrapper {
+		overflow:auto;
+		background:#ffffff;
+		height:320px;
+		padding-top:10px;
+		padding-left:10px;
+		border-bottom-width:2px;
+		border-bottom-style:solid;
+		border-color:black;
+	}
+	#footer {clear:both; background:#455c5a;}
+	#menu {clear:both; background:#455c5a;}
+	.butt {font-size: 10pt;background-color:#404040;color: #FFFFFF;}
+	#xy { color: white; 
+		background-color: black;
+		text-decoration: none;
+		border: 2px solid white; 
+		}
+
+	a {color: black;}
+	#dev {	
+		border-top-style:solid;
+		border-top-width:2px;
+		border-color:white;
+		
+		padding-left:10px;
+		background-color:#f6d19c;
+	}
+	
+	.smsLine{
+		padding-bottom:5px;
+	}
+	.smsDate{
+		color:gray;
+		font-size:11px;
+	}
+	.statuspending{
+		color:blue;
+		font-size:11px;
+	}
+	.statusfailed{
+		color:#af0000;
+		font-size:11px;
+	}
+
+</style>
+<script type="text/javascript">
+
+		var savedmessage = "";
+		var speckeys = new Array();
+		var xmlContacts = null;
+		var xmlSMS = null;
+		var contacts;
+		var k=0;
+		var threadname = "";
+		var threadnumbers = [];
+		var firstsms=true;
+		var reci = [];
+		var savedreci = [];
+		var smsArray = new Array();
+		var personArray = new Array();
+		var loaded_xmls = 0;
+		var personCache = new Array();
+		var MAX_USER_DATA_SEPTETS = 160;
+		var MAX_USER_DATA_SEPTETS_WITH_HEADER = 153;
+		var tn = new Array();
+        	var charToGsm = ['@','\u00a3','$','\u00a5','\u00e8','\u00e9','\u00f9','\u00ec','\u00f2','\u00c7','\n','\u00d8','\u00f8','\r','\u00c5','\u00e5','\u0394','_','\u03a6','\u0393','\u039b','\u03a9','\u03a0','\u03a8','\u03a3','\u0398','\u039e','\uffff','\u00c6','\u00e6','\u00df','\u00c9',' ','!','"','#','\u00a4','%','&',"'",'(',')','*','+',',','-','.','/','0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','\u00a1','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','\u00c4','\u00d6','\u00d1','\u00dc','\u00a7','\u00bf','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','\u00e4','\u00f6','\u00f1','\u00fc','\u00e0'];
+
+        	var charToGsmExtended = ['\f','^','{','}','\\','[','~',']','|','\u20ac'];
+
+function indof(x,arr)
+{
+	if (arr.indexOf)
+		return arr.indexOf(x);
+	for (var i = 0; i<arr.length; i++)
+	{
+		if (arr[i] == x)
+			return i;
+	}
+	return -1;
+}
+function indoff(x,arr,start)
+{
+	if (arr.indexOf)
+		return arr.indexOf(x,start);
+	for (var i = start; i<arr.length; i++)
+	{
+		if (arr[i] == x)
+			return i;
+	}
+	return -1;
+}
+
+function encode(str)
+{
+	var e = document.createElement("div");
+	e.innerText = e.textContent = str;
+	str = e.innerHTML;
+	delete e;
+	return str;
+}
+
+		function makeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	http_request = new XMLHttpRequest();
+				if (http_request.overrideMimeType) {
+		            http_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		http_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	http_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!http_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			http_request.onreadystatechange = alertContentsContacts;
+			http_request.open('GET', url, true);
+			http_request.send(null);
+   		}
+		function sendmakeRequest(url,params) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	sendhttp_request = new XMLHttpRequest();
+				if (sendhttp_request.overrideMimeType) {
+		            sendhttp_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		sendhttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	sendhttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!sendhttp_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			sendhttp_request.onreadystatechange = alertContentsSend;
+			sendhttp_request.open('POST', url, true);
+			sendhttp_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			sendhttp_request.setRequestHeader("Content-length", params.length);
+			sendhttp_request.setRequestHeader("Connection", "close");
+			sendhttp_request.send(params);
+   		}
+		function SMSmakeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	SMShttp_request = new XMLHttpRequest();
+				if (SMShttp_request.overrideMimeType) {
+		            SMShttp_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		SMShttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	SMShttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!SMShttp_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			SMShttp_request.onreadystatechange = alertContentsSMS;
+			
+			SMShttp_request.open('GET', url, true);
+			SMShttp_request.send(null);
+   		}
+		function directmakeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	dhttp_request = new XMLHttpRequest();
+				if (dhttp_request.overrideMimeType) {
+		            dhttp_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		dhttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	dhttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!dhttp_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			dhttp_request.open('GET', url, false);
+			dhttp_request.send(null);
+			return dhttp_request.responseText;
+   		}
+
+			function alertContentsSMS() 
+			{
+			   if (SMShttp_request.readyState == 4 && SMShttp_request.status == 200) 
+			   {
+				   xmlSMS = SMShttp_request.responseXML;
+				   if (xmlContacts != null)
+					showThreadTree(true);
+			 }
+		      }
+			function alertContentsContacts() 
+			{
+			   if (http_request.readyState == 4 && http_request.status == 200) 
+			   {
+				   xmlContacts = http_request.responseXML;
+				   if (xmlSMS != null)
+					showThreadTree(true);
+			 }
+		      }
+			function alertContentsSend() 
+			{
+			   if (sendhttp_request.readyState == 4 && sendhttp_request.status == 200) 
+			   {
+				   document.getElementById('smsstatus').innerHTML = '<span style="color: green"><strong>`Sent. Reload the page to see the sent message.`</strong></span>';
+			   }
+			   if (sendhttp_request.readyState == 4 && sendhttp_request.status != 200) 
+			   {
+				   document.getElementById('smstext').value = savedmessage;
+				   reci = savedreci;
+				   document.getElementById('smsstatus').innerHTML = '<span style="color: red"><strong>`FAILED TO SEND`</strong></span>';
+				   update_reci();
+			   }
+		      }
+
+		function loadxml(){
+			makeRequest("contacts.xml");
+			SMSmakeRequest("sms.xml");
+			var t = directmakeRequest("spec_keys.txt");
+			speckeys = new Array();
+			var q = t.split('\n');
+			for (var i = 0; i < q.length; i++)
+			{
+				var y = q[i].split(' ');
+				if (y[0] == "1")
+					speckeys[parseInt(y[1])] = parseInt(y[2]);
+			}
+			convertsms();
+			//showThreadTree();
+		}
+
+		function showThreadTree(onlywithphone){
+//			clearDestinationData();
+			smsArray = new Array();
+			threadname = "";
+			threadnumbers = [];
+			document.getElementById('outer3').innerHTML="";
+			SMS=xmlSMS.documentElement.getElementsByTagName("sms");
+			contacts=xmlContacts.documentElement.getElementsByTagName("contact");
+			var c = "";
+			var forsort2 = [];
+			var d = "";
+			for(var i=0; i < contacts.length; i++)
+			{
+				var n = contacts[i].childNodes;
+				var hasname = false;
+				var hasphone = false;
+				var nam = "";
+				for (var j =0; j < n.length; j++)
+				{
+					if (n[j].nodeName == "name")
+					{
+						d += "<strong>" + n[j].firstChild.nodeValue+"</strong><br/>";
+						hasname = true;
+						nam = n[j].firstChild.nodeValue;
+					}
+					else 
+					if (n[j].nodeName.match(/phone.*/) != null)
+					{
+						if (onlywithphone == false)
+							c += n[j].nodeName + ": ";
+						else
+							c += "&nbsp;&nbsp;&nbsp;"
+					        c += n[j].firstChild.nodeValue + " <span class=\"smsstyle\" style=\"text-decoration: underline; color: blue\" onclick=\"add_reci('NAME_ASDFVCZ','"+n[j].firstChild.nodeValue+"')\">(`add to recipients`)</span><br/>";
+						hasphone = true;
+					}
+					else
+					if (n[j].nodeName != "id" && onlywithphone == false)
+						c += n[j].nodeName + ": " + n[j].firstChild.nodeValue + "<br/>";
+				}
+				if (hasname && (onlywithphone == false || hasphone))
+				{
+					d +=c.replace(/NAME_ASDFVCZ/g,nam);
+					forsort2.push(d);
+				}
+				c = "";
+				d = "";
+			}
+			//var d = "Contacts:<br/><br/>";
+			var d = "";
+			forsort2.sort();
+			for (var i=0; i < forsort2.length; i++)
+			{
+				d += forsort2[i];
+			}
+			document.getElementById('outer3').innerHTML = d;
+			for(var i=SMS.length-1; i>=0; i--){
+				var add = "";
+				var per = "";
+				try{
+					add = SMS[i].getElementsByTagName("number")[0].firstChild.nodeValue;
+					per = SMS[i].getElementsByTagName("person")[0].firstChild.nodeValue;
+				}catch(e){}
+				if (add != "" && per != "")
+					personArray[add] = per;
+			}
+			for(var i=SMS.length-1; i>=0; i--){
+				var add = "";
+				var per = "";
+				var read = 0;
+				try{
+					add = SMS[i].getElementsByTagName("number")[0].firstChild.nodeValue;
+					read = parseInt(SMS[i].getElementsByTagName("read")[0].firstChild.nodeValue);
+					per = SMS[i].getElementsByTagName("person")[0].firstChild.nodeValue;
+				}catch(e){}
+				var name = getDisplayName(add,per);
+				if (name=="")
+					name = "(draft)";
+				if( smsArray[name] == undefined )
+				{
+					smsArray[name] = [0];
+				}
+				smsArray[name].push(SMS[i]);
+				if (read == 0)
+					smsArray[name][0] = smsArray[name][0] + 1;
+			}
+			var txt="";
+			var forsort = [];
+			for (name in smsArray)
+			{
+				forsort.push(name);
+			}
+			forsort.sort();
+			for (var i=0; i < forsort.length; i++)
+			{
+				name = forsort[i];
+				if (smsArray[name][0] > 0 && name != "(draft)")
+					txt += "<div><strong><span style=\"text-decoration: underline\" onClick=\"showThread('"+name+"');\">"+name+"("+smsArray[name][0]+")</span></strong></div>";
+				else
+					txt += "<div><span style=\"text-decoration: underline\" onClick=\"showThread('"+name+"');\">"+name+"</span></div>";
+			}
+			document.getElementById('outer2').innerHTML=txt;
+			update_reci();	
+		}
+
+		
+	function zerofill(st){
+		if(st<10)
+			return "0"+st;
+		else
+			return st;
+	}
+	function compadd(a,b)
+	{
+		try{
+			return (tn[b] - tn[a]);
+		}
+		catch(e){return 1;}
+	}
+	function remove_reci(i)
+	{
+		reci.splice(i,1);
+		update_reci();
+	}
+	function add_reci(nam,num)
+	{
+		for(var i = 0; i < reci.length; i++)
+			if (reci[i][0] == nam && reci[i][1] == num)
+				return;
+		reci.push([nam,num]);
+		update_reci();
+	}
+	function update_reci()
+	{
+		var t = "<strong>`To`:</strong> <span class=\"smsstyle\"><span style=\"color: #008000;\">";
+		for (var i = 0; i < reci.length; i++)
+			t += "<strong>"+reci[i][0].replace(/ /g,"&nbsp;")+"</strong>&nbsp;"+reci[i][1]+"&nbsp;<span style=\"color: red;text-decoration: underline\" onclick=\"remove_reci('"+i+"')\">(`click to remove`)</span>, ";
+		if (reci.length == 0)
+			t += "`no recipients`, ";
+		t += "</span> ";
+		document.getElementById('smsto').innerHTML = t + "</span>";
+		var t = "<span class=\"smsstyle\"><span style=\"color: #008000;\">";
+		for (i = 0; i < threadnumbers.length; i++)
+		{
+			var bo = false;
+			for(var j = 0; j < reci.length; j++)
+				if (reci[j][0] == threadname && reci[j][1] == threadnumbers[i])
+				{
+					bo = true;
+					break;
+				}
+			if (bo)
+				continue;
+			t += "<span style=\"text-decoration: underline; color: blue\" onclick=\"add_reci('"+threadname+"','"+threadnumbers[i]+"')\">`Click&nbsp;to&nbsp;add&nbsp;`<strong>"+threadname.replace(/ /g,"&nbsp;")+"</strong>&nbsp;"+threadnumbers[i]+"</span>, ";
+		}
+		document.getElementById('smsadd').innerHTML = t + "</span>";
+	}
+	function showThread(name){
+		threadname = name;
+		threadnumbers = [];
+		tn = new Array();
+		txt="";
+		list = smsArray[name];
+		for(var i=list.length-1; i>=1; i--){
+			try{
+				body = list[i].getElementsByTagName("body")[0].firstChild.nodeValue;
+				type = list[i].getElementsByTagName("type")[0].firstChild.nodeValue;
+				read = list[i].getElementsByTagName("read")[0].firstChild.nodeValue;
+				stat = list[i].getElementsByTagName("status")[0].firstChild.nodeValue;
+				dat = list[i].getElementsByTagName("date")[0].firstChild.nodeValue;
+				add = list[i].getElementsByTagName("number")[0].firstChild.nodeValue;
+				person = type == "2"?"<span style=\"color: #00008f\">`Me`</span>": "<span style=\"color: #008f00\">"+name+"</span>";
+
+				if (tn[add])
+					tn[add] = tn[add]+1;
+				else
+					tn[add] = 1;
+
+				var myDate = new Date(parseInt(dat));
+				var gmtHours = -myDate.getTimezoneOffset();
+				
+//				myY=myDate.getFullYear();
+//                myD=zerofill(myDate.getDate());
+//                myMo=zerofill(myDate.getMonth()+1);
+//                myH=zerofill(myDate.getHours());
+//				myMi=zerofill(myDate.getMinutes());
+//				myS=zerofill(myDate.getSeconds());
+				//.toLocaleString();
+				
+				//txt += "<div class=\"smsLine\"><span class=\"smsDate\" >["+myY+"/"+myMo+"/"+myD+" "+myH+":"+myMi+":"+myS+"] </span><strong>"+person+"</strong>:";
+				txt += "<div class=\"smsLine\"><span class=\"smsDate\" >["+myDate.toLocaleString()+"] </span>";
+				if (stat == 64)
+					txt += "<span class=\"statuspending\"><strong>`(pending...)`</strong></span>";
+				if (stat == 128)
+				txt += "<span class=\"statusfailed\"><strong>(failed)</strong></span>";
+				txt += "<br/><strong>"+person+"</strong>:";
+				
+				if (read == 0)
+					txt +="<strong>"+body+"</strong></div>\n";
+				else
+					txt +=body+"</div>\n";
+			}catch(e){}
+
+		}
+		document.getElementById('outer3').innerHTML=txt;// + "<div id=\"last\"></div>";
+		document.getElementById('outer3').scrollTop = document.getElementById('outer3').scrollHeight;
+		for (add in tn)
+		{
+			threadnumbers.push(add);
+		}
+		threadnumbers.sort(compadd);
+		update_reci();
+	}
+
+
+	function getDisplayName(Address,person){
+	//get display name from phone address;
+		var ind = Address + "_" + person;
+		if( personCache[ind] != undefined )
+			return personCache[ind];
+		if (person == "" && personArray[Address] != undefined )
+			person = personArray[Address];
+		Address=Address.replace(/[\+\-\(\)\ ]/g,"");
+		for (var k=0; k < contacts.length; k++)
+		{
+			if (contacts[k].getElementsByTagName("id")[0].firstChild.nodeValue == person && contacts[k].getElementsByTagName("name")[0])
+			{
+				personCache[ind] = contacts[k].getElementsByTagName("name")[0].firstChild.nodeValue;
+				return contacts[k].getElementsByTagName("name")[0].firstChild.nodeValue;
+			}
+			var num = contacts[k].getElementsByTagName("phone_v2");
+			for(var i=0; i<num.length; i++){
+				var cId = num[i].firstChild.nodeValue;
+				cId=cId.replace(/[\+\-\(\)\ ]/g,"");
+				if(cId==Address && contacts[k].getElementsByTagName("name")[0]){
+					personCache[ind] = contacts[k].getElementsByTagName("name")[0].firstChild.nodeValue;
+					return contacts[k].getElementsByTagName("name")[0].firstChild.nodeValue;
+				}
+			}
+		}
+		personCache[ind] = Address;
+		return Address;
+	}
+	
+
+	function clearsms()
+	{
+		if (firstsms && document.getElementById('smstext').value == "`Write here your message!`")
+		{
+			document.getElementById('smstext').value = "" ;
+		}
+		firstsms = false;
+	}
+
+	function convertsms()
+	{
+		if (firstsms && document.getElementById('smstext').value == "`Write here your message!`")
+			return;
+		clearsms();
+		//document.getElementById('smsconverted').innerHTML = "<code>"+document.getElementById('smstext').value+"</code>";
+		var t = "";
+		var s = document.getElementById('smstext').value;
+		var left = 160;
+		var charsize = 0;
+		var c = "";
+		var count = 0;
+		var force = document.getElementById("force7bit").checked;
+		var uni = false;
+		var skipped = "";
+		for (j=0; j < s.length; j++)
+		{
+			c = s[j];
+			charsize = 0;
+			if (force && speckeys[s.charCodeAt(j)])
+					c = String.fromCharCode(speckeys[s.charCodeAt(j)]);
+			if (indof(c,charToGsm) != -1)
+			{
+				charsize = 1;
+				t += c;
+			}
+			else
+			{
+				if (indof(c,charToGsmExtended) != -1)
+				{
+					charsize = 2;
+					t += c;
+				}
+				else
+				{
+					if (force == false)
+					{
+						uni = true;
+						break;
+					}
+					skipped += c;
+				}
+			}
+			left -= charsize;
+			if (left < 0 || (count > 0 && left==0))
+			{
+				if (count == 0)
+					left = 145+left;
+				else if (count == 1)
+					left = 153+left;
+				count += 1;
+			}
+		}
+		if (uni)
+			t = s;
+		t = encode(t).replace(/\n/g,"<br/>");
+		var st = "<strong>";
+		if (uni)
+		{
+			var left = 0;
+			if (s.length <= 70)
+			{
+				count = 0;
+				left = 70-s.length;
+			}
+			else if (s.length < 70+64)
+			{
+				count = 1;
+				left = 70+64-s.length;
+			}
+			else if (s.length < 70+64+67)
+			{
+				count = 2;
+				left = 70+64+67-s.length;
+			}
+			else
+			{
+				count = 3;
+			}
+			if (count >= 3)
+				st += "`MMS`</strong>";
+			else
+				st += left.toString()+"/"+(count+1).toString()+"</strong>";
+		}
+		else
+		{
+			if (count == 3)
+				st += "`MMS`</strong>";
+			else
+				st += left.toString()+"/"+(count+1).toString()+"</strong>";
+			if (skipped.length > 0)
+			{
+				st += ", `skipped chars`: "+skipped;
+			}
+		}
+		document.getElementById('smsconverted').innerHTML = t;
+		document.getElementById('smsstatus').innerHTML = st;
+		setCookie("avoidunicode",document.getElementById("force7bit").checked?'true':'false',30);
+		update_reci();
+	}
+	function add_reci_number(){
+                if (document.getElementById('newnumber').value == ""){
+                        return;
+                }
+		if (document.getElementById('newnumber').value.search(/^[0-9\+\-]*$/)==-1){
+			alert("`In the phone numbers the following characters are allowed: 0-9, +, -`");
+			return;
+		}
+
+                var newnum = document.getElementById('newnumber').value;
+		add_reci('',newnum);
+		document.getElementById('newnumber').value = "" ;
+	}
+	function sendsms()
+	{
+		if (reci.length == 0)
+		{
+			alert("`No recipients, please add at least one.`");
+			return;
+		}
+		if (document.getElementById('smstext').value == "" || firstsms == true)
+		{
+			alert("`Unable to send empty message.`");
+			return;
+		}
+		var t = "";
+		var s = document.getElementById('smstext').value;
+		savedmessage = s;
+		var c = "";
+		var uni = false;
+		var force = document.getElementById("force7bit").checked;
+		for (j=0; j < s.length; j++)
+		{
+			c = s[j];
+			charsize = 0;
+			if (force && speckeys[s.charCodeAt(j)])
+					c = String.fromCharCode(speckeys[s.charCodeAt(j)]);
+			if (indof(c,charToGsm)  != -1)
+			{
+				t += c;
+			}
+			else
+			if (indof(c,charToGsmExtended) != -1)
+			{
+				t += c;
+			}
+			else
+			{
+				if (force == false)
+				{
+					uni = true;
+					break;
+				}
+			}
+		}
+		if (uni)
+			t = s;
+		savedreci = reci;
+
+
+		s = "";
+		for(var j = 0; j < reci.length; j++)
+		{
+//			for (i = 0; i < reci[j][1].length; i++)
+//				s += '_'+reci[j][1].charCodeAt(i);
+			s+=reci[j][1];
+			if (j<reci.length-1)
+				s+=',';
+		}
+		s+='\r\n'+t;
+//		for (i = 0; i < t.length; i++)
+//			s += '_'+t.charCodeAt(i);
+
+		sendmakeRequest('sendsms',s);
+
+		document.getElementById('smstext').value = "";
+		document.getElementById('smsstatus').innerHTML = '<span style="color: black"><strong>`sending...`</strong></span>';
+		reci = [];
+		update_reci();
+	}
+// from w3schools.com
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate()+expiredays);
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toUTCString());
+}
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=indof(c_name+"=",document.cookie);
+  if (c_start!=-1)
+    {
+    c_start=c_start + c_name.length+1;
+    c_end=indoff(";",document.cookie,c_start);
+    if (c_end==-1) c_end=document.cookie.length;
+    return unescape(document.cookie.substring(c_start,c_end));
+    }
+  }
+return "";
+}
+</script>
+</head>
+<body onload="loadxml();">
+<div id="dev">
+	<strong>`Under development, tested only on GSM networks`</strong>
+</div>
+        <div id="outer2">
+        </div> <!-- end outer2 -->
+<div id="wrapper">
+		<div id="destination"></div>
+		<div id="outer3">
+		`Loading SMS and contacts...`
+        </div> <!-- end outer3 -->
+</div><!-- end #wrapper -->
+	<div id="smsdiv">
+		<div style ="float:left">
+		<textarea id="smstext" value="" cols="80" rows="3"
+			onkeypress="convertsms()" onkeyup="convertsms()" onfocus="clearsms()"></textarea>
+		</div>
+		<div>
+		<input id="sendbutton" type="button" class="butt" value="`SEND`" onclick="sendsms()">
+		<span id="smsstatus"></span><br/>
+		<input type="button" class="butt" value="`Show contacts`" onclick="showThreadTree(false)">
+		<input type="button" class="butt" value="`Show phone numbers`" onclick="showThreadTree(true)"><br/>
+		<input type="checkbox" id="force7bit" onclick="convertsms()">`SMS mode (avoid unicode)`</input>
+		<input name="configkeys" type="button" class="butt" value="`Config keys`" onclick="window.location = 'config_keys.html'">
+		</div>
+		<div style="clear:both">
+	                <div>
+	                        <input id="recinumber" type="button" class="butt" value="`Add phone number`:" onclick="add_reci_number()"> <input type="text" id="newnumber" value="" />
+				<span id="smsadd"></span>
+        	        </div>
+		<div id="smsto"></div>
+		<strong>`Message`:</strong>
+		<span id="smsconverted">
+		</span>
+	</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+if (getCookie("avoidunicode") != "false")
+	document.getElementById("force7bit").checked = true;
+if (document.getElementById('smstext').value == "" || document.getElementById('smstext').value == "`Write here your message!`")
+{
+	document.getElementById('smstext').value = "`Write here your message!`";
+	firstsms = true;
+}
+else
+{
+	firstsms = false;
+	convertsms();
+}
+</script>
+</html>

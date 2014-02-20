@@ -1,0 +1,89 @@
+// The functions gameKeyDown(key), gameKeyUp(key) and gameKeyPress(key) get called if the Game Mode
+// is enabled.
+// Feel free to call addGameComment(message, timeInMillis) to display debug messages in the browser.
+
+// The following code is NXT Remote Control, tested on a Samsung Galaxy Tab 10.1 in Landscape orientation.
+// Many thanks for Mark Bruce. Feel free to send me codes, I'm happy to include those in Webkey.
+
+
+// We are storing pressed keys, because gameKeyDown() gets called several times during a long press.
+var pressed_keys = {};
+
+// X, Y: coordinates in percent of the screen, 0,0 means top left, 1,1 means bottom right.
+// down: 0 -> release, 1 -> press, 2 -> move
+// There is no support for multitouch.
+function click(x,y,down)
+{
+	if (down)
+		addGameComment("pressed at "+x+","+y, 1000);
+	else
+		addGameComment("released at "+x+","+y, 1000);
+	moveevent = moveevent + "_p" + Math.floor(x * 65535) + "_" + Math.floor(y * 65535) + "_" + down;
+}
+
+// Callback for key down.
+function gameKeyDown(key)
+{
+	if (key in pressed_keys) // already pressed
+		return;
+	pressed_keys[key] = true;
+	if (key == 37) // LEFT
+	{
+		addGameComment("left", 1000);
+		click(0.45, 0.77, 1);
+	}
+	if (key == 38) // UP
+	{
+		addGameComment("up", 1000);
+		click(0.65, 0.40, 1);
+	}
+	if (key == 39) // RIGHT
+	{
+		addGameComment("right", 1000);
+		click(0.85, 0.77, 1);
+	}
+	if (key == 40) // DOWN
+	{
+		addGameComment("down", 1000);
+		click(0.65, 0.77, 1);
+	}
+	// call sendNow() to send the events
+	sendNow();
+}
+
+// Callback for key up.
+function gameKeyUp(key)
+{
+	if (key in pressed_keys)
+		delete pressed_keys[key];
+	if (key == 37) // LEFT
+	{
+		addGameComment("left released", 1000);
+		click(0.45, 0.77, 0);
+	}
+	if (key == 38) // UP
+	{
+		addGameComment("up released", 1000);
+		click(0.65, 0.40, 0);
+	}
+	if (key == 39) // RIGHT
+	{
+		addGameComment("right released", 1000);
+		click(0.85, 0.77, 0);
+	}
+	if (key == 40) // DOWN
+	{
+		addGameComment("down released", 1000);
+		click(0.65, 0.77, 0);
+	}
+	sendNow();
+}
+
+// Callback for key press. This is not working in Chrome.
+function gameKeyPress(key)
+{
+	// We ignore arrows
+	if (key in [37,38,39,40])
+		return;
+	addGameComment(key + " pressed", 1000)
+}

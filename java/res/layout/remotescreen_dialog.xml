@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_root"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp"
+              >
+    <TextView android:id="@+id/dialog_username"
+    		  android:text="username"
+			  android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="#FFF"/>
+                             
+	<EditText
+		android:id="@+id/edit_username"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"		
+		android:singleLine="True"
+		/>
+                            
+    <TextView android:id="@+id/dialog_passwd"
+    		  android:text="passwd"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"              
+              android:textColor="#FFF"/>
+              
+	<EditText
+		android:id="@+id/edit_passwd"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"		
+		android:singleLine="True"
+		/>
+		
+    <TextView android:id="@+id/dialog_server_nick"
+    		  android:text="nick"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"              
+              android:textColor="#FFF"/>
+              
+	<EditText
+		android:id="@+id/edit_server_nick"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"		
+		android:singleLine="True"
+		/>
+
+    <TextView android:id="@+id/dialog_phone_address"
+    		  android:text="address"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"              
+              android:textColor="#FFF"/>
+              
+	<EditText
+		android:id="@+id/edit_phone_address"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"		
+		android:singleLine="True"
+		/>
+				
+	<Button
+		android:id="@+id/dialog_ok"	
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="ok"/>
+</LinearLayout>

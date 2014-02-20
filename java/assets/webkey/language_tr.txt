@@ -1,0 +1,237 @@
+﻿Call list -> Çağrı Listesi 
+Webkey for Android -> Android için WebKey 
+unknown -> bilinmeyen 
+min -> dakida 
+sec -> saniye 
+Detailed call list -> Detaylı çağrı listesi 
+rejected -> reddedildi 
+in -> gelen 
+out -> giden 
+Calls which are longer than half minute in the selected month -> Seçili ay içerisindeki yarım dakikadan uzun çağrılar 
+Summarize -> Özetle 
+Name -> İsim 
+incoming -> gelen 
+outgoing -> giden 
+Loading Call list... -> Çağrı Listesi Yükleniyor... 
+Above lines are read by -> Yukardaki satırlar bu kişiler tarafından okundu: 
+Chat -> Chat 
+clear -> temizle 
+chat message -> chat mesaj 
+chat messages -> chat mesajları 
+Save -> Kaydet 
+Allowable characters in GSM and their keycode in non-unicode SMS -> GSM şebekesinde izin verilen karakterler ve unicode olmayan tuş kodları 
+Lines with enabled "works in SMS mode" take priority when you want to avoid unicode sms mode (both under menus Phone and SMS). -> "SMS modunda çalışır" seçeneği işaretli satırlar sms modunda unicode'dan kaçınırken öncelik alırlar (hem Telefon hem de SMS menüsünde). 
+Export -> Dışa Aktar 
+Contacts -> Kişiler 
+Messages -> Mesajlar 
+to -> Belge türü 
+plain text (pure) -> düz metin 
+semicolon-separated values (csv) -> virgülle ayrılmış değerler (csv) 
+xml -> xml 
+where date is -> Tarih 
+dd mm yyyy -> gg aa yyyy 
+mm dd yyyy -> aa gg yyyy 
+yyyy mm dd -> yyyy aa gg 
+with date separator -> tarih ayracıyla 
+in timezone -> Zaman dilimi 
+Timezone -> Zaman Dilimi 
+Epoch time -> Epoch zamanı 
+with newline type -> yeni satırda yazma 
+The texts are exported in utf-8 encoding. -> Metin utf-8 formatında dışarı aktarıldı. 
+Files -> Dosyalar 
+GPS -> GPS 
+GPS location -> GPS mevkiisi 
+Show on map -> Haritada göster 
+Update continuously -> Devamlı güncelle 
+Network location -> Ağ mevkiisi 
+Error -> Hata 
+BEFORETIME -> 
+seconds ago -> saniye önce 
+minutes ago -> dakika önce 
+hours ago -> saat önce 
+days ago -> gün önce 
+Help -> Yardım 
+Please visit our website for more information -> Daha fazla bilgi için lütfen sitemizi ziyaret ediniz 
+If you like our app, please support the development of Webkey. Every help is appreciated. -> Eğer uygulamamızı beğendiğseniz WebKey'in geliştirilmesinde desteklerinizi eksik etmeyiniz. Her türlü yardım için teşekkürler. 
+Screenshots' properties -> Screenshot'ın özellikleri 
+Clicking, dragging -> Tıklamak, çekmek 
+You should be able to click and drag on the phone by doing the same on the screenshot. -> Screenshot üzerinde, telefonda yaptığınız gibi tıkla ve sürükle özelliklerini kullanabilirsiniz. 
+Low resolution -> Düşük Çözünürlük 
+It makes resolution half both in horizontal and vertical direction. -> Çözünürlüğü hem yatay hem de dikey olarak yarı yarıya küçültür. 
+PNG (slower than JPEG) -> PNG (JPEG'den daha yavaştır) 
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> JPEG kayıplı bir sıkıştırmadır. Hızlıdır ve sıkıştırma oranı çok iyidir fakat resimler bulanıklaşır. PNG daha yavaştır, resim boyutu daha büyüktür fakat sıkıştırılmasında kayıp yaşanmaz. 
+Use only first framebuffer -> Yalnız ilk framebuffer kullan 
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> Android genellikle çift tamponlama kullanır: telefon iki framebufferdan birini gösterirken yeni resim diğer framebufferda açılır. Daha sonra onları değiştirir. Bu titremeyi engellemek için eski bir tekniktir. Bazı daha eski telefonlarda (örneğin Dream diye de bilinen HTC G1) bazen birinci kısımdan bazı bölümleri ve ikinci kısımdan da bazı bölümleri gösterebilir fakat bu yüzden ikinci kısım genellikle resmin tamamını içermez. Bu seçenek Webkey'i ilk framebuffer'ı kullanmaya zorlar.  
+Record images -> Resimleri kaydet 
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> Telefon resimleri yapabileceği en kısa sürede geçici bir klasörde kaydetmeye başlar (/sdcard/webkey_TEMP). Telefon, seçili seçenekleri kullanır(Düşük çözünürlük, Yatay, Ters, Png/Jpeg, sadece ilk framebufferı kullanırlar. Kaydı durdur seçeneğine tıkladıktan sonra telefon resimlerden bir zip dosyası oluşturur ve onu tarayıcıya gönderir.  
+Typing -> Giriş 
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> Büyük metin alanı telefona tuş girişlerini enjekte etmek içindir. Bunu bir an önce "Yazarken gönder" seçeneği seçiliyken veya bütün yazılı metni "Gönder" butonuna basarak yapabilirsiniz. İngilizce olmayan gönderilen her karakter ekranınızın yeniden yüklenmesine neden olabilir. DELETE tuşu girişi geri alır yani siler. 
+Config keys -> Tuşları yapılandır 
+You can configure the character substitution rules for SMS mode. -> Karakter değişim kurallarını SMS mode ekranında düzenleyebilirsiniz. 
+SMS mode -> SMS modu 
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. -> Eğer ç,ş,ı,ü,ğ, gibi özel karakterler göndermeyi denerseniz bu karakterler Android'i GSM ağlarındaki mesaj karakter sınırının 160'dan 70'e düştüğü unicode formatina dönmeye zorlar. Eğer SMS modu işaretliyse, ozaman "SMS moduyla çalışır" seçeneği öncelik kazanır. 
+Translations -> Çeviriler 
+If you already have an account to this phone -> Eğer zaten bir kullanıcı hesabınız varsa 
+Login -> Giriş Yap 
+Username -> Kullanıcı 
+Password -> Şifre 
+Create new user -> Yeni kullanıcı oluştur 
+Registration -> Kaydol 
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> Yeni kullanıcı kaydı devredışı, "tarayıcıda kullanıcı kaydını etkinleştir" seçeneğine tıklayarak aktifleştirin. 
+You can always manage users on the phone. -> Kullanıcıları istediğiniz zaman telefondan düzenleyebilirsiniz. 
+Click here to switch to SSL. -> SSL'e geçmek için tıklayınız.
+SSL provides secure (and a slightly slower) way to access Webkey. -> SSL Webkey'e erişimde daha güvenli (biraz daha yavaş) bir yol sunar. ->  
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Conform Security Exception". -> Firefox'da şunlara tıklamanız gerekebilir "Tehlikeleri anladım", "Ayrıcalık ekle...", "Güvenlik şartlarını kabul ediyorum". 
+On Chrome you might have to click on "Proceed anyway". -> Chrome'da "Yine de devam et" butonuna tıklamanız gerekebilir. 
+Click here to disable SSL. -> SSL'i devre dışı bırakmak için tıklayın. 
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> SSL'i devre dışı bırakmak bağlantıyı hızlandıracaktır fakat güvensiz bilgi alışverişine neden olacaktır. 
+Language -> Dil 
+Net -> Net 
+Sum -> Sum 
+Notify -> Bildir 
+saved -> kaydedildi 
+failed to save -> kaydedilemedi
+Under development, it may not notify you because the CPU can fall deep asleep -> Geliştirme aşamasında, işlemcinin uyuyakalma ihtimalinden dolayı sizi bilgilendirmemesine neden olabilir 
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> Webkey cevapsız çağrıları ve okunmamış mesajları her yarım dakikada bir kontrol eder (işlemciyi çok az kullanır, düzenleme zamanları veritabanından kontrol edilebilir, eğer değiştilirmilerse hemen sqlite isteği yapın). 
+Trigger events -> Trigger olayları 
+Watch for unread messages -> Okunmamış mesajları izle 
+Watch for missed calls -> Cevapsız çağrıları izle 
+Notification method -> Bildirim şekli
+Alert every -> Bildir, her
+minute -> dakika 
+Vibrate phone -> Telefonu titret
+Vibrate phone with the following sequence -> Bu sıra ile titret 
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A,B,C,D,...A titreşim için milisaniye, B beklemek için milisaniye, C titreşim için milisaniye, D beklemek için milisaniye anlamına gelir ...)
+Blink led -> Led yanıp sönsün 
+only for the duration of vibrate -> sadece titreşim boyunca 
+all the time -> her zaman 
+When the led is blinking, it is on for -> Led yandığında, açık kalacağı süre 
+ms, and off for -> ms, kapalı kalacağı süre 
+ms -> ms 
+Save and test alert -> Kaydet ve test bildirimi gönder
+Click here to type on phone! -> Telefonda yazmak için buraya yazın! 
+Stop recording -> Kaydı durdur
+results -> sonuçlar 
+Screen properties -> Ekran özellikleri
+Half size -> Yarım boy
+Horizontal -> Yatay 
+Flip -> Döndür 
+PNG (slower than JPEG) -> PNG (JPEG'den yavaştır) 
+Auto refresh -> Otomatik yenile 
+Keep alive -> Canlı tut 
+Refresh image -> Görüntü yenile 
+Save image -> Görüntü kaydet
+Typing properties -> Yazım özellikleri
+Send while typing -> Yazarken gönder 
+Send on Enter -> Enter'la gönder 
+Send text -> Metin gönder 
+Config buttons -> Tuş yapılandırması
+Open, call, run -> Aç, ara, çalıştır 
+Open in browser -> Tarayıcıda aç
+Call -> Ara 
+Dial -> Çevir 
+Run -> Çalıştır 
+Phone info -> Telefon bilgisi 
+Clipboard -> Pano 
+Screen timeout -> Ekran zaman aşımı 
+IMEI/MEID -> IMEI/MEID 
+Phone number -> Telefon numarası 
+Network operator name -> Ağ operatör ismi 
+Network type -> Ağ türü 
+SIM operator name -> SIM operatör ismi 
+SIM serial number -> SIM seri numarası 
+Subscriber ID -> Abone ID 
+Phone utils -> Telefon araçları 
+Send toast -> Toast gönder 
+Vibrate -> Titreşim 
+Run application -> Uygulama Çalıştır 
+Close application -> Uygulama Kapat 
+Kill application -> Uygulama Öldür 
+Volume -> Ses 
+Ringer -> Zil Sesi 
+Media -> Medya 
+Wifi -> Wifi 
+Buttons -> Butonlar 
+Development -> Geliştirme 
+Run SL4A request -> SL4A isteği çalıştır 
+Sdcard -> Sdcard(hafıza kartı) 
+SMS -> SMS 
+Sent. Reload the page to see the sent message. -> Gönderildi. Gönderilen mesajı görmek için sayfayı yenileyiniz. 
+FAILED TO SEND -> GÖNDERİLEMEDİ 
+add to recipients -> alıcılara ekle 
+To -> Kime 
+click to remove -> silmek için tıklayın 
+no recipients -> alıcı yok
+Click&nbsp;to&nbsp;add&nbsp; -> Tıkla&nbsp;ekle&nbsp; 
+Me -> Ben 
+(pending...) -> (sürüyor...) 
+Write here your message! -> Mesajınızı buraya yazınız! 
+MMS -> MMS 
+skipped chars -> atlanan karakterler
+In the phone numbers the following characters are allowed: 0-9, +, - -> Sadece bu karakterler geçerlidir: 0-9, +, - 
+No recipients, please add at least one. -> Alıcı yok, lütfen en az bir alıcı ekleyin. 
+Unable to send empty message. -> Boş mesaj gönderilemedi. 
+sending... -> gönderiliyor... 
+Under development, tested only on GSM networks -> Geliştirme aşamasında, Sadece GSM ağlarında denenmiştir 
+Loading SMS and contacts... -> SMS'ler ve Kişiler yükleniyor... 
+SEND -> GÖNDER 
+Show contacts -> Kişileri göster 
+Show phone numbers -> Numarayı göster
+SMS mode (avoid unicode) -> SMS modu (unicode kullanmayınız) 
+Add phone number -> Telefon numarası ekle 
+Message -> Mesaj 
+Terminal -> Terminal 
+Config -> Ayar 
+Log out -> Çıkış yap 
+Adjust light -> Işığı ayarla 
+loading -> yükleniyor 
+Close -> Kapat 
+Kill -> Öldür 
+ch -> kanal 
+level -> seviye 
+Phone -> Telefon 
+Show -> Göster 
+Key -> Tuş 
+Keycode -> Tuş kodu 
+Char -> Karakter 
+converts to -> buna dönüştür 
+works in SMS mode -> sms modda çalışır 
+Reloading... -> Yeniden yükleniyor... 
+Registration request sent, please wait until it's authorized on the phone. -> Kayıt isteği gönderildi, lütfen telefonda belirene kadar bekleyiniz. 
+Saved, reloading ... -> Kaydedildi, yeniden yükleniyor ... 
+username -> kullanıcı 
+password -> şifre 
+Change password -> Şifreyi değiştir
+Remove user -> Kullanıcı sil
+ALL -> TÜMÜ 
+Screenshot -> Screenshot 
+Location -> Mevkii 
+Read /sdcard/public/ -> Oku /sdcard/public/ 
+Contacts, Sms, Calls -> Kişiler, Sms, Çağrılar 
+Read files -> Dosyaları oku 
+Save permissions -> İzinleri Kaydet 
+New user -> Yeni kullanıcı 
+Create -> Oluştur 
+Details about permissions -> İzin detayları 
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> Bütün diğer izinler. Ek olarak, kullanıcı kod enjekte edebilir, olay enjekte edebilir, komut çalıştırabilir, terminalde komut çalıştırabilir, log görüntüleyebilir. Bu izinler diğer hiç bir kullanıcı tarafından erişilemez. 
+View screenshot of the phone. -> Telefonun ekran görüntüsünü göster. 
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> Telefonun GPS ve ağ mevkiisini göster. GPS sadece telefonunuzun ayarlarından aktif hale getirildiğinde çalışır. Ağ mevkiisi şebeke sağlayıcınıza bağlıdır.
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> Mesaj oku ve yaz. Her mesaj aynı listededir ve her kullanıcı listeyi boşaltabilir. 
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> Eğer bu izin seçiliyse ve "Dosyaları oku" seçili değilse, Menü'den sadece /sdcard/public içeriği olan dosyalar okumaya uygun olacaktır.Bu ayarı kullanacaksanız lütfen bu klasörü oluşturun. 
+Read personal data such as contacts, messages and call list. -> Kişiler, mesajlar ve arama kaydı gibi kişisel dosyaları oku. 
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> Telefondaki tüm dosyaları oku. Dikkatli olun, kişiler, mesajlar, çağrı kaydı ve Webkey şifreleri dosyalarda depolanmaktadır! 
+Read and modify the content of the sdcard. -> SDcard içeriğini oku ve düzenle. 
+Log (activities is logged once in every 30 minutes) -> Log (aktiviteler 30 dakikada bir kaydedilir) 
+Clear log -> Log'u temizle 
+uptime -> uptime 
+uptime secs -> uptime secs 
+mins -> dakika 
+hours -> saat 
+days -> gün 
+hour -> saat 
+CPUup -> CPUup 
+CPU uptime secs -> CPU uptime secs 
+Brightness -> Parlaklık 
+Recorded -> Kaydedilen 
+images -> resimler 
+This terminal will be closed after 60 minutes of inactivity. -> Terminal bir saatlik inaktiflik sonrası otomatik olarak kapatılır. 

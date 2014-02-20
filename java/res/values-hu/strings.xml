@@ -1,0 +1,122 @@
+<resources>
+	<string name="warning">Figyelmeztetés</string>
+    <string name="app_name">Webkey</string>
+    <string name="btn_save">Felhasználó mentése</string>
+    <string name="btn_cancel">Mégse</string>
+    
+    <string name="main_start_btn">Indítás</string>
+    <string name="main_stop_btn">Leállítás</string>
+    <string name="main_iptext">Hálózati cím nem elérhető</string>
+    <string name="main_exitgui_btn">Bezárás</string>
+    <string name="main_password"></string>
+    <string name="main_settingsTitle">Beállítások</string>
+    <string name="main_ddusing_cbox">IP szinkronizálása a DynDNS-hez</string>
+    <string name="main_autostart">automatikus indítás bootloláskor</string>
+    <string name="main_icon">ikon megjelenítése az értesítősávban</string>
+    
+    <!-- In manageusers I use this string as well -->
+    <string name="main_allow_remote_reg">engedély új felhasználó regisztrációjára böngészőből</string>
+    
+    <string name="ddsettings_title">DynDNS beállítások</string>
+    <string name="ddsettings_DDusername">DynDNS felhasználói név</string>
+    <string name="ddsettings_DDpassword">DynDNS jelszó</string>
+    <string name="ddsettings_DDdomain">DynDNS domain</string>
+    
+    <string name="main_ddbsettings_btn">DynDNS beállítások</string>    
+    <string name="main_notvaliddd">Nem érvényes DynDNS beállítások</string>
+    <string name="main_upgrading">Frissítés...</string>
+    <string name="main_portWindowTitle">A szolgáltatás portjai</string>
+    <string name="main_server">webkey.cc</string>
+    <string name="main_serverport"></string>
+    <string name="main_connectserver">tartson fent élő kapcsolatot az webkey.cc szerverével</string>
+    <string name="main_usernametext_btn">Nicknév a szerveren</string>
+    <string name="main_usernametitle">Nicknév a szerveren</string>
+    <string name="main_usernamemessage">Kérem adjon meg egy nicknevet, amely azonosítja a telefonját az webkey.cc-on</string>
+    <string name="main_emptyusername">Üres nicknév nem </string>
+    <string name="main_alphabeticallowd">Csak alphanumerikus karakterek és számok az engedélyezettek.</string>
+    <string name="main_unableregisterserver">Nem tudom regisztrálni a nicknevet a szerveren.</string>    
+    <string name="main_serverreason">Ha a 3G szolgáltatója blokkolja a telefonra bejövő kapcsolatot, akkor elérheti a telefonját a szerverünkön keresztül: </string>
+    <string name="main_phoneavailableat">A telefonja elérhető az alábbi címeken:\n</string> 
+	<string name="main_changeport_btn">Portok megadása</string>
+	<!--  In preparepermission this string is used. -->
+	<string name="main_help">Segítség</string>
+	<string name="main_help_txt">A program két részből áll: ez egy JAVA-s kezelőfelület a C++-ban írt szerverhez. Ha rákattint az \"Indítás\" gombra, akkor látnia kellene egy \"A telefonja elérhető az alábbi címeken:\" feliratot az IP címek listájával (ha nem, akkor próbálja meg a portokon változtatni, illetve keressen utána tényleg rootolt telefonja van-e).\n\nHa sikerül kapcsolódni az IP cím segítségével, akkor a telefonját elérheti http://sajat_telefon.homeip.net, miután regisztrált a DynDNS szolgáltatásra (cím http://dyndns.org), vagy http://webkey.cc/sajattelefon néven a szerverünket használva (ebben az a poén, hogy nem kell tudnia a telefonja IP címét).\n\nHa nem sikerül kapcsolódni az IP címmel (a 3G szolgáltatója bizonyára blokkolja a telefonjára bejövő kapcsolatokat, vagy a telefon tűzfal, NAT vagy proxy mögött van) akkor használhatja az webkey.cc szerverünket a telefonja eléréséhez. E módon a telefonja nyit kapcsolatot a szerverünkhöz, és ezt a kapcsolatot használjuk arra, hogy elérje a telefonját.\n\nÚj felhasználót a böngészőben a \"Beállítások\" menüpont alatt, vagy Felhasználók gombbal tud hozzáadni.\n\nTovábbi információért, elérhetőségünkért (magyarok a fejlesztők) és a forráskódért keresse fel honlapunkat: http://webkey.cc\n\nNéhány mobil szolgáltató blokkolja a 80-as portot, ám engedi a 8080-as portot.\n\n</string>
+	<string name="main_servicenotrunning">A szolgáltatás nem fut.</string>
+	<string name="main_unameregistered">A nicknevet regisztráltuk az webkey.cc-on.</string>
+	<string name="main_upgradingwait">Frissítés ... Kérem várjon.</string>
+	<string name="main_invalidport">Érvénytelen port</string>
+	<string name="main_netnotexist">A hálózat nem elérhető</string>
+	<string name="main_help_btn">Segítség</string>
+	<string name="main_upgradfailed">A frissítés meghiúsult</string>	
+	<string name="main_donate_btn">Adomány (megnyitja az webkey.cc weboldalunkat)</string>
+	<string name="main_log_btn">Napló</string>
+	<string name="main_control">Vezérlés</string>
+	<string name="main_usersettings_btn">Felhasználók</string>
+	<string name="main_progress">Dolgozok...</string>
+	<string name="main_port">HTTP port     (alapértelmezett: 80)</string>
+	<string name="main_sslport">HTTPS (SSL) port     (alapértelmezett: 443)</string>
+	
+	<string name="logview_nologmsg">Nem találom a napló fájlt</string>
+	<string name="logview_toobigfile">A napló fájl túl nagy</string>
+	
+	<string name="chat_send_btn">Küldés</string>
+	<string name="chat_menu_clear">Törlés</string>
+	<string name="chatui_readby">A fenti sorokat olvasta:</string>
+	<string name="chat_servicenotrunning">A szolgáltatás nem fut.</string>
+	
+	<string name="manage_newuser_ticker">Új felhasználó szeretne kapcsolódni a telefonjára.</string>
+	<string name="manage_newuser_ongoing">Új felhasználó szeretne kapcsolódni a telefonjára.</string>
+	<string name="manage_username_text">Felhasználói név: </string>
+	<string name="manage_password_text">Jelszó: </string>
+	<string name="manage_userwindow_title">Új felhasználó létrehozása</string>
+	<string name="manage_userdelete">Biztos benne, hogy törölni akarja ezt a felhasználót?</string>
+	<string name="manage_user_edit_perm">Jogosultságok szerkesztése</string>
+	<string name="manage_user_changepassword">Jelszó megváltoztatása</string>
+	<string name="manage_user_deleteuser">Felhasználó törlése</string>
+	<string name="manage_user_setpassword">Új jelszó beállítása: </string>
+	
+	<string name="permission_help_all">Az összes többi jogosultság. Plusz a felhasználó tud billentyűzetleütést, egérmozdulatot injektálni, parancsot futtatni terminálban, megtekinteni a logot. Ezek a funkciók nem elérhetőek a többi jogokkal.</string>
+	<string name="permission_help_sceenshot">A telefon képernyőképének megtekintése.</string>
+	<string name="permission_help_gps">A GPS és ahálózati pozíció megtekintése. A GPS pozícióhoz ezt a telefon Beállítások menüjében engedélyezni kell. A hálózati pozíció függ a szolgáltatótól.</string>
+	<string name="permission_help_chat">Üzenetek olvasása és írása. Az üzenetek egy közös listában vannak, amelyet bárki tud üríteni.</string>
+	<string name="permission_help_public">Ha ez a jog engedélyezve van, de a "Fájlok olvasása" nem, akkor a \"Fájlok\" menüpont alatt a /sdcard/public tartalma lesz csak látható.</string>
+	<string name="permission_help_sms_contact">Személyes adatok olvasása: névjegyzék, üzenetek és híváslista.</string>
+	<string name="permission_help_files">Minden fájl olvasása a telefonon. Óvatosan, a névjegyzék, az üzenetek és a híváslista is fájlokban vannak.</string>
+	<string name="permission_help_sdcard">Az SD kártya olvasása és írása.</string>
+
+
+	<string name="permission_checkbox_all">Minden</string>
+	<string name="permission_checkbox_screenshot">Képernyőkép</string>
+	<string name="permission_checkbox_location">Pozíció</string>
+	<string name="permission_checkbox_chat">Csevegés</string>
+	<string name="permission_checkbox_public">/sdcard/public olvasása</string>
+	<string name="permission_checkbox_contact">Névjegyzék, üzenetek, híváslista</string>
+	<string name="permission_checkbox_files">Fájlok olvasása</string>
+	<string name="permission_checkbox_sdcard">SD kártya</string>
+		
+	<string name="main_upgradfailed_restart">A frissítés meghiúsult, kérlek indítsd újra a telefonodat és próbáld mégegyszer.</string>	
+	<string name="main_rootfailed">A telefon nem rootolt vagy nincs telepítve "su" program.</string>
+    <string name="remotescreen_text_username">Felhasználói név a másik telefonhoz:</string>
+    <string name="remotescreen_hinttext_username">felhasználói név</string>        
+    <string name="remotescreen_text_password">Jelszó a másik telefonhoz:</string>        
+    <string name="remotescreen_hinttext_password">jelszó</string>
+	<string name="remotescreen_text_address">Add meg a másik telefon IP címét vagy nicknevét a szerveren</string>
+	<string name="remotescreen_hinttext_phone_address">Telefon címe</string>
+	<string name="remotescreen_text_glnotsupported">Ez a funkció nem elérhető ezen a telefonon</string>	
+	<string name="remotescreen_radiobutton_proxy_yes">Használjuk az webkey.cc-t proxiként</string>
+	<string name="remotescreen_radiobutton_proxy_no">Közvetlen kapcsolódás</string>
+	<string name="remotescreen_text_button_connect">Kapcsolódás</string>
+    <string name="remotescreen_menu_quality">Minőség</string>
+    <string name="remotescreen_menu_disconnect">Kapcsolat bontása</string>
+    <string name="remotescreen_menu_sendbackkey">Vissza gomb küldése</string>
+    <string name="remotescreen_menu_sendmenukey">Menü gomb küldése</string>
+    <string name="remotescreen_qualitysetttins_lowres">Alacsony felbontás</string>
+    <string name="remotescreen_qualitysetttins_horizontal">Horizontális</string>
+    <string name="remotescreen_qualitysetttins_flip">Fejjel lefelé</string>
+    <string name="remotescreen_qualitysetttins_formatum">PNG (lassabb mint a jpeg)</string>
+    <string name="remotescreen_qualitysetttins_framebuffer">Csak az első framebuffer használata</string>
+    <string name="remotescreen_exception_401">Rossz felhasználói név vagy jelszó</string>
+    <string name="remotescreen_exception_404">A telefon nem elérhető</string>
+    <string name="remotescreen_exception_unknownhost">Hálózati probléma</string>
+    <string name="remotescreen_exception_timedout">A telefon nem válaszol</string>
+</resources>

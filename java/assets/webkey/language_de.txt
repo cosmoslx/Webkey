@@ -1,0 +1,237 @@
+#Screen properties -> Einstellungen der Anzeige
+#Typing properties -> Einstellungen für Tippen
+#Open, call, run -> Öffnen, anrufen, starten
+#Phone info -> Telefoninfo
+#Clipboard -> Zwischenablage
+#Screen timeout -> Abschaltung des Displays
+#IMEI/MEID -> IMEI/MEID
+#Phone number -> Telefonnummer
+#Network operator name -> Name des Netzbetreibers
+#Network type -> Netzwerktyp
+#SIM operator name -> Name des Betreibers der SIM-Karte
+#SIM serial number -> Seriennummer der SIM-Karte
+#Subscriber ID -> Teilnehmer-ID
+#Phone utils -> Dienstprogramme des Telefons
+#Send toast -> Gruß senden
+#Vibrate -> Vibrieren lassen
+#Run application -> App starten
+#Close application -> App schließen
+#Kill application -> App killen
+#Volume -> Lautstärke
+#Ringer -> Klingelton
+#Media -> Medien
+#Wifi -> WLAN
+#Buttons -> Tasten
+#Development -> Entwicklung
+#Run SL4A request -> SL4A-Anforderung senden
+#Log out -> Ausloggen
+#loading -> Laden
+#Close -> Schließen
+#Kill -> Killen
+#ch -> ch
+#level -> Level
+Call list -> Anruferliste
+Webkey for Android -> Webkey für Android
+unknown -> unbekannt
+min -> Minuten
+sec -> Sekunden
+Detailed call list -> Detaillierte Anruferliste
+rejected -> abgelehnt
+in -> eingehend
+out -> ausgehend
+Calls which are longer than half minute in the selected month -> Anrufe im ausgewählten Monat, die länger als eine halbe Minute sind 
+Summarize -> Zusammenfassung
+Name -> Name
+incoming -> eingehend
+outgoing -> ausgehend
+Loading Call list... -> Anrufliste laden...
+Above lines are read by -> Obige Zeilen werden gelesen von
+Chat -> Chat
+clear -> löschen
+chat message -> Chat Nachricht
+chat messages -> Chat Nachrichten 
+Save -> Sichern
+Allowable characters in GSM and their keycode in non-unicode SMS -> Erlaubte Zeichen in GSM und ihr Tastencode in non-unicode SMS
+Lines with enabled "works in SMS mode" take priority, if you want to avoid unicode sms mode (both under menus Phone and SMS). -> Zeilen mit aktiviertem "arbeitet im SMS-Modus" haben Vorrang, wenn Sie den Unicode SMS-Modus vermeiden wollen (beide unter den Menüs Telefon und SMS).
+Export -> Exportieren
+Contacts -> Kontakte
+Messages -> Nachrichten
+to -> an
+plain text (pure) -> unformatierter Text
+semicolon-separated values (csv) -> Semikolon-getrennte Daten (CSV)
+xml -> XML
+where date is -> Datumsformat ist
+dd mm yyyy -> TT MM JJJJ
+mm dd yyyy -> MM TT JJJJ
+yyyy mm dd -> JJJJ MM TT
+with date separator -> mit Datumstrennzeichen
+in timezone -> in Zeitzone
+Timezone -> Zeitzone
+Epoch time -> Zeitalter
+with newline type -> Typ für neue Zeilen
+The texts are exported in utf-8 encoding. -> Die Texte werden in utf-8 Kodierung exportiert.
+Files -> Dateien
+GPS -> GPS
+GPS location -> GPS-Standort
+Show on map -> Auf Karte anzeigen
+Update continuously -> Fortlaufend aktualisieren
+Network location -> Netzwerkstandort
+Error -> Fehler
+BEFORETIME -> VORZEIT
+seconds ago -> Sekunden zuvor
+minutes ago -> Minuten zuvor
+hours ago -> Stunden zuvor
+days ago -> Tage zuvor
+Help -> Hilfe
+Please visit our website for more information -> Bitte besuchen Sie unsere Webseite für mehr Informationen
+If you like our app, please support the development of Webkey. Every help is appreciated. -> Wenn Sie unsere App mögen, unterstützen Sie bitte die Entwicklung von Webkey. Jede Hilfe ist willkommen.
+Screenshots' properties -> Eigenschaften der Screenshots
+Clicking, dragging -> Klicken, ziehen
+You should be able to click and drag on the phone by doing the same on the screenshot. -> Sie sollten auf dem Telefon klicken und ziehen können, indem Sie dasselbe auf dem Screenshot tun.
+Low resolution -> Geringe Auflösung
+It makes resolution half both in horizontal and vertical direction. -> Halbiert die horizontale und vertikale Auflösung
+PNG (slower than JPEG) -> PNG (langsamer als JPEG)
+JPEG is a lossy compression. It is fast and has a very good compression ratio, but the image gets noisy. PNG is much slower, the image size is larger, but it uses lossless compression. -> JPEG ist ein Kompressionsverfahren mit Qualitätseinbußen. Es ist schnell und hat eine gute Kompressionrate, aber die Bilder können verwaschen wirken. PNG ist deutlich langsamer, die Dateien sind größer, es nutzt aber eine verlustfreie Kompression.
+Use only first framebuffer -> Benutzt nur den ersten Bildpuffer
+Usually Android uses double buffering: while the phone uses one of the two framebuffers to display, it prepares the new image on the other one. Then swaps them. That's an old trick to avoid flickering. On some older phones (for example on HTC G1 aka Dream) may display some parts from the first, and some parts from the second framebuffer, but in this case usually the second framebuffer doesn't contains a whole image. This option forces Webkey to use only the first framebuffer. -> Normalerweise benutzt Android Double Buffering; während das Telefon einen der beiden Bildpuffer anzeigt, wird der andere schon vorbereitet. Das ist ein alter Trick um Bildschirmflimmern zu verhindern. Bei einigen älteren Telefonen (z.B. HTC G1 aka Dream) kann es passieren, dass Teile des ersten und des zweiten Bildpuffers angezeigt werden. Diese Option zwingt Webkey dazu nur den ersten Bildpuffer zu nutzen.
+Record images -> Bilder aufzeichnen
+The phone starts to save images to a temporary folder /sdcard/webkey_TEMP/ as fast as it can. It uses the selected options (Low resolution, Horizontal, Flip, Png/Jpeg, Use only first framebuffer). After pressing Stop recording, the phone makes a zip archive from the images and sends it to the browser. -> Das Telefon speichert die Bilder so schnell es geht in folgendem Temporärverzeichnis /sdcard/webkey_TEMP/. Es benutzt dabei die gewählten Optionen (geringe Auflösung, Horizontal, Umklappen, PNG/JPEG, nur ersten Frame Buffer). Nachdem Aufzeichnen beenden gedrückt wurde, erstellt das Telefon ein ZIP-Archiv der Bilder und sendet es an den Browser.
+Typing -> Tippen
+The large text area is for inject keys to the phone. You can do it immediately if "Send while typing" is checked, or you can send all the written text by pressing the button Send text. The injection of every non-English character may reload your phone's screen at the first time. The button DEL injects Back. -> Das große Textfeld dient zum Senden von Text an das Telefon. Die Zeichen können durch Aktivierung der Option "Senden beim Schreiben" sofort gesendet werden, oder der gesamte Text wird durch das Drücken des Buttons Senden gesendet. Das Einfügen von nicht-englischen Zeichen kann beim ersten Mal ein Neuladen des Telefonbildschirms hervorrufen. Die Entfernen-Taste fungiert als Zurücktaste.
+Config keys -> Tasten konfigurieren
+You can configure the character substitution rules for SMS mode. -> Sie können die Zeichen-Ersetzungs-Regeln für den SMS-Modus konfigurieren.
+SMS mode -> SMS-Modus
+If you try to send special characters, like ő, ű in an SMS message, then these characters force Android to switch to unicode format, where the number of characters in a message drops from 160 to 70 in GSM networks. If SMS mode is checked, then lines with "works in SMS mode" have priority. ->  Wenn Sie versuchen spezielle Zeichen wie ö oder ü in einer SMS Nachricht senden, dann schaltet Android in den Unicode Modus um, wobei dann die Anzahl der Zeichen von 160 auf 70 in GSM Netzen reduziert wird. Wenn der SMS-Modus ausgewählt ist, haben Zeilen mit aktiviertem "arbeitet im SMS Modus" Vorrang.
+Translations -> Übersetzungen
+If you already have an account to this phone -> Wenn Sie schon ein Konto für dieses Telefon haben
+Login -> Login
+Username -> Benutzername
+Password -> Passwort
+Create new user -> Neuen Benutzer erstellen
+Registration -> Registrierung
+New user's registration is disabled, click on "allow user registration in browser" to enable it. -> Die Registrierung neuer Benutzer ist deaktiviert, zum Aktivieren klicken Sie auf "Benutzer-Registrierung im Browser erlauben".
+You can always manage users on the phone. -> Die Benutzerverwaltung auf dem Telefon steht immer zur Verfügung.
+Click here to switch to SSL. -> Hier klicken um auf SSL umzuschalten.
+SSL provides secure (and a slightly slower) way to access Webkey. -> SSL unterstützt einen sicheren (und etwas langsameren) Zugriff auf Webkey.
+On Firefox you might have to click on "I Understand the Risks", "Add exception...", "Confirm Security Exception". -> In Firefox müssen Sie möglicherweise auf "I Understand the Risks", "Add exception...", "Cnfirm Security Exception" klicken.
+On Chrome you might have to click on "Proceed anyway". -> In Chrome müssen Sie möglicherweise auf "Proceed anyway" klicken.
+Click here to disable SSL. -> Hier klicken um SSL zu deaktivieren.
+Disabling SSL will speed up the connection, but the data will transfer unsecure. -> Deaktivieren von SSL beschleunigt die Verbindung, aber die Daten werden unverschlüsselt übertragen.
+Language -> Sprache
+Net -> Netz
+Sum -> Summe
+Notify -> Benachrichtigung
+saved -> gesichert
+failed to save -> Sicherung fehlgeschlagen
+Under development, it may not notify you because the CPU can fall deep asleep -> In Entwicklung, es kann passieren, dass Sie keine Benachrichtigung erhalten, weil die CPU den Deep Sleep aktivieren kann.
+Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request). -> Webkey sucht alle halbe Minute nach ungelesenen Nachrichten und verpassten Anrufen (der Prozessor wird kaum benutzt, da nur die Änderungszeiten der Datenbank geprüft werden und nur wenn sich diese geändert haben, wird eine sqlite-Abfrage gestartet).
+Trigger events -> Ereignisse auslösen
+Watch for unread messages -> Auf ungelesene Nachrichten prüfen
+Watch for missed calls -> Auf verpasste Anrufe prüfen
+Notification method -> Benachrichtigungsmethode
+Alert every -> Alarm alle
+minute -> Minute(n)
+Vibrate phone -> Vibrieren
+Vibrate phone with the following sequence -> Vibrieren mit folgender Abfolge
+(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...) -> (A,B,C,D,... das bedeutet Vibrieren für A ms, Pause für B ms, Vibrieren für C ms, Pause für D ms, ...)
+Blink led -> LED blinken
+only for the duration of vibrate -> nur für die Dauer des Vibrierens
+all the time -> immer
+When the led is blinking, it is on for -> Wenn die LED blinkt, ist sie eingeschaltet für
+ms, and off for -> ms, und aus für
+ms -> ms
+Save and test alert -> Sichern und Testalarm
+Click here to type on phone! -> Hier klicken, um auf dem Telefon zu schreiben!
+Stop recording -> Aufnahme beenden
+Half size -> Halbe Größe
+Horizontal -> Horizontal
+Flip -> Umdrehen
+PNG (slower than JPEG) -> PNG (langsamer als JPEG)
+Auto refresh -> Automatisch aktualisieren
+Keep alive -> Verbindung halten
+Refresh image -> Bild aktualisieren
+Save image -> Bild sichern
+Open in browser -> Im Browser öffnen
+Call -> Anrufen
+Dial -> Wählen
+Run -> Ausführen
+Send while typing -> Während dem Tippen senden
+Send on Enter -> Senden durch Enter
+Send text -> Text senden
+Config buttons -> Tasten konfigurieren
+Adjust light -> Helligkeit einstellen
+Sdcard -> SD-Karte
+SMS -> SMS
+Sent. Reload the page to see the sent message. -> Gesendet. Die Seite neu laden, um die gesendete Nachricht zu sehen.
+FAILED TO SEND -> SENDEN FEHLGESCHLAGEN
+add to recipients -> Zu Empfängern hinzufügen
+To -> An
+click to remove -> Zum Entfernen anklicken
+no recipients -> keine Empfänger
+click to add -> Zum Hinzufügen anklicken
+Me -> Ich
+(pending...) -> (unerledigt...)
+Write here your message! -> Schreiben Sie hier Ihre Nachricht!
+MMS -> MMS
+skipped chars -> Übersprungene Zeichen
+In the phone numbers the following characters are allowed: 0-9, +, - -> In Telefonnummern sind folgende Zeichen erlaubt: 0-9, +, -
+No recipients, please add at least one. -> Keine Empfänger, bitte mindestens einen hinzufügen.
+Unable to send empty message. -> Leere Nachricht kann nicht gesendet werden.
+sending... -> senden
+Under development, tested only on GSM networks -> In Entwicklung, nur in GSM-Netzen getestet
+Loading SMS and contacts... -> SMS und Kontakte laden
+SEND -> SENDEN
+Show contacts -> Kontakte anzeigen
+Show phone numbers -> Telefonnummern anzeigen
+SMS mode (avoid unicode) -> SMS-Modus (verhindert Unicode)
+Add phone number -> Telefonnummer hinzufügen
+Message -> Nachricht
+Terminal -> Terminal
+Phone -> Telefon
+Config -> Konfiguration
+results -> Ergebnisse
+Show -> Anzeige
+Key -> Taste
+Keycode -> Tastencode
+Char -> Zeichen
+converts to -> konvertiert zu
+works in SMS mode -> arbeitet im SMS-Modus
+Reloading... -> Neu laden
+Registration request sent, please wait until it's authorized on the phone. -> Registrierungsanfrage gesendet, bitte warten bis die Authorisierung auf dem Telefon erfolgt ist.
+Saved, reloading ... -> Gesichert, neu laden ...
+username -> Benutzername
+password -> Passwort
+Change password -> Passwort ändern
+Remove user -> Benutzer entfernen
+ALL -> ALLE
+Screenshot -> Screenshot
+Location -> Standort
+Read /sdcard/public/ -> Lesen von /sdcard/public/
+Contacts, Sms, Calls -> Kontakte, SMS, Anrufe
+Read files -> Dateien lesen
+Save permissions -> Berechtigungen sichern
+New user -> Neuer Benutzer
+Create -> Erstellen
+Details about permissions -> Berechtigungsdetails
+All other permissions. Additionally, user can inject keys, inject touch events, run commands, run commands in terminal, view log. These functions are not accessible by any of the other permissions. -> Alle anderen Berechtigungen. Zusätzlich kann der Benutzer Tastenkürzel einfügen, Touch-Ereignisse einfügen, Befehle ausführen, Befehle im Terminal ausführen, die Log-Datei ansehen. Auf diese Funktionen besteht kein Zugriff von den anderen Berechtigungen
+View screenshot of the phone. -> Screenshot des Telefons anzeigen.
+View GPS and network location of the phone. The GPS is only available if it is enabled in your phone's Settings. Network location depends on your carrier. -> GPS und Netzwerkstandort des Telefon ansehen. GPS ist nur verfügbar, wenn es in den Einstellungen Ihres Telefons aktiviert wird. Der Netzwerkstandort hängt vom Provider ab.
+Read and write messages. Every message is in the same list, and everyone can empty that list. -> Nachrichten lesen und schreiben. Alle Nachrichten sind in der selben Liste und jeder kann diese Liste leeren.
+If this permission is set and the permission "Read files" is not, then under the menu "Files" only the content of /sdcard/public will be available for read. Please create that directory if you are about to use this function. -> Wenn diese Berechtigung gesetzt und die Berechtigung "Dateien lesen" nicht gesetzt ist, ist unter dem Menü "Dateien" nur der Inhalt von /sdcard/public zum Lesen verfügbar. Bitte erstellen Sie dieses Verzeichnis, wenn Sie diese Funktion nutzen wollen.
+Read personal data such as contacts, messages and call list. -> Persönliche Daten wie Kontakte, Nachrichten und Anruferliste lesen.
+Read all files on the phone. Be careful, the contacts, messages, call list and the passwords of Webkey are stored in files! -> Alle Dateien des Telefons lesen. Seien Sie vorsichtig, die Kontakte, Nachrichten, Anruferliste und Passwörter von Webkey sind in Dateien gespeichert!
+Read and modify the content of the sdcard. -> Lesen und ändern des Inhalts der SD-Karte.
+Log (activities is logged once in every 10 minutes) -> Log (Aktivitäten werden alle 10 Minuten gespeichert)
+Clear log -> Log leeren
+uptime -> Betriebszeit
+uptime secs -> Betriebszeit in Sekunden
+mins -> Minuten
+hours -> Stunden
+days -> Tage
+hour -> Stunde
+CPUup -> CPU-Betriebszeit
+CPU uptime secs -> CPU-Betriebszeit Sekunden
+Brightness -> Helligkeit
+Recorded -> Aufgenommen
+images -> Bilder
+This terminal will be closed after 60 minutes of inactivity. -> Dieses Terminal wird nach 60 Minuten Inaktivität geschlossen.

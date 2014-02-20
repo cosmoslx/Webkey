@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  android:id="@+id/l_root"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  >
+	<ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		>
+		<LinearLayout 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical"
+			>
+			
+			<TextView android:id="@+id/dialog_username"    		  
+    		  android:text="@+string/remotescreen_text_username"
+			  android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="#FFF"/>
+                             
+			<EditText
+				android:id="@+id/edit_username"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"		
+				android:singleLine="True"
+				android:hint="@+string/remotescreen_hinttext_username"
+				/>
+                            
+		    <TextView android:id="@+id/dialog_passwd"		    		  
+		    		  android:text="@+string/remotescreen_text_password"
+		              android:layout_width="wrap_content"
+		              android:layout_height="fill_parent"              
+		              android:textColor="#FFF"/>
+              
+			<EditText
+				android:id="@+id/edit_passwd"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"		
+				android:singleLine="True"
+				android:inputType="textPassword"
+				android:hint="@+string/remotescreen_hinttext_password"
+				/>
+		
+		    <TextView android:id="@+id/dialog_server_nick"
+		    		  android:text="@+string/remotescreen_text_address"		              
+		              android:layout_width="wrap_content"
+		              android:layout_height="fill_parent"
+		              android:padding="7dp"		              
+		              android:textColor="#FFF"/>
+		              
+			<EditText
+				android:id="@+id/edit_phone_address"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"		
+				android:singleLine="True"
+				android:hint="@+string/remotescreen_hinttext_phone_address"
+				/>		
+              
+			<RadioGroup android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:id="@+id/proxy">
+					<RadioButton android:checked="true"
+						android:id="@+id/proxyyes" android:text="@+string/remotescreen_radiobutton_proxy_yes"/>
+					<RadioButton android:checked="false"
+						android:id="@+id/proxyno" android:text="@+string/remotescreen_radiobutton_proxy_no"/>
+				</RadioGroup>
+
+			<Button
+				android:id="@+id/dialog_connect"	
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@+string/remotescreen_text_button_connect"/>
+		</LinearLayout>
+	</ScrollView>  
+</LinearLayout>

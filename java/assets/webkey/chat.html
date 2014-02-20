@@ -1,0 +1,299 @@
+<div id="chatpopup" style="position: fixed; overflow: hidden; border:1px solid #CCC; background-color:#F4F4F4; border:1px solid #333; right: 0px; bottom: 0px">
+<div id="chatpopup1" style="clear: both; width:100%"></div>
+<div id="chatpopup2" style="clear: both; width:100%; display: none"><textarea id="chatinput" onkeyup="return isEnter(event)" cols="35"></textarea></div></div>
+
+<script type="text/javascript" language="javascript">
+ var readby = [];
+ var messagesb = [];
+ var firstchat = true;
+ function showchat()
+ {
+			var t = "";
+			var i = 0;
+			for (i=0; i< messagesb.length; i++)
+			{
+				t += messagesb[i];
+				var first = true;
+				for (var j = 0; j < readby.length; j++)
+				{
+					if (readby[j][1]-1 == i)
+					{
+						if (first)
+							t += "<div style=\"background-color:#888888; color:white; font-size:80%; text-align: right\">`Above lines are read by`: ";
+//60C01A
+						else
+							t += ", ";
+						t += readby[j][0];
+						first = false;
+					}
+				}
+				if (first == false)
+					t += "</div>";
+			}
+	 var popUp = document.getElementById("chatpopup1");
+	 popUp.style.width = "auto";
+	 popUp.style.height ="auto";
+	 popUp.innerHTML = "<div id=\"statusbar\" >"+
+		 "<div style=\"float:left; background: #FFC470; width:100%; padding: 2px\">" +
+		 "<div style=\"float:left; background: #FFC470; width:80%; \" onclick=\"hidechat()\">`Chat`</div>" +
+		 "<div style=\"float:left; background: #FFC470; width:20%; text-align: right; \"><a style=\"a:hover {color: white}\" onclick=\"clearchat()\">`clear`&nbsp;</a></div></div>" +
+		"<div id=\"chatmessages\" style=\"clear:both; padding: 3px; overflow:auto; max-height:200px; font-size: 80%\">"+t.replace(/\n/g,'<br/>')+"</div>";
+	 document.getElementById('chatmessages').scrollTop = document.getElementById('chatmessages').scrollHeight;
+	 document.getElementById('chatpopup2').style.display = "inline";
+	 document.getElementById('chatinput').focus();
+ };
+ function hidechat()
+{
+	 var popUp = document.getElementById("chatpopup1");
+	 document.getElementById('chatpopup2').style.display = "none";
+	 popUp.style.width = "auto";//"100px";
+	 popUp.style.height ="20px";
+	 var s = "`Chat`";
+	 if (messagesb.length == 1)
+		 s = messagesb.length + " `chat message`";
+	 if (messagesb.length > 1)
+		 s = messagesb.length + " `chat messages`";
+	 popUp.innerHTML = "<div id=\"statusbar\" style=\"width:100%; background: #FFC470; padding: 2px\" onclick=\"showchat()\">"+s+"</div>";
+};
+	var chatid = 0;
+	var chatcount = -1;
+	var messagesb = [];
+hidechat();
+		function chatmakeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	chathttp_request = new XMLHttpRequest();
+				if (chathttp_request.overrideMimeType) {
+		            chathttp_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		chathttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	chathttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!chathttp_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			chathttp_request.onreadystatechange = chatalertContents;
+			chathttp_request.open('GET', url, true);
+			chathttp_request.send(null);
+   		}
+		function clearmakeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	clearhttp_request = new XMLHttpRequest();
+				if (clearhttp_request.overrideMimeType) {
+		            clearhttp_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		clearhttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	clearhttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!clearhttp_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			clearhttp_request.onreadystatechange = clearalertContents;
+			clearhttp_request.open('GET', url, true);
+			clearhttp_request.send(null);
+   		}
+		function sendmakeRequest(url,params) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	sendhttp_request = new XMLHttpRequest();
+				if (sendhttp_request.overrideMimeType) {
+		            sendhttp_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		sendhttp_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	sendhttp_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!sendhttp_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			sendhttp_request.onreadystatechange = alertContentsSend;
+			sendhttp_request.open('POST', url, true);
+			sendhttp_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			sendhttp_request.setRequestHeader("Content-length", params.length);
+			sendhttp_request.setRequestHeader("Connection", "close");
+			sendhttp_request.send(params);
+   		}
+			function chatalertContents() 
+			{
+			   if (chathttp_request.readyState == 4 && chathttp_request.status == 200) 
+			   {
+				   show(chathttp_request.responseXML);
+			   }
+			   else
+			   if (chathttp_request.readyState == 4)
+			   {
+				chatid = 0;
+				chatcount = -1;
+				setTimeout("chatmakeRequest('getchatmessage_0','')",5000);
+				firstchat = true;
+			   }
+		      }
+			function clearalertContents() 
+			{
+		      }
+			function alertContentsSend() 
+			{
+		      }
+
+		function sendchat()
+		{
+			var t = document.getElementById('chatinput').value;
+			document.getElementById('chatinput').value = "";
+			if (t.charCodeAt(t.length-1) == 13 || t.charCodeAt(t.length-1) == 10)
+			{
+				t = t.substring(0,t.length-1);
+			}
+			if (t.length)
+				sendmakeRequest("writechatmessage",t);
+		}
+		function clearchat()
+		{
+			clearmakeRequest("clearchatmessage");
+		}
+		function chatloadxml()
+		{
+			if (chatcount == -1)
+				chatmakeRequest("getchatmessage_"+chatid+"_"+messagesb.length);
+			else
+				chatmakeRequest("getchatmessage_"+chatid+"_"+messagesb.length+"_"+chatcount);
+		}
+		function show(xml)
+		{
+			var nid = xml.documentElement.getElementsByTagName("id");
+			var tid = -1;
+			if (nid && nid[0] && nid[0].firstChild)
+				tid = nid[0].firstChild.nodeValue;
+			var changed = false;
+			if (tid != chatid)
+			{
+				var i = 0;
+				if (messagesb.length && chatid != 1)
+					changed = true;
+				messagesb = [];
+			}
+			var ncount = xml.documentElement.getElementsByTagName("readbypos");
+			if (ncount && ncount[0] && ncount[0].firstChild)
+				chatcount = ncount[0].firstChild.nodeValue;
+			else
+				chatcount = -1;
+			chatid = tid;
+			var mes=xml.documentElement.getElementsByTagName("message");
+			for (var i = 0; i < mes.length; i++)
+			{
+				var nodes= mes[i].childNodes;
+				var user = "";
+				var time = 0;
+				var data = "";
+				for (var j = 0; j < nodes.length; j++)
+				{
+					try{
+						if (nodes[j].nodeName == "user" && nodes[j].firstChild)
+							user = nodes[j].firstChild.nodeValue;
+						else if (nodes[j].nodeName == "time" && nodes[j].firstChild)
+							time = nodes[j].firstChild.nodeValue;
+						else if (nodes[j].nodeName == "data" && nodes[j].firstChild)
+							data = nodes[j].firstChild.nodeValue;
+					} catch(exception){};
+				}
+				var myDate = new Date(parseInt(time)*1000);
+				var nowDate = new Date();
+				if (nowDate.getDate() == myDate.getDate() && nowDate.getMonth() == myDate.getMonth() && nowDate.getFullYear() == myDate.getFullYear())
+				{
+					var h = myDate.getHours();
+				        if (h < 10)
+						h = "0"+h;
+					var m = myDate.getMinutes();
+				        if (m < 10)
+						m = "0"+m;
+					var s = myDate.getSeconds();
+				        if (s < 10)
+						s = "0"+s;
+					messagesb.push("<div class=\"smsLine\"><span class=\"smsDate\" style=\"font-size: 65%\" >["+h + ":" + m + ":" +s+"] </span><strong>"+user+":</strong> "+data+"</div>");
+				}
+				else
+				{
+					messagesb.push("<div class=\"smsLine\"><span class=\"smsDate\" style=\"font-size: 65%\" >["+myDate.toLocaleString()+"]</span><br/><strong>"+user+":</strong> "+data+"</div>");
+				}
+			}
+			var r=xml.documentElement.getElementsByTagName("readby");
+			var oldreadby = readby;
+			readby = [];
+			var thisuser = 0;
+			for (var i = 0; i < r.length; i++)
+			{
+				var user = "";
+				var pos = 0;
+					//try{
+						if (r[i].firstChild)
+						{
+							user = r[i].getAttribute("name");
+							pos = r[i].firstChild.nodeValue;
+						}
+					//} catch(exception){};
+				if (user == "<<USERNAME>>")
+					thisuser = pos;
+				else
+					readby.push([user,pos]);
+			}
+			var d = false;
+			if (oldreadby.length != readby.length)
+				d = true;
+			else
+			{
+				for (i = 0; i < oldreadby.length; i++)
+				{
+					if (oldreadby[i][0] != readby[i][0] ||oldreadby[i][1] != readby[i][1]  )
+					{
+						d = true;
+						break;
+					}
+				}
+			}
+			if (firstchat)
+			{
+				if (thisuser == messagesb.length)
+					hidechat();
+				else
+					showchat();
+			}
+			else
+			if (mes.length || d || changed)
+			{
+				showchat();
+			}
+			firstchat = false;
+			chatloadxml();
+
+		}
+	function isEnter(e)
+	{
+		var evtobj=window.event? window.event : e //distinguish between IE's explicit event object (window.event) and Firefox's implicit.
+		if (evtobj.keyCode && evtobj.keyCode == 13 && !evtobj.shiftKey)
+		{
+			sendchat();
+			return true;
+		}
+	}
+	chatloadxml();
+</script>

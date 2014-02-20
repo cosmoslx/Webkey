@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`GPS` - `Webkey for Android`</title>
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+</head>
+<body>
+	<<MENU>>
+
+<div class="main">
+<table cellspacing="12px">
+<tr>
+	<td>`GPS location`:</td><td><span id="glat">...</span> <span id="glong"></span></td>
+	<td><span id="gerr"></span> <span id="gaccu"></span></td>
+	<td><span id="gmtime"></span></td>
+	<td><input type="button" class="butt" value="`Show on map`" onclick="if (document.getElementById('glong').innerHTML && document.getElementById('glong')!='') load_gmaps(document.getElementById('glat').innerHTML,document.getElementById('glong').innerHTML)"></td>
+	<td><input type="checkbox" id="gcheck" onclick="if (document.getElementById('gcheck')) document.getElementById('ncheck').checked = false">`Update continuously`</input></td>
+</tr>
+<tr>
+	<td>`Network location`:</td><td><span id="nlat">...</span> <span id="nlong"></span></td>
+	<td><span id="nerr"></span> <span id="naccu"></span></td>
+	<td><span id="nmtime"></span></td>
+	<td><input type="button" class="butt" value="`Show on map`" onclick="if (document.getElementById('nlong').innerHTML && document.getElementById('nlong').innerHTML!='') load_gmaps(document.getElementById('nlat').innerHTML,document.getElementById('nlong').innerHTML)"></td>
+	<td><input type="checkbox" id="ncheck" onclick="if (document.getElementById('ncheck')) document.getElementById('gcheck').checked = false">`Update continuously`</input></td>
+</tr>
+</table>
+<center>
+<div id="googlemaps"></div>
+</center>
+</div>
+<script type="text/javascript" language="javascript">
+   var http_request = false;
+   var lastg = -1;
+   var lastn = -1;
+   function makeRequest(url, parameters) {
+      http_request = false;
+      if (window.XMLHttpRequest) { // Mozilla, Safari,...
+         http_request = new XMLHttpRequest();
+         if (http_request.overrideMimeType) {
+            http_request.overrideMimeType('text/xml');
+         }
+      } else if (window.ActiveXObject) { // IE
+         try {
+            http_request = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+            try {
+               http_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+         }
+      }
+      if (!http_request) {
+         alert('Cannot create XMLHTTP instance');
+         return false;
+      }
+      http_request.onreadystatechange = alertContents;
+      http_request.open('GET', url + parameters, true);
+      markYellow();
+	//document.getElementById('ind').className = 'yellow';
+      http_request.send(null);
+   }
+
+   function alertContents() {
+      if (http_request.readyState == 4) {
+         if (http_request.status == 200) {
+		 markGreen();
+		//document.getElementById('ind').className = 'green';
+		if (http_request.responseText != "")
+		{
+			var n = http_request.responseText.length;
+			var i = 1;
+			while (i<n)
+			{
+				var key = "";
+				var value = "";
+				while(i<n && http_request.responseText.charAt(i) != '_')
+				{
+					key += http_request.responseText.charAt(i);
+					i = i+1;
+				}
+				i = i+1;
+				while(i<n && http_request.responseText.charAt(i) != '_')
+				{
+					value += http_request.responseText.charAt(i);
+					i = i+1;
+				}
+				i = i+1;
+				try{
+					if(key=='gmtime')
+			  			lastg = parseInt(value);
+					else if (key=='nmtime')
+						lastn = parseInt(value);
+					else
+						document.getElementById(key).innerHTML = value;
+					if (key=='gaccu')
+					{
+						if (value=='-')
+						{
+							document.getElementById('gaccu').innerHTML = '';
+							document.getElementById('gerr').innerHTML = '';
+						}
+						else
+							document.getElementById('gerr').innerHTML = '`Error`: ';
+					}
+					if (key=='naccu')
+					{
+						if (value=='-')
+						{
+							document.getElementById('naccu').innerHTML = '';
+							document.getElementById('nerr').innerHTML = '';
+						}
+						else
+							document.getElementById('nerr').innerHTML = '`Error`: ';
+					}
+
+					
+				   } catch (e) {};
+			}
+			if (document.getElementById('ncheck').checked && document.getElementById('nlong').innerHTML && document.getElementById('nlong').innerHTML != '')
+				load_gmaps(document.getElementById('nlat').innerHTML,document.getElementById('nlong').innerHTML);
+			if (document.getElementById('gcheck').checked && document.getElementById('glong').innerHTML && document.getElementById('glong').innerHTML != '')
+				load_gmaps(document.getElementById('glat').innerHTML,document.getElementById('glong').innerHTML);
+			if (document.getElementById('googlemaps').innerHTML == '' && document.getElementById('glong').innerHTML && document.getElementById('glong').innerHTML != '')
+				load_gmaps(document.getElementById('glat').innerHTML,document.getElementById('glong').innerHTML);
+		}
+	}
+	 else
+	 {
+		 markRed();
+		 //document.getElementById('ind').className = 'red';
+	 }
+      }
+   }
+function load_gmaps(la,lo)
+{
+      document.getElementById('googlemaps').innerHTML = '<iframe width="840" height="650" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q='+la+'+'+lo+'&amp;sll='+la+','+lo+'&amp;sspn=0.010254,0.027616&amp;ie=UTF8&amp;t=h&amp;z=16&amp;ll='+la+','+lo+'&amp;output=embed"></iframe><br />';
+}
+function refresh()
+{
+	makeRequest('gpsget','');
+}
+function mytimer()
+{
+	refresh();
+	setTimeout("mytimer()",12000);
+}
+function add()
+{
+	setTimeout("add()",1000);
+	if (lastg != -1)
+	{
+		lastg += 1;
+	}
+	if (lastn != -1)
+		lastn += 1;
+	if (lastg < 40)
+		document.getElementById('gmtime').innerHTML = '';
+	else if (lastg < 2*60)
+		document.getElementById('gmtime').innerHTML = '`BEFORETIME`'+lastg+' `seconds ago`';
+	else if (lastg < 60*60*2)
+		document.getElementById('gmtime').innerHTML = '`BEFORETIME`' + Math.floor(lastg/60)+' `minutes ago`';
+	else if (lastg < 60*60*24*2)
+		document.getElementById('gmtime').innerHTML = '`BEFORETIME`'+Math.floor(lastg/60/60)+' `hours ago`';
+	else
+		document.getElementById('gmtime').innerHTML = '`BEFORETIME`'+Math.floor(lastg/60/60/24)+' `days ago`';
+	if (lastn < 30)
+		document.getElementById('nmtime').innerHTML = '';
+	else if (lastn < 60)
+		document.getElementById('nmtime').innerHTML = '`BEFORETIME`'+lastn+' `seconds ago`';
+	else if (lastn < 60*60*2)
+		document.getElementById('nmtime').innerHTML = '`BEFORETIME`'+Math.floor(lastn/60)+' `minutes ago`';
+	else if (lastn < 60*60*24*2)
+		document.getElementById('nmtime').innerHTML = '`BEFORETIME`'+Math.floor(lastn/60/60)+' `hours ago`';
+	else
+		document.getElementById('nmtime').innerHTML = '`BEFORETIME`'+Math.floor(lastn/60/60/24)+' `days ago`';
+}
+setTimeout("add()",1000);
+setTimeout("mytimer()",1000);
+refresh();
+</script>
+
+</html>

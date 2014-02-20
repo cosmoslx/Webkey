@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+	<ScrollView
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<LinearLayout 
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:orientation="vertical">
+				<LinearLayout 
+					android:id="@+id/chat_scroll" 
+					android:layout_width="fill_parent"
+					android:orientation="vertical"
+					android:layout_height="fill_parent">						
+					<TextView android:id="@+id/ipaddress"
+						android:text="@string/main_iptext"
+						android:layout_width="fill_parent"
+						android:layout_height="fill_parent"
+						android:layout_weight="1.0"
+						/>
+					<TextView android:id="@+id/nettest"
+						android:text=""
+						android:layout_width="fill_parent"
+						android:layout_height="fill_parent"
+						android:layout_weight="1.0"
+						/>
+
+					<TableLayout android:id="@+id/row1"
+						android:layout_width="fill_parent"
+						android:layout_gravity="bottom"
+						android:layout_weight="1.0"
+						android:layout_height="fill_parent">
+						<TableRow>
+								<Button android:text="@string/main_start_btn" android:id="@+id/startbutton"
+									android:layout_width="0dip" android:layout_height="wrap_content"
+									android:layout_weight="1" />
+								<Button android:text="@string/main_stop_btn" android:id="@+id/stopbutton"
+									android:layout_width="0dip" android:layout_height="wrap_content"
+									android:layout_weight="1" />
+						</TableRow>
+						<TableRow>
+							<Button android:text="@string/main_log_btn" android:id="@+id/logbutton"
+								android:layout_width="0dip" android:layout_height="fill_parent" android:layout_weight="1" 
+								/>
+						</TableRow>
+						<TableRow>
+							<Button android:text="@string/main_donate_btn" android:id="@+id/donate"
+								android:layout_width="0dip" android:layout_height="wrap_content" android:layout_weight="1"
+								android:layout_gravity="center_vertical">
+							</Button>						
+						</TableRow>
+						<TableRow>
+							<Button android:text="@string/main_help_btn" android:id="@+id/helpbutton"
+								android:layout_width="0dip" android:layout_height="fill_parent" android:layout_weight="1"
+							/>
+						</TableRow>
+					</TableLayout>	
+						</LinearLayout>
+		</LinearLayout>
+		</ScrollView>
+</LinearLayout>

@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Notify` - `Webkey for Android`</title>
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <script src="js/jquery.js"></script>
+	  <script src="js/jquery-ui.min.js"></script>
+	  <script src="js/webkey.js"></script>
+</head>
+<body>
+	<<MENU>>
+
+<style type="text/css">
+	#outer2 {
+		float:right;
+		width:180px;
+		padding:10px;
+		overflow:auto;
+
+		border-left-width:2px;
+		border-left-style:solid;
+		border-color:black;
+
+	}
+	#outer3 {
+		float:left;
+		width: 100%;
+		overflow:auto;
+	}
+	#wrapper {
+		overflow:auto;
+		background:#ffffff;
+		padding-top:10px;
+		padding-left:10px;
+		border-bottom-width:2px;
+		border-bottom-style:solid;
+		border-color:black;
+	}
+	#footer {clear:both; background:#455c5a;}
+	#menu {clear:both; background:#455c5a;}
+	.butt {font-size: 10pt;background-color:#404040;color: #FFFFFF;}
+	#xy { color: white; 
+		background-color: black;
+		text-decoration: none;
+		border: 2px solid white; 
+		}
+
+	a {color: black;}
+	#dev {	
+		border-top-style:solid;
+		border-top-width:2px;
+		border-color:white;
+		
+		padding-left:10px;
+		background-color:#f6d19c;
+	}
+	
+	.smsLine{
+		padding-bottom:5px;
+	}
+	.smsDate{
+		color:gray;
+		font-size:11px;
+	}
+	.statuspending{
+		color:blue;
+		font-size:11px;
+	}
+	.statusfailed{
+		color:#af0000;
+		font-size:11px;
+	}
+
+</style>
+<script type="text/javascript">
+
+		function makeRequest(url) {
+			if (window.XMLHttpRequest) { // Mozilla, Safari,...
+	        	http_request = new XMLHttpRequest();
+				if (http_request.overrideMimeType) {
+		            http_request.overrideMimeType('text/xml');
+				}
+	        }else if (window.ActiveXObject) { // IE
+				try {
+    	    		http_request = new ActiveXObject("Msxml2.XMLHTTP");
+	        	}catch (e) {
+	            	try {
+	               	http_request = new ActiveXObject("Microsoft.XMLHTTP");
+	            	} catch (e) {}
+	         	}
+			}
+
+			if (!http_request) {
+		         alert('Cannot create XMLHTTP instance');
+		         return false;
+			}
+			http_request.onreadystatechange = alertContents;
+			http_request.open('GET', url, true);
+			http_request.send(null);
+   		}
+
+			function alertContents() 
+			{
+				if (http_request.readyState == 4)
+				{
+					if (http_request.status == 200)
+						document.getElementById('outer3').innerHTML="<span style=\"color:green\">`saved`</span>";
+					else
+						document.getElementById('outer3').innerHTML="<span style=\"color:red\">`failed to save`</span>";
+				 }
+		      }
+
+			function change()
+			{
+				document.getElementById('outer3').innerHTML="";
+			}
+			function send()
+			{
+				var t = "setnotify_"+document.getElementById('callon').checked+"_";
+				t += document.getElementById('smson').checked+"_";
+				t += document.getElementById('interval').value+"_";
+				t += document.getElementById('vibrate').checked+"_";
+				t += document.getElementById('vibratepatt').value.replace('/ /g','')+"_";
+				t += document.getElementById('blink').checked+"_";
+				t += document.getElementById('blinktype').selectedIndex+"_";
+				t += document.getElementById('blinkon').value+"_";
+				t += document.getElementById('blinkoff').value;
+				var s = "";
+				var l=t.length;
+				for(var i = 0; i<l; i++)
+				{
+					if (t[i] == ',')
+						s += "~";
+					else
+						s += t[i];
+				}
+				makeRequest(s);
+			}
+</script>
+</head>
+<body>
+<div id="dev">
+	<strong>`Under development, it may not notify you because the CPU can fall deep asleep`</strong>
+</div>
+	<p>`Webkey searches for unread messages and missed calls every half minute (it hardly uses the processor, we check the modification times of the database files, and only if they are altered then do a fast sqlite request).`</p>
+
+<div style="padding: 5px">
+<h3>`Trigger events`</h3>
+<input type="checkbox" id="smson" onclick="change()" >`Watch for unread messages`</input><br/>
+<input type="checkbox" id="callon" onclick="change()" >`Watch for missed calls`</input>
+<h3>`Notification method`</h3>
+`Alert every` <input type="text" id="interval" value="5" rows="1"/> `minute`
+<h5>`Vibrate phone`</h5>
+<input type="checkbox" id="vibrate" onclick="change()" >`Vibrate phone with the following sequence`:</input>
+<input type="text" id="vibratepatt" value="100,500,100,500,100" rows="1" onkeypress="change()"/><br/>
+`(A,B,C,D,... means vibrate for A ms, wait for B ms, vibrate for C ms, wait for D ms, ...)`</br>
+<h5>`Blink led`</h5>
+<input type="checkbox" id="blink" onclick="change()" >`Blink led`</input>
+<select id='blinktype'><option>`only for the duration of vibrate`</option><option>`all the time`</option></select><br/>
+`When the led is blinking, it is on for` <input type="text" id="blinkon" value="200"/>`ms, and off for` <input type="text" id="blinkoff" value="200"/> `ms`<br/>
+<input type="button" class="butt" value="`Save and test alert`" onclick="send()"/>
+<div id="outer3"></div>
+</div>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  <LinearLayout
+  		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:gravity="bottom"		
+		>
+		<ScrollView
+			android:id="@+id/chat_scroll" 
+			android:layout_weight="1.0"		
+			android:layout_width="fill_parent"
+			android:layout_height="dip"
+			android:fillViewport="true"			
+			>
+			
+			<LinearLayout
+				android:id="@+id/reginfolayout"
+			  	android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+
+			>
+			<!--
+				<TextView
+				  		android:id="@+id/chat_text"
+				  		android:layout_height="wrap_content"
+						android:layout_width="fill_parent"
+						android:text="@string/settingsTitle"
+					    android:layout_weight="1"
+						android:textSize="16dip"
+						android:gravity="right"					
+				/>
+				 -->			
+<!-- 				 	ALL; Screenshot; Location; Chat; Read /sdcard/public/; Contacts Sms Calls; Read files; Sdcard -->
+			<TextView
+				android:id="@+id/register_username"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:text="xy username"
+			    android:layout_weight="1"
+				android:textSize="25dip"				
+				android:gravity="center"
+				android:background="#666565"
+				android:padding="9dp"					
+			/>			
+			
+			<TableLayout android:id="@+id/row1" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:layout_gravity="fill_horizontal"
+																				
+					>
+					<TableRow>
+						<CheckBox android:id="@+id/checkbox_all"
+			        	android:layout_width="wrap_content"
+			        	android:layout_height="wrap_content"
+			        	android:checked="true"
+			        	android:text="@string/permission_checkbox_all"
+			        	android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_all"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"							
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							 >
+						</ImageButton>	
+					</TableRow>
+
+					<TableRow>			        	
+						<CheckBox android:id="@+id/checkbox_screenshot"
+			        	android:layout_width="wrap_content"
+			        	android:layout_height="wrap_content"
+			        	android:text="@string/permission_checkbox_screenshot"
+						android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_screenshot"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	
+					</TableRow>
+					<TableRow>			
+						<CheckBox android:id="@+id/checkbox_gps"
+			        	android:layout_width="wrap_content"
+			        	android:layout_height="wrap_content"
+			        	android:text="@string/permission_checkbox_location"			        	
+			        	android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_gps"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	
+					</TableRow>
+					<TableRow>			        	
+			        	<CheckBox android:id="@+id/checkbox_chat"
+			        	android:layout_width="wrap_content"
+			        	android:layout_height="wrap_content"
+			        	android:text="@string/permission_checkbox_chat"			        	
+			        	android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_chat"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	
+					</TableRow>
+					<TableRow>			        	
+			        	<CheckBox android:id="@+id/checkbox_public"
+			        		android:layout_width="wrap_content"
+			        		android:layout_height="wrap_content"
+			        		android:text="@string/permission_checkbox_public"
+			        		android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_public"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	
+					</TableRow>
+					<TableRow>			        	
+			        	<CheckBox android:id="@+id/checkbox_sms_contact"
+				        	android:layout_width="wrap_content"
+			        		android:layout_height="wrap_content"
+			        		android:text="@string/permission_checkbox_contact"
+			        		android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_sms_contact"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	       	        	
+					</TableRow>
+					<TableRow>			
+			        	<CheckBox android:id="@+id/checkbox_files"
+			        		android:layout_width="wrap_content"
+			        		android:layout_height="wrap_content"
+			        		android:text="@string/permission_checkbox_files"
+							android:layout_weight="1" />
+			        	
+			        	<ImageButton
+							android:id="@+id/help_files"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	      
+					</TableRow>
+					<TableRow>			        	
+			        	<CheckBox android:id="@+id/checkbox_sdcard"
+			        		android:layout_width="wrap_content"
+			        		android:layout_height="wrap_content"
+			        		android:text="@string/permission_checkbox_sdcard"
+							android:layout_weight="1" />
+										        	
+			        	<ImageButton
+							android:id="@+id/help_sdcard"								
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/helpmark"
+							android:background="@null"
+							android:layout_weight="1"
+							android:paddingRight="15dip"
+							>
+						</ImageButton>	   
+			        		
+					</TableRow>
+
+				</TableLayout>	        		        					           	
+			</LinearLayout>								
+		</ScrollView>
+		
+		<LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+			<Button
+            	android:id="@+id/permission_accept_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="@string/btn_save"/>
+			<Button
+            	android:id="@+id/permission_dismiss_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="@string/btn_cancel"/>
+    	</LinearLayout>	
+	</LinearLayout>
+</LinearLayout>

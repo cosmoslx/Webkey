@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>`Webkey for Android`</title>
+	  <link rel="shortcut icon" href="favicon.ico">
+	  <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/webkey.css" rel="stylesheet" type="text/css"/>
+	  <link href="css/codemirror.css" rel="stylesheet" type="text/css"/>
+	  <script type="text/javascript" src="js/codemirror-compressed.js"></script>
+	  <script type="text/javascript" src="js/jquery.js"></script>
+	  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	  <script type="text/javascript" src="js/webkey.js"></script>
+</head>
+<body style="height:100%">
+	<<MENU>>
+<script type="text/javascript">
+	var editor;
+	$(document).ready(function () {
+			editor = CodeMirror.fromTextArea(document.getElementById("code"),{
+				mode: "javascript"
+				});
+			$("#code").load("gamecode.txt",function(v){ editor.setValue(v); });
+			$("#save").click(function(){
+				postSource();
+			});
+		});
+    function postSource(){
+	    editor.save();
+	    var content = editor.getValue();
+	    $.ajax({
+		type: 'POST',
+		url: "upload_local=gamecode.txt",
+		data: content,
+		processData: false});
+    }
+
+</script>
+<textarea id="code">
+
+</textarea>
+<input id="save" type="button" class="butt" value="`Save`" onclick="">
+<input id="save" type="button" class="butt" value="`Go back`" onclick="window.location = 'phone.html'">
+</body>
